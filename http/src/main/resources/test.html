@@ -1,0 +1,91 @@
+<html>
+
+<head>
+<style type="text/css">
+#result {
+	width: 90%;
+	height: 300px;
+}
+</style>
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js">
+</script>
+</head>
+
+<body>
+
+<button id="queryinterface"></button>
+<button id="computeinterface"></button>
+<button id="reset" onclick="javascript:window.location.reload();">Reset</button>
+
+<br />
+
+<div id="description"></div>
+<textarea id="result">
+</textarea>
+
+<script type="text/javascript">
+$(function (){
+	queryInterface.init();
+	computeInterface.init();
+});
+
+var queryInterface = {
+	title: "Query Interface",
+	currentStep: 0,
+	init: function() {
+		$("button#queryinterface").html(queryInterface.title);
+		$("button#queryinterface").click(function(){queryInterface.runstep();});
+		queryInterface.currentStep = 0;
+	},
+	runstep: function() {
+		$("div#description").html(queryInterface.steps[queryInterface.currentStep].description);
+		queryInterface.steps[queryInterface.currentStep].action();
+		queryInterface.currentStep = queryInterface.currentStep + 1;
+	},
+	steps: [
+		{
+			description: "GET /-/",
+			action: function() {
+				$.get('/-/', function(data) {
+		  			$('#result').html(data);
+				});	
+			}
+		}, {
+			description: "Popup",
+			action: function() { alert("Tada!"); }
+		}
+		]
+}
+
+var computeInterface = {
+	title: "Compute Interface",
+	currentStep: 0,
+	init: function() {
+		$("button#computeinterface").html(computeInterface.title);
+		$("button#computeinterface").click(function(){computeInterface.runstep();});
+		computeInterface.currentStep = 0;
+	},
+	runstep: function() {
+		$("div#description").html(computeInterface.steps[computeInterface.currentStep].description);
+		computeInterface.steps[computeInterface.currentStep].action();
+		computeInterface.currentStep = computeInterface.currentStep + 1;
+	},
+	steps: [
+		{
+			description: "GET /compute/",
+			action: function() {
+				$.get('/compute/', function(data) {
+		  			$('#result').html(data);
+				});	
+			}
+		}, {
+			description: "Popup",
+			action: function() { alert("Tada!"); }
+		}
+		]
+}
+</script>
+</body>
+
+</html>

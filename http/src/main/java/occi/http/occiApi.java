@@ -48,6 +48,7 @@ public class occiApi extends ServerResource {
 				OcciRestNetworkInterface.class);
 		// Returns all storage instances
 		comp.getDefaultHost().attach("/network/", OcciRestNetworks.class);
+		comp.getDefaultHost().attach("/test", OcciRestTest.class);
 		// Router for all available mixin instances. Returns mixin information.
 		comp.getDefaultHost().attach("/{mixin}", OcciRestMixin.class);
 		// start occi api
