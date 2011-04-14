@@ -1,0 +1,47 @@
+<domain type='kvm'>
+	<!-- occi.compute.hostname -->
+	<name>%s</name>
+	<uuid>%s</uuid>
+	<!-- occi.compute.memory -->
+	<memory>%s</memory>
+	<currentMemory>%s</currentMemory>
+	<!-- occ.compute.cores -->
+	<vcpu>%s</vcpu>
+	<os>
+		<type arch='i686'>hvm</type>
+		<boot dev='hd' />
+	</os>
+	<features>
+		<acpi />
+	</features>
+	<clock offset='localtime' />
+	<!-- lifecycle control -->
+	<on_poweroff>destroy</on_poweroff>
+	<on_reboot>restart</on_reboot>
+	<on_crash>restart</on_crash>
+	<devices>
+		<!-- occi.storage -->
+		<disk type='file' device='disk'>
+			<source file='%s' />
+			<target dev='hda' />
+		</disk>
+		<!-- occi.networkinterface.label -->
+		<interface type='bridge' name='%s'>
+			<!-- occi.networkinterface.interface -->
+			<uuid>%s</uuid>
+			<source bridge='br0' />
+			<!-- occi.ipnetwork.ip -->
+			<ip address='%s' netmask='255.255.255.0' />
+			<!-- occi.ipnetwork.gateway -->
+			<route gateway='%s' />
+			<!-- occi.networkinterface.mac -->
+			<mac address='%s' />
+			<!-- occi.network.vlan -->
+			<vlan tag='%s'> 
+				<interface name='%s' />
+			</vlan>
+		</interface>
+		<graphics type='vnc' port='-1' />
+		<input type='mouse' bus='ps2' />
+	</devices>
+</domain>
