@@ -18,6 +18,8 @@
 
 package occi.http;
 
+import java.io.File;
+
 import occi.config.OcciConfig;
 
 import org.apache.log4j.PropertyConfigurator;
@@ -34,11 +36,12 @@ public class occiApi extends ServerResource {
 
 	public static void main(String[] args) throws Exception {
 		// load all logger properties
-		PropertyConfigurator
-				.configure("conf/log4j.properties");
+		if (new File("conf/log4j.properties").exists())
+			PropertyConfigurator.configure("conf/log4j.properties");
 		LOGGER.info("Initialize occi api.");
 		// Create the HTTP server and listen on port 8182
-		comp.getServers().add(Protocol.HTTP, OcciConfig.getInstance().config.getInt("occi.server.port"));
+		comp.getServers().add(Protocol.HTTP,
+				OcciConfig.getInstance().config.getInt("occi.server.port"));
 
 		comp.getDefaultHost().attach("/", OcciRestRoot.class);
 		// Router for the Query/Discovery Interface.

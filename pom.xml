@@ -3,26 +3,20 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>edu.udo.irf.pg547</groupId>
 	<artifactId>occi</artifactId>
-	<version>0.1</version>
+	<version>0.2</version>
 	<packaging>pom</packaging>
 	<name>OCCI Projekt 547</name>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
 
 	<reporting>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-checkstyle-plugin</artifactId>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-pmd-plugin</artifactId>
-				<configuration>
-					<targetJdk>1.6</targetJdk>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>2.7</version>
 				<configuration>
 					<show>private</show>
 				</configuration>
@@ -47,35 +41,26 @@
 				</configuration>
 			</plugin>
 			<plugin>
-				<groupId>org.apache.felix</groupId>
-				<artifactId>maven-bundle-plugin</artifactId>
-				<version>2.0.0</version>
-				<extensions>true</extensions>
-			</plugin>
-			<plugin>
 				<groupId>com.mycila.maven-license-plugin</groupId>
 				<artifactId>maven-license-plugin</artifactId>
+				<version>1.9.0</version>
 				<configuration>
 					<header>core/src/main/resources/license/header.txt</header>
+					<encoding>UTF-8</encoding>
 				</configuration>
 				<executions>
-                <execution>
-                    <phase>test</phase>
-                    <goals>
-                        <goal>format</goal>
-                    </goals>
-                </execution>
-            </executions>
+					<execution>
+						<phase>test</phase>
+						<goals>
+							<goal>format</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
 
 	<repositories>
-		<repository>
-			<id>maven-restlet</id>
-			<name>Public online Restlet repository</name>
-			<url>http://maven.restlet.org</url>
-		</repository>
 		<repository>
 			<id>maven-libvirt</id>
 			<name>Public online libvirt repository</name>
@@ -86,7 +71,6 @@
 			<url>https://repository.jboss.org/nexus/content/repositories/central/</url>
 		</repository>
 	</repositories>
-
 
 	<dependencies>
 		<dependency>
@@ -101,7 +85,7 @@
 			<artifactId>junit</artifactId>
 			<version>4.8.2</version>
 			<type>jar</type>
-			<scope>compile</scope>
+			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>

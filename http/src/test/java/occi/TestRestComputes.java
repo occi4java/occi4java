@@ -40,7 +40,7 @@ import org.slf4j.LoggerFactory;
  */
 public class TestRestComputes {
 	private static final Logger LOGGER = LoggerFactory
-			.getLogger(TestRestQuery.class);
+			.getLogger(TestRestComputes.class);
 	private ClientResource clientResource = new ClientResource(
 			OcciConfig.getInstance().config.getString("occi.server.location"));
 

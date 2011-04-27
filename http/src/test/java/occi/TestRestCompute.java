@@ -88,10 +88,6 @@ public class TestRestCompute {
 		// test if compute ist not null
 		Assert.assertNotNull(compute);
 		// connect to api
-//		LOGGER.info("URL: " + OcciConfig.getInstance().config
-//				.getString("occi.serverlocation")
-//				+ "compute/"
-//				+ compute.getId());
 		clientResource.setReference(OcciConfig.getInstance().config
 				.getString("occi.server.location")
 				+ "compute/"
@@ -143,7 +139,6 @@ public class TestRestCompute {
 		String category = "compute";
 		// create new request and add all attributes
 		Form form = new Form();
-//		form.add("X-OCCI-Attribute", "");
 		form.add("occi.compute.architecture", architecture);
 		form.add("occi.compute.cores", cores);
 		form.add("occi.compute.hostname", hostname);
