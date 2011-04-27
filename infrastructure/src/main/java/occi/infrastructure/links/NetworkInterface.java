@@ -40,27 +40,29 @@ import occi.core.Resource;
  * http://schemas.ogf.org/occi/infrastructure#networkinterface. A
  * NetworkInterface instance MUST use and expose this Kind. The Kind instance
  * assigned to the Network- Interface type MUST be related to the
- * http://schemas.ogf.org/occi/core#link Kind.
+ * http://schemas.ogf.org/occi/core#link Kind. [T. Metsch, A. Edmonds - Open
+ * Cloud Computing Interface - Infrastructure,
+ * http://ogf.org/documents/GFD.184.pdf, Apr. 2011]
  * 
  * @author Sebastian Laag
  * @author Sebastian Heckmann
  */
 public class NetworkInterface extends Link {
 	/**
-	 * Identifier that relates the link to the link's device interface.
+	 * Identifier that relates the link to the link's device interface. [T. Metsch, A. Edmonds - Open Cloud Computing Interface - Infrastructure, http://ogf.org/documents/GFD.184.pdf, Apr. 2011]
 	 */
 	private final String networkInterface;
 	/**
-	 * MAC address associated with the link's device interface.
+	 * MAC address associated with the link's device interface. [T. Metsch, A. Edmonds - Open Cloud Computing Interface - Infrastructure, http://ogf.org/documents/GFD.184.pdf, Apr. 2011]
 	 */
 	private String mac;
 	/**
-	 * Current status of the instance.
+	 * Current status of the instance. [T. Metsch, A. Edmonds - Open Cloud Computing Interface - Infrastructure, http://ogf.org/documents/GFD.184.pdf, Apr. 2011]
 	 */
 	private final State state;
 
 	/**
-	 * Possible status of the instance.
+	 * Possible status of the instance. [T. Metsch, A. Edmonds - Open Cloud Computing Interface - Infrastructure, http://ogf.org/documents/GFD.184.pdf, Apr. 2011]
 	 */
 	public enum State {
 		active, inactive

@@ -39,7 +39,7 @@ import org.springframework.core.io.ClassPathResource;
 /**
  * The Compute type represents a generic Information resource. For example a
  * virtual machine. This Compute type Inherits the Resource base type defined in
- * OCCI Core Specification. Compute is assigned to the Kind instance.
+ * OCCI Core Specification. Compute is assigned to the Kind instance. [T. Metsch, A. Edmonds - Open Cloud Computing Interface - Infrastructure, http://ogf.org/documents/GFD.184.pdf, Apr. 2011]
  * 
  * @author Sebastian Heckmann
  * @author Sebastian Laag

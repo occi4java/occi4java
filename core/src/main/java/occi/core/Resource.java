@@ -36,7 +36,9 @@ import javax.naming.directory.SchemaViolationException;
  * the inheritance of a set of common attributes into sub-types. Moreover, it
  * introduces relationships to other Resource instances through instances of the
  * Link type. The Resource type is the first of three entry points to extend the
- * OCCI Core Model.
+ * OCCI Core Model. [T. Metsch, A. Edmonds, R. Nyren and A.Papaspyrou - Open
+ * Cloud Computing Interface - Core, http://ogf.org/documents/GFD.183.pdf, Apr.
+ * 2011]
  * 
  * For more information see "Open Cloud Computing Interface - Core"
  * specification.
@@ -51,7 +53,9 @@ public class Resource extends Entity {
 	private static String summary;
 	/**
 	 * A set of Link compositions. Being a composite relation the removal of a
-	 * Link from the set MUST also remove the Link instance.
+	 * Link from the set MUST also remove the Link instance. [T. Metsch, A.
+	 * Edmonds, R. Nyren and A.Papaspyrou - Open Cloud Computing Interface -
+	 * Core, http://ogf.org/documents/GFD.183.pdf, Apr. 2011]
 	 */
 	protected static Set<Link> links;
 

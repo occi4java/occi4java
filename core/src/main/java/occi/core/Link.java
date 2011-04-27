@@ -29,7 +29,9 @@ import java.util.UUID;
  * another. An instance of the Link type defines a base association between two
  * Resource instances. A Link instance indicates that one Resource instance is
  * connected to another. The Link type is the second of three entry points to
- * extend the OCCI Core Model
+ * extend the OCCI Core Model [T. Metsch, A. Edmonds, R. Nyren and A.Papaspyrou
+ * - Open Cloud Computing Interface - Core,
+ * http://ogf.org/documents/GFD.183.pdf, Apr. 2011]
  * 
  * For more information see "Open Cloud Computing Interface - Core"
  * specification.

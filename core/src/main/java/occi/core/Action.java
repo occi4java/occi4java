@@ -31,7 +31,9 @@ import java.net.URI;
  * 
  * An Action MUST always bound to either a Kind or a Mixin instance through a
  * composite association. An Action is considered to be a capability of the Kind
- * or Mixin instance it is associated with.
+ * or Mixin instance it is associated with. [T. Metsch, A. Edmonds, R. Nyren and
+ * A.Papaspyrou - Open Cloud Computing Interface - Core,
+ * http://ogf.org/documents/GFD.183.pdf, Apr. 2011]
  * 
  * For more information see "Open Cloud Computing Interface - Core"
  * specification
@@ -41,14 +43,14 @@ import java.net.URI;
  */
 public abstract class Action {
 	/**
-	 * The identifying Category of the Action.
+	 * The identifying Category of the Action. 
 	 */
 	private static Category category;
 
 	public abstract void execute(URI uri, Method method);
 
 	/**
-	 * Returns the category of the action.
+	 * Returns the category of the action. 
 	 * 
 	 * @return the category
 	 */

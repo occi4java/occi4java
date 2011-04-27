@@ -34,7 +34,9 @@ import java.util.Set;
  * Entity itself is assigned the Kind instance
  * http://schemas.ogf.org/occi/core#entity for type identification.
  * 
- * Being an abstract type Entity itself can never be instantiated.
+ * Being an abstract type Entity itself can never be instantiated. [T. Metsch,
+ * A. Edmonds, R. Nyren and A.Papaspyrou - Open Cloud Computing Interface -
+ * Core, http://ogf.org/documents/GFD.183.pdf, Apr. 2011]
  * 
  * For more information see "Open Cloud Computing Interface - Core"
  * specification
@@ -45,7 +47,9 @@ import java.util.Set;
 public abstract class Entity {
 	/**
 	 * A unique identifier (within the service providers namespace) of the
-	 * Entity sub-type instance.
+	 * Entity sub-type instance. [T. Metsch, A. Edmonds, R. Nyren and
+	 * A.Papaspyrou - Open Cloud Computing Interface - Core,
+	 * http://ogf.org/documents/GFD.183.pdf, Apr. 2011]
 	 */
 	private URI id;
 	/**
@@ -54,13 +58,17 @@ public abstract class Entity {
 	private String title;
 	/**
 	 * The Kind instance uniquely identifying the Entity sub-type of the
-	 * resource instance.
+	 * resource instance. [T. Metsch, A. Edmonds, R. Nyren and A.Papaspyrou -
+	 * Open Cloud Computing Interface - Core,
+	 * http://ogf.org/documents/GFD.183.pdf, Apr. 2011]
 	 */
 	private Kind kind;
 	/**
 	 * The Mixin instances associated to this resource instance. Consumers can
 	 * expect the attributes and Actions of the associated Mixins to be exposed
-	 * by the instance.
+	 * by the instance. [T. Metsch, A. Edmonds, R. Nyren and A.Papaspyrou - Open
+	 * Cloud Computing Interface - Core, http://ogf.org/documents/GFD.183.pdf,
+	 * Apr. 2011]
 	 */
 	private Set<Kind> mixins;
 

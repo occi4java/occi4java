@@ -30,7 +30,9 @@ import occi.core.check.OcciCoreCheck;
  * The Category Type is the basis of the type identification mechanism of the
  * OCCI specification. Instances of the Category Type are only used to identify
  * Action types. All other properties of Category are managed through its sub
- * types Mixin and Kind.
+ * types Mixin and Kind. [T. Metsch, A. Edmonds, R. Nyren and A.Papaspyrou -
+ * Open Cloud Computing Interface - Core, http://ogf.org/documents/GFD.183.pdf,
+ * Apr. 2011]
  * 
  * @author Sebastian Heckmann
  * @author Sebastian Laag
@@ -61,7 +63,9 @@ public class Category {
 	/**
 	 * A Category instance is uniquely identified by concatenation of
 	 * categorisation scheme and category term. For example
-	 * http://example.com/category/scheme#term
+	 * http://example.com/category/scheme#term [T. Metsch, A. Edmonds, R. Nyren
+	 * and A.Papaspyrou - Open Cloud Computing Interface - Core,
+	 * http://ogf.org/documents/GFD.183.pdf, Apr. 2011]
 	 * 
 	 * @param term
 	 * @param scheme
@@ -81,14 +85,14 @@ public class Category {
 
 	public Category(String term, String scheme, String title)
 			throws URISyntaxException, SchemaViolationException {
-		if(scheme != null) {
+		if (scheme != null) {
 			OcciCoreCheck.checkScheme(scheme);
 			this.scheme = new URI(scheme);
 		} else {
 			this.scheme = null;
 		}
 		this.term = term;
-		
+
 		this.title = title;
 		// add new category to the category list, for discovery purpose
 		categories.add(this);

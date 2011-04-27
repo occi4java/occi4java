@@ -35,30 +35,33 @@ import occi.core.Resource;
  * http://schemas.ogf.org/occi/infrastructure#storagelink. A StorageLink
  * instance MUST use and expose this Kind. The Kind instance assigned to the
  * StorageLink type MUST be related to the http://schemas.ogf.org/occi/core#link
- * Kind.
+ * Kind. [T. Metsch, A. Edmonds - Open Cloud Computing Interface -
+ * Infrastructure, http://ogf.org/documents/GFD.184.pdf, Apr. 2011]
  * 
  * @author Sebastian Laag
  * @author Sebastian Heckmann
  */
 public class StorageLink extends Link {
 	/**
-	 * Device identifier as defined by the OCCI service provider.
+	 * Device identifier as defined by the OCCI service provider. [T. Metsch, A. Edmonds - Open Cloud Computing Interface - Infrastructure, http://ogf.org/documents/GFD.184.pdf, Apr. 2011]
 	 */
 	private String deviceid;
 	/**
-	 * Point to where the storage is mounted in the guest OS.
+	 * Point to where the storage is mounted in the guest OS. [T. Metsch, A. Edmonds - Open Cloud Computing Interface - Infrastructure, http://ogf.org/documents/GFD.184.pdf, Apr. 2011]
 	 */
 	private String mountpoint;
 	/**
-	 * Current status of the instance.
+	 * Current status of the instance. [T. Metsch, A. Edmonds - Open Cloud Computing Interface - Infrastructure, http://ogf.org/documents/GFD.184.pdf, Apr. 2011]
 	 */
 	private State state;
+
 	/**
 	 * Possible status of the instance.
 	 */
 	private enum State {
 		active, inactive
 	}
+
 	/**
 	 * Static HashSet of all storage link attributes.
 	 */
@@ -78,7 +81,7 @@ public class StorageLink extends Link {
 		this.state = state;
 		this.mountpoint = mountpoint;
 	}
-	
+
 	/**
 	 * Generate attribute List.
 	 */

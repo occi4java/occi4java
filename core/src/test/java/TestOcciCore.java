@@ -22,7 +22,6 @@ import javax.naming.directory.SchemaViolationException;
 
 import occi.core.Action;
 import occi.core.Category;
-import occi.core.Discovery;
 import occi.core.Entity;
 import occi.core.Kind;
 import occi.core.Link;
@@ -44,7 +43,6 @@ public class TestOcciCore {
 	public void testOcciCoreClasses() {
 		Assert.assertNotNull(Action.class);
 		Assert.assertNotNull(Category.class);
-		Assert.assertNotNull(Discovery.class);
 		Assert.assertNotNull(Entity.class);
 		Assert.assertNotNull(Kind.class);
 		Assert.assertNotNull(Link.class);

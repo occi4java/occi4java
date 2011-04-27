@@ -33,7 +33,8 @@ import occi.core.Mixin;
  * The IPNetworkInterface mixin is assigned the "scheme" of
  * http://schemas.ogf.org/occi/infrastructure/networkinterface# and the \term"
  * value ipnetworkinterface. An IPNetworkInterface mixin MUST support these
- * attributes.
+ * attributes. [T. Metsch, A. Edmonds - Open Cloud Computing Interface -
+ * Infrastructure, http://ogf.org/documents/GFD.184.pdf, Apr. 2011]
  * 
  * @author Sebastian Laag
  * @author Sebastian Heckmann
@@ -41,16 +42,21 @@ import occi.core.Mixin;
 public class IPNetworkInterface extends Mixin {
 	/**
 	 * Internet Protocol(IP) network address (e.g. 192.168.0.1/24, fc00::/7) of
-	 * the link
+	 * the link [T. Metsch, A. Edmonds - Open Cloud Computing Interface -
+	 * Infrastructure, http://ogf.org/documents/GFD.184.pdf, Apr. 2011]
 	 */
 	private String ip;
 	/**
-	 * Internet Protocol(IP) network address (e.g. 192.168.0.1/24, fc00::/7)
+	 * Internet Protocol(IP) network address (e.g. 192.168.0.1/24, fc00::/7) [T.
+	 * Metsch, A. Edmonds - Open Cloud Computing Interface - Infrastructure,
+	 * http://ogf.org/documents/GFD.184.pdf, Apr. 2011]
 	 */
 	private String gateway;
 	/**
 	 * Address mechanism: dynamic e.g. uses the dynamic host configuration
 	 * protocol, static e.g. uses user supplied static net- work configurations.
+	 * [T. Metsch, A. Edmonds - Open Cloud Computing Interface - Infrastructure,
+	 * http://ogf.org/documents/GFD.184.pdf, Apr. 2011]
 	 */
 	private Allocation allocation;
 
@@ -60,20 +66,23 @@ public class IPNetworkInterface extends Mixin {
 	private enum Allocation {
 		DYNAMIC, STATIC
 	}
-	
+
 	/**
 	 * Static HashSet of all network interface attributes.
 	 */
 	public static HashSet<String> attributes = new HashSet<String>();
 
-	public IPNetworkInterface(String ip, String gateway, Allocation allocation) throws SchemaViolationException, URISyntaxException {
-		super(null, "ipnetwork", "ipnetwork", "http://schemas.ogf.org/occi/infrastructure/network#", null);
+	public IPNetworkInterface(String ip, String gateway, Allocation allocation)
+			throws SchemaViolationException, URISyntaxException {
+		super(null, "ipnetwork", "ipnetwork",
+				"http://schemas.ogf.org/occi/infrastructure/network#", null);
 		this.ip = ip;
 		this.gateway = gateway;
 		this.allocation = allocation;
-		
+
 		generateAttributeList();
 	}
+
 	/**
 	 * Constructor for the query interface. Necessary.
 	 * 
@@ -83,12 +92,14 @@ public class IPNetworkInterface extends Mixin {
 	 * @throws SchemaViolationException
 	 * @throws URISyntaxException
 	 */
-	public IPNetworkInterface(Set<Mixin> related, String term, String title, String scheme, Set<String> attributes) throws SchemaViolationException, URISyntaxException {
+	public IPNetworkInterface(Set<Mixin> related, String term, String title,
+			String scheme, Set<String> attributes)
+			throws SchemaViolationException, URISyntaxException {
 		super(related, term, title, scheme, attributes);
-		
+
 		generateAttributeList();
 	}
-	
+
 	/**
 	 * Generate attribute List.
 	 */

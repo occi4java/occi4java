@@ -40,7 +40,8 @@ import org.springframework.core.io.ClassPathResource;
  * storage device. Storage inherits the Resource base type defined in the OCCI
  * Core Model. The Storage type is assigned the Kind instance
  * http://schemas.ogf.org/occi/infrastructure#storage. A Storage instance MUST
- * use and expose this Kind.
+ * use and expose this Kind. [T. Metsch, A. Edmonds - Open Cloud Computing
+ * Interface - Infrastructure, http://ogf.org/documents/GFD.184.pdf, Apr. 2011]
  * 
  * @author Sebastian Laag
  * @author Sebastian Heckmann

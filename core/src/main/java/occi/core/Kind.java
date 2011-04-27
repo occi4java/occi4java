@@ -33,7 +33,9 @@ import occi.config.OcciConfig;
  * identification mechanism for all Entity types present in the model. n the
  * initial instantiation of the OCCI Core Model, with no core model extensions,
  * three instances of Kind will be present: one for Entity, another for Resource
- * and the last one for Link.
+ * and the last one for Link. [T. Metsch, A. Edmonds, R. Nyren and A.Papaspyrou
+ * - Open Cloud Computing Interface - Core,
+ * http://ogf.org/documents/GFD.183.pdf, Apr. 2011]
  * 
  * For more information see "Open Cloud Computing Interface - Core"
  * specification.
@@ -62,7 +64,9 @@ public class Kind extends Category {
 	/**
 	 * Set of resource instances, i.e. Entity sub-type instances. Resources
 	 * instantiated from the Entity sub-type which is uniquely identified by
-	 * this Kind instance.
+	 * this Kind instance. [T. Metsch, A. Edmonds, R. Nyren and A.Papaspyrou -
+	 * Open Cloud Computing Interface - Core,
+	 * http://ogf.org/documents/GFD.183.pdf, Apr. 2011]
 	 */
 	private Set<Entity> entities;
 	private Set<String> actionNames = new HashSet<String>();
@@ -88,7 +92,8 @@ public class Kind extends Category {
 	public Kind(Set<Entity> entities, Entity entity_type, String term,
 			String title, Set<String> attributes)
 			throws SchemaViolationException, URISyntaxException {
-		super(term, OcciConfig.getInstance().config.getString("occi.scheme"), title, attributes);
+		super(term, OcciConfig.getInstance().config.getString("occi.scheme"),
+				title, attributes);
 
 		this.entities = entities;
 		Kind.entity_type = entity_type;
@@ -99,7 +104,8 @@ public class Kind extends Category {
 	public Kind(Set<Kind> related, Set<Entity> entities, Entity entity_type,
 			String term, String title, Set<String> attributes)
 			throws SchemaViolationException, URISyntaxException {
-		super(term, OcciConfig.getInstance().config.getString("occi.scheme"), title, attributes);
+		super(term, OcciConfig.getInstance().config.getString("occi.scheme"),
+				title, attributes);
 
 		this.related = related;
 		this.entities = entities;
@@ -120,8 +126,8 @@ public class Kind extends Category {
 
 	public Kind(Entity entity_type, Set<String> attributes)
 			throws SchemaViolationException, URISyntaxException {
-		super(entity_type.getKind().getTerm(), OcciConfig.getInstance().config.getString("occi.scheme"),
-				entity_type.getTitle(), attributes);
+		super(entity_type.getKind().getTerm(), OcciConfig.getInstance().config
+				.getString("occi.scheme"), entity_type.getTitle(), attributes);
 
 		Kind.entity_type = entity_type;
 

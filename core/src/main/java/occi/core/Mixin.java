@@ -33,7 +33,9 @@ import javax.naming.directory.SchemaViolationException;
  * existing resource instance and thereby add new resource capabilities, i.e.
  * attributes and Actions, to the resource instance. However, a Mixin can never
  * be applied to a type. In the initial instantiation of the OCCI Core Model,
- * with no extensions, no Mixin instances are present.
+ * with no extensions, no Mixin instances are present. [T. Metsch, A. Edmonds,
+ * R. Nyren and A.Papaspyrou - Open Cloud Computing Interface - Core,
+ * http://ogf.org/documents/GFD.183.pdf, Apr. 2011]
  * 
  * For more information see "Open Cloud Computing Interface - Core"
  * specification.
@@ -53,10 +55,12 @@ public class Mixin extends Category {
 	private Set<Mixin> related;
 	/**
 	 * Set of resource instances, i.e. Entity sub-type instances, associated
-	 * with the Mixin instance.
+	 * with the Mixin instance. [T. Metsch, A. Edmonds, R. Nyren and
+	 * A.Papaspyrou - Open Cloud Computing Interface - Core,
+	 * http://ogf.org/documents/GFD.183.pdf, Apr. 2011]
 	 */
 	private Set<Entity> entities;
-	/*
+	/**
 	 * set of existing mixin instances, for the query interface
 	 */
 	private static Set<Mixin> mixins = new HashSet<Mixin>();
@@ -96,8 +100,9 @@ public class Mixin extends Category {
 		mixins.add(this);
 	}
 
-	public Mixin(Set<Mixin> related, String term, String title, String scheme, Set<String> attributes)
-			throws URISyntaxException, SchemaViolationException {
+	public Mixin(Set<Mixin> related, String term, String title, String scheme,
+			Set<String> attributes) throws URISyntaxException,
+			SchemaViolationException {
 		super(term, scheme, title, attributes);
 		this.related = related;
 

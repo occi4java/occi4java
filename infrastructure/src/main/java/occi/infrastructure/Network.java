@@ -45,7 +45,8 @@ import occi.core.Resource;
  * 
  * The Network type is assigned the
  * http://schemas.ogf.org/occi/infrastructure#network Kind. A Network instance
- * MUST use and expose this Kind.
+ * MUST use and expose this Kind. [T. Metsch, A. Edmonds - Open Cloud Computing
+ * Interface - Infrastructure, http://ogf.org/documents/GFD.184.pdf, Apr. 2011]
  * 
  * @author Sebastian Laag
  * @author Sebastian Heckmann
