@@ -71,6 +71,7 @@ Changelog
 ---------
 
 0.2
+
   * Overworked the build process
   * Some minor bug fixes
 
