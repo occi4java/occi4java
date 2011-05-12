@@ -56,7 +56,6 @@ public class OcciRestNetworkInterface extends ServerResource {
 		getServerInfo().setAgent(
 				OcciConfig.getInstance().config.getString("occi.version"));
 
-		HashMap<String, Object> xoccimap = new HashMap<String, Object>();
 		Form requestHeaders = (Form) getRequest().getAttributes().get(
 				"org.restlet.http.headers");
 		LOGGER.debug("Current request: " + requestHeaders);

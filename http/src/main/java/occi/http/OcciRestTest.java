@@ -37,7 +37,6 @@ public class OcciRestTest extends ServerResource {
 		try {
 			reader = new BufferedReader(new FileReader("../../../resources/test.html"));
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		char[] buf = new char[1024];
@@ -49,13 +48,11 @@ public class OcciRestTest extends ServerResource {
 				buf = new char[1024];
 			}
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		try {
 			reader.close();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		Representation representation = new StringRepresentation(fileData.toString(), MediaType.TEXT_HTML);

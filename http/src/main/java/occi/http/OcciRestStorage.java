@@ -18,7 +18,6 @@
 
 package occi.http;
 
-import java.net.URI;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
@@ -31,7 +30,6 @@ import occi.core.Mixin;
 import occi.http.check.OcciCheck;
 import occi.infrastructure.Storage;
 import occi.infrastructure.Storage.State;
-import occi.infrastructure.compute.actions.StartAction.Start;
 
 import org.restlet.Response;
 import org.restlet.data.Form;

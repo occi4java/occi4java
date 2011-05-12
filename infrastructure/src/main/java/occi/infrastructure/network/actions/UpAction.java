@@ -20,7 +20,6 @@ package occi.infrastructure.network.actions;
 
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.HashSet;
 import java.util.UUID;
 
 import javax.naming.directory.SchemaViolationException;

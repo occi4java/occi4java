@@ -31,12 +31,11 @@ import javax.naming.directory.SchemaViolationException;
 
 import occi.config.OcciConfig;
 import occi.core.Kind;
-import occi.core.Link;
 import occi.http.check.OcciCheck;
 import occi.infrastructure.Compute;
-import occi.infrastructure.Network;
 import occi.infrastructure.Compute.Architecture;
 import occi.infrastructure.Compute.State;
+import occi.infrastructure.Network;
 import occi.infrastructure.compute.actions.RestartAction.Restart;
 import occi.infrastructure.compute.actions.StartAction.Start;
 import occi.infrastructure.compute.actions.StopAction.Stop;
@@ -63,8 +62,6 @@ public class OcciRestComputes extends ServerResource {
 
 	private static final Logger LOGGER = LoggerFactory
 			.getLogger(OcciRestComputes.class);
-
-	private final HashSet<Link> linkSet = new HashSet<Link>();
 
 	/**
 	 * Returns all compute resources.
