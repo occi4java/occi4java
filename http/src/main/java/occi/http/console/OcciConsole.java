@@ -24,9 +24,6 @@ import java.util.UUID;
 import occi.infrastructure.Compute;
 import occi.infrastructure.Storage;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 /**
  * Starts a console where you can execute several commands to monitor the
  * application.
@@ -34,9 +31,6 @@ import org.slf4j.LoggerFactory;
  * @author Sebastian Laag
  */
 public class OcciConsole extends Thread {
-	private static final Logger LOGGER = LoggerFactory
-			.getLogger(OcciConsole.class);
-
 	@Override
 	public void run() {
 		while (true) {
@@ -60,15 +54,15 @@ public class OcciConsole extends Thread {
 	 */
 	private static void parse(String[] args) {
 		if (args[0].equals("help")) {
-			LOGGER.info("Avaiable Commands: ");
-			LOGGER.info("\t compute");
-			LOGGER.info("\t\t lists all compute resources");
-			
-			LOGGER.info("\t storage");
-			LOGGER.info("\t\t lists all storage resources");
-			
-			LOGGER.info("\t exit");
-			LOGGER.info("\t\t terminates http server");
+			System.out.println("Available Commands: ");
+			System.out.println("\t compute");
+			System.out.println("\t\t lists all compute resources");
+
+			System.out.println("\t storage");
+			System.out.println("\t\t lists all storage resources");
+
+			System.out.println("\t exit");
+			System.out.println("\t\t terminates http server");
 		} else if (args[0].equals("compute")) {
 			// initialize compute list
 			Map<UUID, Compute> computeList = Compute.getComputeList();
@@ -76,34 +70,34 @@ public class OcciConsole extends Thread {
 				int i = 1;
 				for (UUID id : computeList.keySet()) {
 					Compute compute = computeList.get(id);
-					LOGGER.info("ID: {}", compute.getId());
+					System.out.println("ID: " + compute.getId());
 					if (i < computeList.size()) {
-						LOGGER.info(",");
+						System.out.println(",");
 					}
 					i++;
 				}
 			} else {
-				LOGGER.info("There are no compute resources.");
+				System.out.println("There are no compute resources.");
 			}
-		} else if(args[0].equals("storage")) {
+		} else if (args[0].equals("storage")) {
 			// initialize compute list
 			Map<UUID, Storage> storageList = Storage.getStorageList();
 			if (storageList.size() > 0) {
 				int i = 1;
 				for (UUID id : storageList.keySet()) {
 					Storage storage = storageList.get(id);
-					LOGGER.info("ID: {}", storage.getId());
+					System.out.println("ID: " + storage.getId());
 					if (i < storageList.size()) {
-						LOGGER.info(",");
+						System.out.println(",");
 					}
 					i++;
 				}
 			} else {
-				LOGGER.info("There are no storage resources.");
+				System.out.println("There are no storage resources.");
 			}
 		}
 		if (args[0].equals("exit")) {
-			LOGGER.info("Shutting down...");
+			System.out.println("Shutting down...");
 			System.exit(0);
 		}
 	}

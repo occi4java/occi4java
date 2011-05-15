@@ -28,7 +28,6 @@ import occi.core.Action;
 import occi.core.Category;
 import occi.core.Method;
 import occi.infrastructure.Network;
-import occi.infrastructure.compute.actions.StartAction;
 import occi.infrastructure.injection.Injection;
 import occi.infrastructure.interfaces.NetworkInterface;
 
@@ -38,7 +37,7 @@ import org.slf4j.LoggerFactory;
 public class UpAction extends Action {
 
 	private static final Logger LOGGER = LoggerFactory
-			.getLogger(StartAction.class);
+			.getLogger(UpAction.class);
 
 	private static NetworkInterface networkInterface = Injection
 			.getNetworkInterface();
