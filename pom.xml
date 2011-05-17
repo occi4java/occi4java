@@ -49,6 +49,12 @@
 				<configuration>
 					<header>core/src/main/resources/license/header.txt</header>
 					<encoding>UTF-8</encoding>
+					<excludes>
+						<exclude>**/OcciLexer.java</exclude>
+						<exclude>**/OcciParserException.java</exclude>
+						<exclude>**/Grammar.java</exclude>
+					</excludes>
+					<useDefaultExcludes>true</useDefaultExcludes>
 				</configuration>
 				<executions>
 					<execution>
