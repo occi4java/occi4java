@@ -21,16 +21,14 @@ package occi.http;
 import java.io.File;
 
 import occi.config.OcciConfig;
+import occi.http.console.OcciConsole;
 
 import org.apache.log4j.PropertyConfigurator;
 import org.restlet.Component;
 import org.restlet.data.Protocol;
 import org.restlet.resource.ServerResource;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class occiApi extends ServerResource {
-	private static final Logger LOGGER = LoggerFactory.getLogger(occiApi.class);
 	// initialize server component
 	public static Component comp = new Component();
 
@@ -38,7 +36,8 @@ public class occiApi extends ServerResource {
 		// load all logger properties
 		if (new File("conf/log4j.properties").exists())
 			PropertyConfigurator.configure("conf/log4j.properties");
-		LOGGER.info("Initialize occi api.");
+		else
+			PropertyConfigurator.configure("../core/src/main/resources/conf/log4j.properties");
 		// Create the HTTP server and listen on port 8182
 		comp.getServers().add(Protocol.HTTP,
 				OcciConfig.getInstance().config.getInt("occi.server.port"));
@@ -74,6 +73,8 @@ public class occiApi extends ServerResource {
 		comp.getDefaultHost().attach("/{mixin}", OcciRestMixin.class);
 		// start occi api
 		comp.start();
-		LOGGER.info("Started occi api");
+		// start occi console
+		OcciConsole console = new OcciConsole();
+		console.start();
 	}
 }

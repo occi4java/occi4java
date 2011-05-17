@@ -54,7 +54,9 @@ You can start it with:
 
     $ java -jar http-{version}.jar
 
-The jar file will start a HTTP server on the localhost at port 8182 (default). 
+The jar file will start a HTTP server on the localhost at port 8182 (default).
+
+Type "help" to get informed about the console.
 
 ### Properties
 
@@ -69,6 +71,10 @@ If you have already build the project you will find a /conf folder where you can
 
 Changelog
 ---------
+
+0.2.1
+
+  * New OCCI Console
 
 0.2
 
