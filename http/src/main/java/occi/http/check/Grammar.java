@@ -1,3 +1,4 @@
+package occi.http.check;
 /**
  * Copyright (C) 2010-2011 Sebastian Heckmann, Sebastian Laag
  *
@@ -16,7 +17,6 @@
  * limitations under the License.
  */
 
-package occi.http.check;
 
 import java.util.HashMap;
 
