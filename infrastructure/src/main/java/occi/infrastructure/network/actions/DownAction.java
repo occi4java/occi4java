@@ -49,7 +49,7 @@ public class DownAction extends Action {
 		down
 	}
 
-	public Down down;
+	private Down down;
 
 	public DownAction() throws SchemaViolationException, URISyntaxException {
 		Category category = new Category("down",

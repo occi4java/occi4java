@@ -45,7 +45,7 @@ public class OnlineAction extends Action {
 		online
 	}
 
-	public Online online;
+	private Online online;
 
 	private static StorageInterface storageInterface = Injection
 			.getStorageInterface();
@@ -75,5 +75,19 @@ public class OnlineAction extends Action {
 		}
 		storageInterface.onlineStorage(storage);
 
+	}
+
+	/**
+	 * @param online the online to set
+	 */
+	public void setOnline(Online online) {
+		this.online = online;
+	}
+
+	/**
+	 * @return the online
+	 */
+	public Online getOnline() {
+		return online;
 	}
 }

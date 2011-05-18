@@ -45,7 +45,7 @@ public class ResizeAction extends Action {
 		resize
 	}
 
-	public Resize resize;
+	private Resize resize;
 
 	private static StorageInterface storageInterface = Injection
 			.getStorageInterface();
@@ -75,5 +75,19 @@ public class ResizeAction extends Action {
 			}
 		}
 		storageInterface.resizeStorage(storage);
+	}
+
+	/**
+	 * @param resize the resize to set
+	 */
+	public void setResize(Resize resize) {
+		this.resize = resize;
+	}
+
+	/**
+	 * @return the resize
+	 */
+	public Resize getResize() {
+		return resize;
 	}
 }

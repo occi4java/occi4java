@@ -60,33 +60,30 @@ public class OcciRestMixin extends ServerResource {
 		LOGGER.debug("Size of mixins: " + Mixin.getMixins().size());
 		Mixin mix = null;
 		for (Mixin mixin : Mixin.getMixins()) {
-			if (mixin != null) {
-				if (!mixin.getTerm().equals("ipnetwork")) {
-					if (mixin.getTitle().equalsIgnoreCase(
+			if (mixin != null
+					&& !mixin.getTerm().equals("ipnetwork")
+					&& mixin.getTitle().equalsIgnoreCase(
 							getReference().getLastSegment())) {
-						mix = mixin;
-						buffer.append("Category: " + mixin.getTitle());
+				mix = mixin;
+				buffer.append("Category: " + mixin.getTitle());
+				buffer.append("\r\n");
+				buffer.append("\t\t class=\"mixin\"");
+				buffer.append("\r\n");
+				buffer.append("\t\t scheme=" + mixin.getScheme() + ";");
+				buffer.append("\r\n");
+				buffer.append("\t\t location=/" + mixin.getTerm() + ";");
+				buffer.append("\r\n");
+				if (mixin.getRelated() != null) {
+					for (Mixin related : mixin.getRelated()) {
+						buffer.append("\t\t rel=/" + related.getTerm() + ";");
 						buffer.append("\r\n");
-						buffer.append("\t\t class=\"mixin\"");
-						buffer.append("\r\n");
-						buffer.append("\t\t scheme=" + mixin.getScheme() + ";");
-						buffer.append("\r\n");
-						buffer.append("\t\t location=/" + mixin.getTerm() + ";");
-						buffer.append("\r\n");
-						if (mixin.getRelated() != null) {
-							for (Mixin related : mixin.getRelated()) {
-								buffer.append("\t\t rel=/" + related.getTerm()
-										+ ";");
-								buffer.append("\r\n");
-							}
-						}
-						if (mixin.getEntities() != null) {
-							for (Entity entity : mixin.getEntities()) {
-								buffer.append("\t\t X-OCCI-Location: "
-										+ entity.getKind().getTerm() + "/"
-										+ entity.getId());
-							}
-						}
+					}
+				}
+				if (mixin.getEntities() != null) {
+					for (Entity entity : mixin.getEntities()) {
+						buffer.append("\t\t X-OCCI-Location: "
+								+ entity.getKind().getTerm() + "/"
+								+ entity.getId());
 					}
 				}
 			}
@@ -134,23 +131,20 @@ public class OcciRestMixin extends ServerResource {
 							"x-occi-location"));
 			for (Mixin mixin : Mixin.getMixins()) {
 				if (mixin.getTitle().equalsIgnoreCase(
-						getReference().getLastSegment())) {
-					if (mixin.getTitle()
-							.equals(getReference().getLastSegment())) {
-						for (UUID uuid : Compute.getComputeList().keySet()) {
-							for (String element : xocciLocation) {
-								if (element.contains(uuid.toString())) {
-									if (mixin.getEntities() == null) {
-										mixin.setEntities(new HashSet<Entity>());
-									}
-									mixin.getEntities().add(
-											Compute.getComputeList().get(uuid));
-									Compute.getComputeList().get(uuid)
-											.getKind().getCategories()
-											.add(mixin);
-									found = true;
-								}
+						getReference().getLastSegment())
+						&& mixin.getTitle().equals(
+								getReference().getLastSegment())) {
+					for (UUID uuid : Compute.getComputeList().keySet()) {
+						for (String element : xocciLocation) {
+							if (element.contains(uuid.toString())
+									&& mixin.getEntities() == null) {
+								mixin.setEntities(new HashSet<Entity>());
 							}
+							mixin.getEntities().add(
+									Compute.getComputeList().get(uuid));
+							Compute.getComputeList().get(uuid).getKind()
+									.getCategories().add(mixin);
+							found = true;
 						}
 					}
 				}
@@ -190,26 +184,24 @@ public class OcciRestMixin extends ServerResource {
 			LOGGER.debug(getReference().getLastSegment().toString());
 			for (Mixin mixin : Mixin.getMixins()) {
 				if (mixin.getTitle().equalsIgnoreCase(
-						getReference().getLastSegment())) {
-					if (mixin.getTitle()
-							.equals(getReference().getLastSegment())) {
-						found = true;
-						for (UUID uuid : Compute.getComputeList().keySet()) {
-							for (String element : xocciLocation) {
-								LOGGER.debug(element);
-								if (element.contains(uuid.toString())) {
-									if (mixin.getEntities() == null) {
-										mixin.setEntities(new HashSet<Entity>());
-									}
-									mixin.getEntities().remove(
-											Compute.getComputeList().get(uuid));
-									Compute.getComputeList().remove(uuid)
-											.getKind().getCategories()
-											.add(mixin);
-								}
+						getReference().getLastSegment())
+						&& mixin.getTitle().equals(
+								getReference().getLastSegment())) {
+					found = true;
+					for (UUID uuid : Compute.getComputeList().keySet()) {
+						for (String element : xocciLocation) {
+							LOGGER.debug(element);
+							if (element.contains(uuid.toString())
+									&& mixin.getEntities() == null) {
+								mixin.setEntities(new HashSet<Entity>());
 							}
+							mixin.getEntities().remove(
+									Compute.getComputeList().get(uuid));
+							Compute.getComputeList().remove(uuid).getKind()
+									.getCategories().add(mixin);
 						}
 					}
+
 				}
 			}
 		} catch (Exception e) {

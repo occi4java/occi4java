@@ -75,21 +75,21 @@ public class Network extends Resource {
 	/**
 	 * Static HashSet of all network attributes.
 	 */
-	public static HashSet<String> attributes = new HashSet<String>();
+	private static HashSet<String> attributes = new HashSet<String>();
 
 	/**
 	 * Static Hashmap of all Network Resources. The Key is a UUID, the Value a
 	 * Network Object.
 	 */
-	public static Map<UUID, Network> networkList = new HashMap<UUID, Network>();
+	private static Map<UUID, Network> networkList = new HashMap<UUID, Network>();
 
 	/*
 	 * All possible network actions.
 	 */
 	private static XmlBeanFactory beanFactory = new XmlBeanFactory(
 			new ClassPathResource("occiConfig.xml"));
-	public static Action up = (Action) beanFactory.getBean("up");
-	public static Action down = (Action) beanFactory.getBean("down");
+	private static Action up = (Action) beanFactory.getBean("up");
+	private static Action down = (Action) beanFactory.getBean("down");
 
 	private final static HashSet<Action> actionSet = new HashSet<Action>();
 	private final static HashSet<String> actionNames = new HashSet<String>();
@@ -166,7 +166,7 @@ public class Network extends Resource {
 	 * 
 	 * @param vlan
 	 */
-	public void setVlan(int vlan) {
+	public final void setVlan(int vlan) {
 		this.vlan = vlan;
 	}
 
@@ -175,7 +175,7 @@ public class Network extends Resource {
 	 * 
 	 * @return vlan
 	 */
-	public int getVlan() {
+	public final int getVlan() {
 		return vlan;
 	}
 
@@ -184,7 +184,7 @@ public class Network extends Resource {
 	 * 
 	 * @return state
 	 */
-	public State getState() {
+	public final State getState() {
 		return this.state;
 	}
 
@@ -193,7 +193,7 @@ public class Network extends Resource {
 	 * 
 	 * @param state
 	 */
-	public void setState(State state) {
+	public final void setState(State state) {
 		this.state = state;
 	}
 
@@ -202,7 +202,7 @@ public class Network extends Resource {
 	 * 
 	 * @param label
 	 */
-	public void setLabel(String label) {
+	public final void setLabel(String label) {
 		this.label = label;
 	}
 
@@ -211,7 +211,7 @@ public class Network extends Resource {
 	 * 
 	 * @return label
 	 */
-	public String getLabel() {
+	public final String getLabel() {
 		return label;
 	}
 
@@ -220,7 +220,7 @@ public class Network extends Resource {
 	 * 
 	 * @return network map
 	 */
-	public static Map<UUID, Network> getNetworkList() {
+	public final static Map<UUID, Network> getNetworkList() {
 		return networkList;
 	}
 
@@ -229,14 +229,14 @@ public class Network extends Resource {
 	 * 
 	 * @return action names
 	 */
-	public static HashSet<String> getActionNames() {
+	public final static HashSet<String> getActionNames() {
 		return actionNames;
 	}
 
 	/**
 	 * Generate list with action names.
 	 */
-	public static HashSet<String> generateActionNames() {
+	public final static HashSet<String> generateActionNames() {
 		if (actionNames.isEmpty()) {
 			for (int i = 0; i < beanFactory.getBeanDefinitionNames().length; i++) {
 				if (beanFactory
@@ -257,7 +257,7 @@ public class Network extends Resource {
 	 * 
 	 * @return hash set of actions
 	 */
-	public static HashSet<Action> generateActionSet() {
+	public final static HashSet<Action> generateActionSet() {
 		if (actionSet.isEmpty()) {
 			for (int i = 0; i < beanFactory.getBeanDefinitionNames().length; i++) {
 				if (beanFactory
@@ -274,12 +274,21 @@ public class Network extends Resource {
 	/**
 	 * Generate attribute List.
 	 */
-	public static void generateAttributeList() {
+	public final static void generateAttributeList() {
 		if (attributes.isEmpty()) {
 			// add all attributes to attribute list
 			attributes.add("occi.network.vlan");
 			attributes.add("occi.network.label");
 			attributes.add("occi.network.state");
 		}
+	}
+	
+	/**
+	 * Return the network attributes.
+	 * 
+	 * @return attributes
+	 */
+	public static HashSet<String> getAttributes() {
+		return attributes;
 	}
 }

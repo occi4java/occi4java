@@ -46,7 +46,7 @@ public class OfflineAction extends Action {
 		offline
 	}
 
-	public Offline offline;
+	private Offline offline;
 
 	private static StorageInterface storageInterface = Injection
 			.getStorageInterface();
@@ -76,5 +76,19 @@ public class OfflineAction extends Action {
 		}
 		storageInterface.offlineStorage(storage);
 
+	}
+
+	/**
+	 * @param offline the offline to set
+	 */
+	public void setOffline(Offline offline) {
+		this.offline = offline;
+	}
+
+	/**
+	 * @return the offline
+	 */
+	public Offline getOffline() {
+		return offline;
 	}
 }

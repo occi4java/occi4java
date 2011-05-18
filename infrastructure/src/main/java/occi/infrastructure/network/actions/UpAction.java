@@ -49,7 +49,7 @@ public class UpAction extends Action {
 		up
 	}
 
-	public Up up;
+	private Up up;
 
 	public UpAction() throws SchemaViolationException, URISyntaxException {
 		Category category = new Category("up",
@@ -75,5 +75,19 @@ public class UpAction extends Action {
 		}
 		networkInterface.upNetwork(network);
 
+	}
+
+	/**
+	 * @param up the up to set
+	 */
+	public void setUp(Up up) {
+		this.up = up;
+	}
+
+	/**
+	 * @return the up
+	 */
+	public Up getUp() {
+		return up;
 	}
 }

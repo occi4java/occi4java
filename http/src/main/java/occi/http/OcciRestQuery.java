@@ -22,6 +22,7 @@ import java.net.URISyntaxException;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Set;
 import java.util.StringTokenizer;
 
@@ -54,15 +55,14 @@ public class OcciRestQuery extends ServerResource {
 	private static final Logger LOGGER = LoggerFactory
 			.getLogger(OcciRestQuery.class);
 
-	OcciCheck occiCheck = new OcciCheck();
 	/**
 	 * List for all necessary kinds (compute, storage, network)
 	 */
-	private final LinkedList<Kind> queryKinds = new LinkedList<Kind>();
+	private final List<Kind> queryKinds = new LinkedList<Kind>();
 	/**
 	 * List for all necessary links (compute, storage, network)
 	 */
-	private final LinkedList<Link> queryLinks = new LinkedList<Link>();
+	private final List<Link> queryLinks = new LinkedList<Link>();
 
 	private static IPNetworkInterface ipNetworkInterface = null;
 
@@ -104,8 +104,8 @@ public class OcciRestQuery extends ServerResource {
 				if (kind.getRelated() != null) {
 					for (Kind related : kind.getRelated()) {
 						if (related != null) {
-							buffer.append("\t\t rel=" + related.getScheme()
-									+ ";\n");
+							buffer.append("\t\t rel=")
+									.append(related.getScheme()).append(";\n");
 						}
 					}
 				}
@@ -113,7 +113,7 @@ public class OcciRestQuery extends ServerResource {
 				if (kind.getAttributes() != null) {
 					for (String attribute : kind.getAttributes()) {
 						if (attribute != null) {
-							buffer.append(attribute + " ");
+							buffer.append(attribute).append(" ");
 						}
 					}
 				}
@@ -121,12 +121,13 @@ public class OcciRestQuery extends ServerResource {
 				buffer.append("\t\t actions=");
 				for (String actionName : kind.getActionNames()) {
 					if (actionName != null) {
-						buffer.append(actionName + " ");
+						buffer.append(actionName).append(" ");
 					}
 				}
 				buffer.append(";");
 				buffer.append("\r\n");
-				buffer.append("\t\t location=/" + kind.getTerm() + "/;");
+				buffer.append("\t\t location=/").append(kind.getTerm())
+						.append("/;");
 				buffer.append("\r\n");
 			}
 		}
@@ -136,9 +137,10 @@ public class OcciRestQuery extends ServerResource {
 		 */
 		for (Link link : queryLinks) {
 			if (link != null) {
-				buffer.append("Category: " + link.getKind().getTerm() + ";");
-				buffer.append("\t\t scheme=\"" + link.getKind().getScheme()
-						+ "\";");
+				buffer.append("Category: ").append(link.getKind().getTerm())
+						.append(";");
+				buffer.append("\t\t scheme=\"")
+						.append(link.getKind().getScheme()).append("\";");
 				buffer.append("\r\n");
 				buffer.append("\t\t class=\"link\";");
 				buffer.append("\r\n");
@@ -146,8 +148,8 @@ public class OcciRestQuery extends ServerResource {
 				if (link.getKind().getRelated() != null) {
 					for (Kind related : link.getKind().getRelated()) {
 						if (related != null) {
-							buffer.append("\t\t rel=" + related.getScheme()
-									+ ";\n");
+							buffer.append("\t\t rel=")
+									.append(related.getScheme()).append(";\n");
 						}
 					}
 				}
@@ -163,13 +165,13 @@ public class OcciRestQuery extends ServerResource {
 				buffer.append("\t\t actions=");
 				for (String actionName : link.getKind().getActionNames()) {
 					if (actionName != null) {
-						buffer.append(actionName + " ");
+						buffer.append(actionName).append(" ");
 					}
 				}
 				buffer.append(";");
 				buffer.append("\r\n");
-				buffer.append("\t\t location=/" + link.getKind().getTerm()
-						+ "/;");
+				buffer.append("\t\t location=/")
+						.append(link.getKind().getTerm()).append("/;");
 				buffer.append("\r\n");
 			}
 		}
@@ -179,9 +181,10 @@ public class OcciRestQuery extends ServerResource {
 		 */
 
 		if (ipNetworkInterface != null) {
-			buffer.append("Category: " + ipNetworkInterface.getTitle() + ";");
-			buffer.append("\t\t scheme=\"" + ipNetworkInterface.getScheme()
-					+ "\";");
+			buffer.append("Category: ").append(ipNetworkInterface.getTitle())
+					.append(";");
+			buffer.append("\t\t scheme=\"")
+					.append(ipNetworkInterface.getScheme()).append("\";");
 			buffer.append("\r\n");
 			buffer.append("\t\t class=\"mixin\"");
 			buffer.append("\r\n");
@@ -190,9 +193,8 @@ public class OcciRestQuery extends ServerResource {
 			if (ipNetworkInterface.getRelated() != null) {
 				for (Mixin related : ipNetworkInterface.getRelated()) {
 					if (related != null) {
-						buffer
-								.append("\t\t rel=" + related.getScheme()
-										+ ";\n");
+						buffer.append("\t\t rel=").append(related.getScheme())
+								.append(";\n");
 					}
 				}
 			}
@@ -200,13 +202,13 @@ public class OcciRestQuery extends ServerResource {
 			if (ipNetworkInterface.getAttributes() != null) {
 				for (String attribute : ipNetworkInterface.getAttributes()) {
 					if (attribute != null) {
-						buffer.append(attribute + " ");
+						buffer.append(attribute).append(" ");
 					}
 				}
 			}
 			buffer.append("\";\n");
-			buffer.append("\t\t location=/" + ipNetworkInterface.getTerm()
-					+ "/;");
+			buffer.append("\t\t location=/")
+					.append(ipNetworkInterface.getTerm()).append("/;");
 			buffer.append("\r\n");
 		}
 
@@ -214,28 +216,28 @@ public class OcciRestQuery extends ServerResource {
 		 * Print all properties of the mixin instance
 		 */
 		for (Mixin mixin : Mixin.getMixins()) {
-			if (mixin != null) {
-				if (!mixin.getTerm().equals("ipnetwork")) {
-					buffer.append("Category: " + mixin.getTitle() + ";");
+			if (mixin != null && !mixin.getTerm().equals("ipnetwork")) {
+				buffer.append("Category: " + mixin.getTitle()).append(";");
 
-					buffer.append("\r\n");
-					buffer.append("\t\t class=\"mixin\"");
-					buffer.append("\r\n");
-					// append related scheme to buffer, if kind has a related
-					// kind
-					if (mixin.getRelated() != null) {
-						for (Mixin related : mixin.getRelated()) {
-							if (related != null) {
-								buffer.append("\t\t rel=" + related.getScheme()
-										+ ";\n");
-							}
+				buffer.append("\r\n");
+				buffer.append("\t\t class=\"mixin\"");
+				buffer.append("\r\n");
+				// append related scheme to buffer, if kind has a related
+				// kind
+				if (mixin.getRelated() != null) {
+					for (Mixin related : mixin.getRelated()) {
+						if (related != null) {
+							buffer.append("\t\t rel=")
+									.append(related.getScheme()).append(";\n");
 						}
 					}
-					buffer.append("\t\t scheme=" + mixin.getScheme() + ";");
-					buffer.append("\r\n");
-					buffer.append("\t\t location=/" + mixin.getTerm() + "/;");
-					buffer.append("\r\n");
 				}
+				buffer.append("\t\t scheme=").append(mixin.getScheme())
+						.append(";");
+				buffer.append("\r\n");
+				buffer.append("\t\t location=/").append(mixin.getTerm())
+						.append("/;");
+				buffer.append("\r\n");
 			}
 		}
 		buffer.append("\r\n");
@@ -250,16 +252,18 @@ public class OcciRestQuery extends ServerResource {
 		 */
 		for (String computeAction : Compute.getActionNames()) {
 			if (computeAction.contains("#")) {
-
-				buffer.append("Category: "
-						+ computeAction.substring(computeAction
-								.lastIndexOf("#") + 1) + ";");
+				buffer.append(
+						"Category: "
+								+ computeAction.substring(computeAction
+										.lastIndexOf("#") + 1)).append(";");
 			} else {
 				buffer.append("Cagegory: action;");
 			}
-			buffer.append(" scheme=\""
-					+ computeAction.substring(0,
-							computeAction.lastIndexOf("#") + 1) + "\"\n");
+			buffer.append(
+					" scheme=\""
+							+ computeAction.substring(0,
+									computeAction.lastIndexOf("#") + 1))
+					.append("\"\n");
 
 			if (computeAction.contains("#start")) {
 				// buffer.append(" attributes: ");
@@ -280,28 +284,31 @@ public class OcciRestQuery extends ServerResource {
 
 		for (String storageAction : Storage.getActionNames()) {
 			if (storageAction.contains("#")) {
-				buffer.append("Category: "
-						+ storageAction.substring(storageAction
-								.lastIndexOf("#") + 1) + ";");
+				buffer.append("Category: ")
+						.append(storageAction.substring(storageAction
+								.lastIndexOf("#") + 1)).append(";");
 			} else {
 				buffer.append("Cagegory: action;");
 			}
-			buffer.append("\t\t scheme=\""
-					+ storageAction.substring(0,
-							storageAction.lastIndexOf("#") + 1) + "\"\n");
+			buffer.append("\t\t scheme=\"")
+					.append(storageAction.substring(0,
+							storageAction.lastIndexOf("#") + 1)).append("\"\n");
 		}
 
 		for (String networkAction : Network.getActionNames()) {
 			if (networkAction.contains("#")) {
-				buffer.append("Category: "
-						+ networkAction.substring(networkAction
-								.lastIndexOf("#") + 1) + ";");
+				buffer.append(
+						"Category: "
+								+ networkAction.substring(networkAction
+										.lastIndexOf("#") + 1)).append(";");
 			} else {
 				buffer.append("Cagegory: action;");
 			}
-			buffer.append("\t\t scheme=\""
-					+ networkAction.substring(0,
-							networkAction.lastIndexOf("#") + 1) + "\"\n");
+			buffer.append(
+					"\t\t scheme=\""
+							+ networkAction.substring(0,
+									networkAction.lastIndexOf("#") + 1))
+					.append("\"\n");
 		}
 
 		// access the request headers and get the Accept attribute of the
@@ -318,7 +325,8 @@ public class OcciRestQuery extends ServerResource {
 		 */
 		if (representation.getMediaType().toString().equals("text/occi")) {
 			// Generate the header rendering if media-type equals text/occi
-			occiCheck.setHeaderRendering(queryKinds);
+			OcciCheck occiCheck = new OcciCheck();
+			occiCheck.setHeaderRendering((LinkedList<Kind>) queryKinds);
 			getResponse().setEntity(representation);
 			return " ";
 		}
@@ -373,12 +381,12 @@ public class OcciRestQuery extends ServerResource {
 			networkInterfaceRelated.add(new Kind(null, null, null, null,
 					"networkinterface", "networkinterface",
 					"http://schemas.ogf.org/occi/infrastructure#link",
-					NetworkInterface.attributes));
+					NetworkInterface.getAttributes()));
 			Link networkInterface = new Link(null, null);
 			networkInterface.setKind(new Kind(null, networkInterfaceRelated,
 					null, null, "networkinterface", "networkinterface",
 					"http://schemas.ogf.org/occi/infrastructure#",
-					NetworkInterface.attributes));
+					NetworkInterface.getAttributes()));
 			queryLinks.add(networkInterface);
 		} catch (SchemaViolationException e) {
 			e.printStackTrace();
@@ -415,7 +423,7 @@ public class OcciRestQuery extends ServerResource {
 			Kind compute = new Kind(computeActionSet, relatedSet, null, null,
 					"compute", "compute",
 					"http://schemas.ogf.org/occi/infrastructure#",
-					Compute.attributes);
+					Compute.getAttributes());
 
 			compute.setActionNames(computeActionNames);
 			queryKinds.add(compute);
@@ -423,14 +431,14 @@ public class OcciRestQuery extends ServerResource {
 			Kind storage = new Kind(storageActionSet, relatedSet, null, null,
 					"storage", "storage",
 					"http://schemas.ogf.org/occi/infrastructure#",
-					Storage.attributes);
+					Storage.getAttributes());
 			storage.setActionNames(storageActionNames);
 			queryKinds.add(storage);
 			// create network kind and add to kind list
 			Kind network = new Kind(networkActionSet, relatedSet, null, null,
 					"network", "network",
 					"http://schemas.ogf.org/occi/infrastructure#",
-					Network.attributes);
+					Network.getAttributes());
 			network.setActionNames(networkActionNames);
 			queryKinds.add(network);
 		} catch (Exception e) {

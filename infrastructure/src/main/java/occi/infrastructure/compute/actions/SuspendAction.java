@@ -57,8 +57,8 @@ public class SuspendAction extends Action {
 		hibernate, suspend
 	}
 
-	public Suspend suspend;
-	public HashSet<String> attributes = new HashSet<String>();
+	private Suspend suspend;
+	private HashSet<String> attributes = new HashSet<String>();
 
 	public SuspendAction() throws SchemaViolationException, URISyntaxException {
 		if (attributes.isEmpty()) {

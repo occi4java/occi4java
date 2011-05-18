@@ -150,7 +150,7 @@ public class OcciComputeTest {
 	@Test
 	public void occiTestUUID() {
 		try {
-			Compute.computeList.get(UUID.fromString("1337"));
+			Compute.getComputeList().get(UUID.fromString("1337"));
 			fail("occiTestUUID should return an exception");
 		} catch (Exception e) {
 			e.printStackTrace();

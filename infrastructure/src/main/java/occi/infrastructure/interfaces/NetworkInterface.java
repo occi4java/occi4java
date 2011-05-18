@@ -34,7 +34,7 @@ public interface NetworkInterface {
 	 * @param network
 	 * @return Network
 	 */
-	public Network upNetwork(Network network);
+	Network upNetwork(Network network);
 	
 	/**
 	 * Stops a existing network.
@@ -42,5 +42,5 @@ public interface NetworkInterface {
 	 * @param network
 	 * @return Network
 	 */
-	public Network downNetwork(Network network);
+	Network downNetwork(Network network);
 }

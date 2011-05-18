@@ -49,7 +49,6 @@ public class SnapshotAction extends Action {
 			.getStorageInterface();
 
 	public SnapshotAction() throws SchemaViolationException, URISyntaxException {
-
 		Category category = new Category("snapshot",
 				"http://schemas.ogf.org/occi/infrastructure/storage/action#",
 				"Action");

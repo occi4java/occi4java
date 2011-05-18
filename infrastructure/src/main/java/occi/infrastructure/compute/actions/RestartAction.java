@@ -58,8 +58,8 @@ public class RestartAction extends Action {
 		graceful, warm, cold
 	}
 
-	public Restart restart;
-	public HashSet<String> attributes = new HashSet<String>();
+	private Restart restart;
+	private HashSet<String> attributes = new HashSet<String>();
 
 	public RestartAction() throws SchemaViolationException, URISyntaxException {
 		attributes.add("graceful");

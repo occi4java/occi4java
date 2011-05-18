@@ -108,7 +108,7 @@ public abstract class Entity {
 		s.add("summary");
 	}
 
-	public void setId(URI id) {
+	public final void setId(URI id) {
 		this.id = id;
 	}
 
@@ -117,7 +117,7 @@ public abstract class Entity {
 	 * 
 	 * @return current id
 	 */
-	public URI getId() {
+	public final URI getId() {
 		return id;
 	}
 
@@ -126,7 +126,7 @@ public abstract class Entity {
 	 * 
 	 * @return the current title
 	 */
-	public String getTitle() {
+	public final String getTitle() {
 		return title;
 	}
 
@@ -135,7 +135,7 @@ public abstract class Entity {
 	 * 
 	 * @param title
 	 */
-	public void setTitle(String title) {
+	public final void setTitle(String title) {
 		this.title = title;
 	}
 
@@ -144,7 +144,7 @@ public abstract class Entity {
 	 * 
 	 * @return kind
 	 */
-	public void setKind(Kind kind) {
+	public final void setKind(Kind kind) {
 		this.kind = kind;
 	}
 
@@ -153,7 +153,7 @@ public abstract class Entity {
 	 * 
 	 * @return kind
 	 */
-	public Kind getKind() {
+	public final Kind getKind() {
 		return kind;
 	}
 
@@ -162,7 +162,7 @@ public abstract class Entity {
 	 * 
 	 * @return mixins
 	 */
-	public Set<Kind> getMixins() {
+	public final Set<Kind> getMixins() {
 		return mixins;
 	}
 
@@ -171,7 +171,7 @@ public abstract class Entity {
 	 * 
 	 * @param mixins
 	 */
-	public void setMixins(Set<Kind> mixins) {
+	public final void setMixins(Set<Kind> mixins) {
 		this.mixins = mixins;
 	}
 }

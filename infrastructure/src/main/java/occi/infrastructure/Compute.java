@@ -93,12 +93,12 @@ public class Compute extends Resource {
 	 * Static Hashmap of all Compute Resources. The Key is a UUID, the Value a
 	 * Compute Object.
 	 */
-	public static Map<UUID, Compute> computeList = new HashMap<UUID, Compute>();
+	private static Map<UUID, Compute> computeList = new HashMap<UUID, Compute>();
 
 	/**
 	 * Static HashSet of all compute attributes.
 	 */
-	public static HashSet<String> attributes = new HashSet<String>();
+	private static HashSet<String> attributes = new HashSet<String>();
 
 	/**
 	 * Random UUID of the compute resource.
@@ -110,13 +110,13 @@ public class Compute extends Resource {
 	 */
 	private static XmlBeanFactory beanFactory = new XmlBeanFactory(
 			new ClassPathResource("occiConfig.xml"));
-	public Action start = (Action) beanFactory.getBean("start");
-	public Action stop = (Action) beanFactory.getBean("stop");
-	public Action suspend = (Action) beanFactory.getBean("suspend");
-	public Action restart = (Action) beanFactory.getBean("restart");
+	private Action start = (Action) beanFactory.getBean("start");
+	private Action stop = (Action) beanFactory.getBean("stop");
+	private Action suspend = (Action) beanFactory.getBean("suspend");
+	private Action restart = (Action) beanFactory.getBean("restart");
 
-	private final static HashSet<Action> actionSet = new HashSet<Action>();
-	private final static HashSet<String> actionNames = new HashSet<String>();
+	private static final HashSet<Action> actionSet = new HashSet<Action>();
+	private static final HashSet<String> actionNames = new HashSet<String>();
 
 	public Compute(Architecture architecture, int cores, String hostname,
 			float speed, float memory, State state, Set<String> attributes)
@@ -167,7 +167,7 @@ public class Compute extends Resource {
 	 * 
 	 * @return all compute resources
 	 */
-	public static Map<UUID, Compute> getComputeList() {
+	public static final Map<UUID, Compute> getComputeList() {
 		return computeList;
 	}
 
@@ -176,7 +176,7 @@ public class Compute extends Resource {
 	 * 
 	 * @param computeList
 	 */
-	public static void setComputeList(Map<UUID, Compute> computeList) {
+	public static final void setComputeList(Map<UUID, Compute> computeList) {
 		Compute.computeList = computeList;
 	}
 
@@ -185,7 +185,7 @@ public class Compute extends Resource {
 	 * 
 	 * @return current UUID assigned to the Instance
 	 */
-	public UUID getUuid() {
+	public final UUID getUuid() {
 		return uuid;
 	}
 
@@ -194,7 +194,7 @@ public class Compute extends Resource {
 	 * 
 	 * @return current Cores assigned to the Instance
 	 */
-	public int getCores() {
+	public final int getCores() {
 		return cores;
 	}
 
@@ -204,7 +204,7 @@ public class Compute extends Resource {
 	 * @param cores
 	 *            of the current Instance as an int
 	 */
-	public void setCores(int cores) {
+	public final void setCores(int cores) {
 		this.cores = cores;
 	}
 
@@ -213,7 +213,7 @@ public class Compute extends Resource {
 	 * 
 	 * @return Hostname as a String
 	 */
-	public String getHostname() {
+	public final String getHostname() {
 		return hostname;
 	}
 
@@ -223,7 +223,7 @@ public class Compute extends Resource {
 	 * @param hostname
 	 *            of the current Instance as a String
 	 */
-	public void setHostname(String hostname) {
+	public final void setHostname(String hostname) {
 		this.hostname = hostname;
 	}
 
@@ -232,7 +232,7 @@ public class Compute extends Resource {
 	 * 
 	 * @return speed of the current Instance
 	 */
-	public float getSpeed() {
+	public final float getSpeed() {
 		return speed;
 	}
 
@@ -242,7 +242,7 @@ public class Compute extends Resource {
 	 * @param speed
 	 *            of the current Instance as a float
 	 */
-	public void setSpeed(float speed) {
+	public final void setSpeed(float speed) {
 		this.speed = speed;
 	}
 
@@ -251,7 +251,7 @@ public class Compute extends Resource {
 	 * 
 	 * @return
 	 */
-	public float getMemory() {
+	public final float getMemory() {
 		return memory;
 	}
 
@@ -261,7 +261,7 @@ public class Compute extends Resource {
 	 * @param memory
 	 *            of the current Instance as a float
 	 */
-	public void setMemory(float memory) {
+	public final void setMemory(float memory) {
 		this.memory = memory;
 	}
 
@@ -270,7 +270,7 @@ public class Compute extends Resource {
 	 * 
 	 * @return State of the current Instance
 	 */
-	public State getState() {
+	public final State getState() {
 		return state;
 	}
 
@@ -280,7 +280,7 @@ public class Compute extends Resource {
 	 * @param State
 	 *            state of the current Instance
 	 */
-	public void setState(State state) {
+	public final void setState(State state) {
 		this.state = state;
 	}
 
@@ -289,7 +289,7 @@ public class Compute extends Resource {
 	 * 
 	 * @return architecture of the current Instance of enum-type Architectures
 	 */
-	public Architecture getArchitecture() {
+	public final Architecture getArchitecture() {
 		return architecture;
 	}
 
@@ -299,7 +299,7 @@ public class Compute extends Resource {
 	 * @param architecture
 	 *            of the current Instance
 	 */
-	public void setArchitecture(Architecture architecture) {
+	public final void setArchitecture(Architecture architecture) {
 		this.architecture = architecture;
 	}
 
@@ -308,14 +308,14 @@ public class Compute extends Resource {
 	 * 
 	 * @return action names
 	 */
-	public static HashSet<String> getActionNames() {
+	public static final HashSet<String> getActionNames() {
 		return actionNames;
 	}
 
 	/**
 	 * Generate list with action names.
 	 */
-	public static HashSet<String> generateActionNames() {
+	public static final HashSet<String> generateActionNames() {
 		if (actionNames.isEmpty()) {
 			for (int i = 0; i < beanFactory.getBeanDefinitionNames().length; i++) {
 				if (beanFactory
@@ -334,7 +334,7 @@ public class Compute extends Resource {
 	/**
 	 * Generate list with actions.
 	 */
-	public static HashSet<Action> generateActionSet() {
+	public static final HashSet<Action> generateActionSet() {
 		if (actionSet.isEmpty()) {
 			for (int i = 0; i < beanFactory.getBeanDefinitionNames().length; i++) {
 				if (beanFactory
@@ -351,7 +351,7 @@ public class Compute extends Resource {
 	/**
 	 * Generate attribute List.
 	 */
-	public static void generateAttributeList() {
+	public static final void generateAttributeList() {
 		if (attributes.isEmpty()) {
 			// add all attributes to attribute list
 			attributes.add("occi.compute.architecture");
@@ -361,5 +361,70 @@ public class Compute extends Resource {
 			attributes.add("occi.compute.speed");
 			attributes.add("occi.compute.state");
 		}
+	}
+	
+	/**
+	 * Return the compute attributes.
+	 * 
+	 * @return attributes
+	 */
+	public static final HashSet<String> getAttributes() {
+		return attributes;
+	}
+
+	/**
+	 * @param start the start to set
+	 */
+	public final void setStart(Action start) {
+		this.start = start;
+	}
+
+	/**
+	 * @return the start
+	 */
+	public final Action getStart() {
+		return start;
+	}
+
+	/**
+	 * @param stop the stop to set
+	 */
+	public final void setStop(Action stop) {
+		this.stop = stop;
+	}
+
+	/**
+	 * @return the stop
+	 */
+	public final Action getStop() {
+		return stop;
+	}
+
+	/**
+	 * @param restart the restart to set
+	 */
+	public final void setRestart(Action restart) {
+		this.restart = restart;
+	}
+
+	/**
+	 * @return the restart
+	 */
+	public final Action getRestart() {
+		return restart;
+	}
+
+	/**
+	 * @param suspend the suspend to set
+	 */
+	public final void setSuspend(Action suspend) {
+		this.suspend = suspend;
+	}
+
+	/**
+	 * @return the suspend
+	 */
+	public final Action getSuspend() {
+		return suspend;
 	}
 }

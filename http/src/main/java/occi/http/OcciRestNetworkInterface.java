@@ -65,7 +65,7 @@ public class OcciRestNetworkInterface extends ServerResource {
 
 		StringBuffer buffer = new StringBuffer();
 		StringBuffer buffer2 = new StringBuffer();
-		NetworkInterface networkinterface = NetworkInterface.networkInterfaceList
+		NetworkInterface networkinterface = NetworkInterface.getNetworkInterfaceList()
 				.get(UUID
 						.fromString(getReference().getLastSegment().toString()));
 		buffer.append("Category: networkinterface;");
@@ -126,10 +126,10 @@ public class OcciRestNetworkInterface extends ServerResource {
 		LOGGER.debug("Incoming delete request at network");
 		try {
 			// get network resource that should be deleted
-			NetworkInterface networkInterface = NetworkInterface.networkInterfaceList
+			NetworkInterface networkInterface = NetworkInterface.getNetworkInterfaceList()
 					.get(UUID.fromString(getReference().getLastSegment()));
 			// remove it from network resource list
-			if (NetworkInterface.networkInterfaceList.remove(UUID
+			if (NetworkInterface.getNetworkInterfaceList().remove(UUID
 					.fromString(networkInterface.getId().toString())) == null) {
 				throw new NullPointerException(
 						"There is no resorce with the given ID");
@@ -260,8 +260,6 @@ public class OcciRestNetworkInterface extends ServerResource {
 				// set response status
 				getResponse().setStatus(Status.SUCCESS_OK, buffer.toString());
 				return Response.getCurrent().toString();
-			} else {
-
 			}
 
 		} catch (Exception e) {
@@ -287,7 +285,7 @@ public class OcciRestNetworkInterface extends ServerResource {
 			getServerInfo().setAgent(
 					OcciConfig.getInstance().config.getString("occi.version"));
 			OcciCheck.isUUID(getReference().getLastSegment());
-			Network network = Network.networkList.get(UUID
+			Network network = Network.getNetworkList().get(UUID
 					.fromString(getReference().getLastSegment()));
 			// access the request headers and get the X-OCCI-Attribute
 			Form requestHeaders = (Form) getRequest().getAttributes().get(

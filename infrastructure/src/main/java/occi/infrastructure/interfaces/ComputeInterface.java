@@ -35,14 +35,14 @@ public interface ComputeInterface {
 	 * @param compute
 	 * @return compute
 	 */
-	public Compute createCompute(Compute compute);
+	Compute createCompute(Compute compute);
 	/**
 	 * Starts a existing compute resource.
 	 * 
 	 * @param compute
 	 * @return Compute
 	 */
-	public Compute startCompute(Compute compute);
+	Compute startCompute(Compute compute);
 
 	/**
 	 * Stops a existing compute resource.
@@ -51,7 +51,7 @@ public interface ComputeInterface {
 	 * @param stop
 	 * @return Compute
 	 */
-	public Compute stopCompute(Compute compute, Method stop);
+	Compute stopCompute(Compute compute, Method stop);
 	
 	/**
 	 * Suspends a existing compute resource.
@@ -59,7 +59,7 @@ public interface ComputeInterface {
 	 * @param compute
 	 * @return Compute
 	 */
-	public Compute suspendCompute(Compute compute, Method suspend);
+	Compute suspendCompute(Compute compute, Method suspend);
 	
 	/**
 	 * Starts a started compute resource.
@@ -67,7 +67,7 @@ public interface ComputeInterface {
 	 * @param compute
 	 * @return Compute
 	 */
-	public Compute restartCompute(Compute compute, Method restart);
+	Compute restartCompute(Compute compute, Method restart);
 	
 	/**
 	 * Deletes all files for a existing compute resource.
@@ -75,5 +75,5 @@ public interface ComputeInterface {
 	 * @param compute
 	 * @return compute
 	 */
-	public Compute deleteCompute(Compute compute);
+	Compute deleteCompute(Compute compute);
 }

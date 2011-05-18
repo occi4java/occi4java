@@ -58,8 +58,8 @@ public class StopAction extends Action {
 		graceful, acpioff, poweroff
 	}
 
-	public Stop stop;
-	public HashSet<String> attributes = new HashSet<String>();
+	private Stop stop;
+	private HashSet<String> attributes = new HashSet<String>();
 
 	public StopAction() throws SchemaViolationException, URISyntaxException {
 		attributes.add("poweroff");

@@ -67,27 +67,27 @@ public class Storage extends Resource {
 	 * Static Hashmap of all Storage Resources. The Key is a UUID, the Value a
 	 * Storage Object.
 	 */
-	public static Map<UUID, Storage> storageList = new HashMap<UUID, Storage>();
+	private static Map<UUID, Storage> storageList = new HashMap<UUID, Storage>();
 
 	/**
 	 * Static HashSet of all storage attributes.
 	 */
-	public static HashSet<String> attributes = new HashSet<String>();
+	private static HashSet<String> attributes = new HashSet<String>();
 
 	/*
 	 * All possible storage actions.
 	 */
 	private static XmlBeanFactory beanFactory = new XmlBeanFactory(
 			new ClassPathResource("occiConfig.xml"));
-	public Action online = (Action) beanFactory.getBean("online");
-	public Action offline = (Action) beanFactory.getBean("offline");
-	public Action resize = (Action) beanFactory.getBean("resize");
-	public Action backup = (Action) beanFactory.getBean("backup");
-	public Action snapshot = (Action) beanFactory.getBean("snapshot");
-	public Action create = (Action) beanFactory.getBean("create");
+	private Action online = (Action) beanFactory.getBean("online");
+	private Action offline = (Action) beanFactory.getBean("offline");
+	private Action resize = (Action) beanFactory.getBean("resize");
+	private Action backup = (Action) beanFactory.getBean("backup");
+	private Action snapshot = (Action) beanFactory.getBean("snapshot");
+	private Action create = (Action) beanFactory.getBean("create");
 
-	private final static HashSet<Action> actionSet = new HashSet<Action>();
-	private final static HashSet<String> actionNames = new HashSet<String>();
+	private static final HashSet<Action> actionSet = new HashSet<Action>();
+	private static final HashSet<String> actionNames = new HashSet<String>();
 
 	public Storage(Set<Link> links, Set<String> attributes)
 			throws URISyntaxException, SchemaViolationException {
@@ -113,7 +113,7 @@ public class Storage extends Resource {
 	 * 
 	 * @param size
 	 */
-	public void setSize(float size) {
+	public final void setSize(float size) {
 		this.size = size;
 	}
 
@@ -122,7 +122,7 @@ public class Storage extends Resource {
 	 * 
 	 * @return size
 	 */
-	public float getSize() {
+	public final float getSize() {
 		return size;
 	}
 
@@ -131,7 +131,7 @@ public class Storage extends Resource {
 	 * 
 	 * @param state
 	 */
-	public void setState(State state) {
+	public final void setState(State state) {
 		this.state = state;
 	}
 
@@ -140,7 +140,7 @@ public class Storage extends Resource {
 	 * 
 	 * @return state
 	 */
-	public State getState() {
+	public final State getState() {
 		return state;
 	}
 
@@ -149,7 +149,7 @@ public class Storage extends Resource {
 	 * 
 	 * @return network map
 	 */
-	public static Map<UUID, Storage> getStorageList() {
+	public static final Map<UUID, Storage> getStorageList() {
 		return storageList;
 	}
 
@@ -158,14 +158,14 @@ public class Storage extends Resource {
 	 * 
 	 * @return action names
 	 */
-	public static HashSet<String> getActionNames() {
+	public static final HashSet<String> getActionNames() {
 		return actionNames;
 	}
 
 	/**
 	 * Generate attribute List.
 	 */
-	public static void generateAttributeList() {
+	public static final void generateAttributeList() {
 		if (attributes.isEmpty()) {
 			// add all attributes to attribute list
 			attributes.add("occi.storage.size");
@@ -176,7 +176,7 @@ public class Storage extends Resource {
 	/**
 	 * Generate Action Names.
 	 */
-	public static HashSet<String> generateActionNames() {
+	public static final HashSet<String> generateActionNames() {
 		if (actionNames.isEmpty()) {
 			for (int i = 0; i < beanFactory.getBeanDefinitionNames().length; i++) {
 				if (beanFactory
@@ -195,7 +195,7 @@ public class Storage extends Resource {
 	/**
 	 * Generate Action Set.
 	 */
-	public static HashSet<Action> generateActionSet() {
+	public static final HashSet<Action> generateActionSet() {
 		if (actionSet.isEmpty()) {
 			for (int i = 0; i < beanFactory.getBeanDefinitionNames().length; i++) {
 				if (beanFactory
@@ -207,5 +207,98 @@ public class Storage extends Resource {
 			}
 		}
 		return actionSet;
+	}
+	
+	/**
+	 * Return the storage attributes.
+	 * 
+	 * @return attributes
+	 */
+	public static final HashSet<String> getAttributes() {
+		return attributes;
+	}
+
+	/**
+	 * @param online the online to set
+	 */
+	public void setOnline(Action online) {
+		this.online = online;
+	}
+
+	/**
+	 * @return the online
+	 */
+	public Action getOnline() {
+		return online;
+	}
+
+	/**
+	 * @param create the create to set
+	 */
+	public void setCreate(Action create) {
+		this.create = create;
+	}
+
+	/**
+	 * @return the create
+	 */
+	public Action getCreate() {
+		return create;
+	}
+
+	/**
+	 * @param snapshot the snapshot to set
+	 */
+	public void setSnapshot(Action snapshot) {
+		this.snapshot = snapshot;
+	}
+
+	/**
+	 * @return the snapshot
+	 */
+	public Action getSnapshot() {
+		return snapshot;
+	}
+
+	/**
+	 * @param offline the offline to set
+	 */
+	public void setOffline(Action offline) {
+		this.offline = offline;
+	}
+
+	/**
+	 * @return the offline
+	 */
+	public Action getOffline() {
+		return offline;
+	}
+
+	/**
+	 * @param resize the resize to set
+	 */
+	public void setResize(Action resize) {
+		this.resize = resize;
+	}
+
+	/**
+	 * @return the resize
+	 */
+	public Action getResize() {
+		return resize;
+	}
+
+	/**
+	 * @param backup the backup to set
+	 */
+	public void setBackup(Action backup) {
+		this.backup = backup;
+	}
+
+	/**
+	 * @return the backup
+	 */
+	public Action getBackup() {
+		return backup;
 	}
 }

@@ -46,17 +46,15 @@ public class BackupAction extends Action {
 		backup
 	}
 
-	public Backup backup;
+	private Backup backup;
 
 	private static StorageInterface storageInterface = Injection
 			.getStorageInterface();
 
 	public BackupAction() throws SchemaViolationException, URISyntaxException {
-
 		Category category = new Category("backup",
 				"http://schemas.ogf.org/occi/infrastructure/storage/action#",
 				"Action");
-
 	}
 
 	@Override
@@ -76,6 +74,19 @@ public class BackupAction extends Action {
 			}
 		}
 		storageInterface.makeBackup(storage);
+	}
 
+	/**
+	 * @param backup the backup to set
+	 */
+	public void setBackup(Backup backup) {
+		this.backup = backup;
+	}
+
+	/**
+	 * @return the backup
+	 */
+	public Backup getBackup() {
+		return backup;
 	}
 }

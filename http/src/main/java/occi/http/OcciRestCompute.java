@@ -201,7 +201,7 @@ public class OcciRestCompute extends ServerResource {
 				}
 				LOGGER.debug("UUID: " + id);
 				// Get the compute resource by the given UUID
-				Compute compute = Compute.computeList.get(id);
+				Compute compute = Compute.getComputeList().get(id);
 
 				String location = "http:"
 						+ getReference().getHierarchicalPart();
@@ -222,7 +222,7 @@ public class OcciRestCompute extends ServerResource {
 					if (actionName[1].equalsIgnoreCase("start")) {
 						LOGGER.debug("Start Action called.");
 						LOGGER.debug(xoccimap.toString());
-						compute.start.execute(URI.create(location),
+						compute.getStart().execute(URI.create(location),
 								Start.valueOf((String) xoccimap.get("method")));
 						// Set the current state of the compute resource
 						compute.setState(State.active);
@@ -231,7 +231,7 @@ public class OcciRestCompute extends ServerResource {
 					if (actionName[1].equalsIgnoreCase("stop")) {
 						LOGGER.debug("Stop Action called.");
 						// Call the Stop action of the compute resource
-						compute.stop.execute(URI.create(location),
+						compute.getStop().execute(URI.create(location),
 								Stop.valueOf((String) xoccimap.get("method")));
 						// Set the current state of the compute resource
 						compute.setState(State.inactive);
@@ -240,7 +240,7 @@ public class OcciRestCompute extends ServerResource {
 					if (actionName[1].equalsIgnoreCase("restart")) {
 						LOGGER.debug("Restart Action called.");
 						// Call the Restart action of the compute resource
-						compute.restart.execute(URI.create(location), Restart
+						compute.getRestart().execute(URI.create(location), Restart
 								.valueOf((String) xoccimap.get("method")));
 						// Set the current state of the compute resource
 						compute.setState(State.active);
@@ -249,7 +249,7 @@ public class OcciRestCompute extends ServerResource {
 					if (actionName[1].equalsIgnoreCase("suspend")) {
 						LOGGER.debug("Suspend Action called.");
 						// Call the Suspend action of the compute resource
-						compute.suspend.execute(URI.create(location), Suspend
+						compute.getSuspend().execute(URI.create(location), Suspend
 								.valueOf((String) xoccimap.get("method")));
 						// Set the current state of the compute resource
 						compute.setState(State.suspended);
@@ -280,7 +280,7 @@ public class OcciRestCompute extends ServerResource {
 					requestHeaders.toString()).get("accept");
 			OcciCheck.isUUID(getReference().getLastSegment());
 			// get the compute instance by the given UUID
-			Compute compute = Compute.computeList.get(UUID
+			Compute compute = Compute.getComputeList().get(UUID
 					.fromString(getReference().getLastSegment()));
 
 			// put all attributes into a buffer for the response
@@ -370,12 +370,12 @@ public class OcciRestCompute extends ServerResource {
 		try {
 			OcciCheck.isUUID(getReference().getLastSegment());
 			// get compute resource that should be deleted
-			Compute compute = Compute.computeList.get(UUID
+			Compute compute = Compute.getComputeList().get(UUID
 					.fromString(getReference().getLastSegment()));
 			DeleteAction deleteAction = new DeleteAction();
 			deleteAction.execute(new URI(compute.getId().toString()), null);
 			// remove it from compute resource list
-			if (Compute.computeList.remove(UUID.fromString(compute.getId()
+			if (Compute.getComputeList().remove(UUID.fromString(compute.getId()
 					.toString())) == null) {
 				throw new Exception("There is no resorce with the given ID");
 			}
@@ -413,7 +413,7 @@ public class OcciRestCompute extends ServerResource {
 			getServerInfo().setAgent(
 					OcciConfig.getInstance().config.getString("occi.version"));
 			OcciCheck.isUUID(getReference().getLastSegment());
-			Compute compute = Compute.computeList.get(UUID
+			Compute compute = Compute.getComputeList().get(UUID
 					.fromString(getReference().getLastSegment()));
 			// access the request headers and get the X-OCCI-Attribute
 			Form requestHeaders = (Form) getRequest().getAttributes().get(

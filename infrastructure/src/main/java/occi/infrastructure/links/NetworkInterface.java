@@ -73,12 +73,12 @@ public class NetworkInterface extends Link {
 	 */
 	private final UUID uuid;
 
-	public static Map<UUID, NetworkInterface> networkInterfaceList = new HashMap<UUID, NetworkInterface>();
+	private static Map<UUID, NetworkInterface> networkInterfaceList = new HashMap<UUID, NetworkInterface>();
 
 	/**
 	 * Static HashSet of all network interface attributes.
 	 */
-	public static HashSet<String> attributes = new HashSet<String>();
+	private static HashSet<String> attributes = new HashSet<String>();
 
 	public NetworkInterface(String networkInterface, String mac, State state,
 			Resource link, Resource target) throws URISyntaxException,
@@ -112,9 +112,9 @@ public class NetworkInterface extends Link {
 	}
 
 	/**
-	 * Return the full network interface list.
+	 * Return the network interface attributes.
 	 * 
-	 * @return all compute resources
+	 * @return attributes
 	 */
 	public static HashSet<String> getAttributes() {
 		return attributes;
@@ -154,5 +154,23 @@ public class NetworkInterface extends Link {
 	 */
 	public State getState() {
 		return state;
+	}
+	
+	/**
+	 * Returns the list with all network interface instances.
+	 * 
+	 * @return list with network interfaces
+	 */
+	public static Map<UUID, NetworkInterface> getNetworkInterfaceList() {
+		return networkInterfaceList;
+	}
+	
+	/**
+	 * Sets the network interface list.
+	 * 
+	 * @param networkInterfaceList
+	 */
+	public void setNetworkInterfaceList(Map<UUID, NetworkInterface> networkInterfaceList) {
+		NetworkInterface.networkInterfaceList = networkInterfaceList;
 	}
 }

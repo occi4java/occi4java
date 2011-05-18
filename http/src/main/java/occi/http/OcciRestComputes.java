@@ -222,7 +222,7 @@ public class OcciRestComputes extends ServerResource {
 			}
 
 			for (UUID id : Compute.getComputeList().keySet()) {
-				Compute compute = Compute.computeList.get(id);
+				Compute compute = Compute.getComputeList().get(id);
 				String location = "http:"
 						+ getReference().getHierarchicalPart()
 						+ compute.getId();
@@ -240,7 +240,7 @@ public class OcciRestComputes extends ServerResource {
 						// Call the Start action of the compute resource
 						if (actionName[1].equalsIgnoreCase("start")) {
 							LOGGER.debug("Start Action called.");
-							compute.start.execute(URI.create(location), Start
+							compute.getStart().execute(URI.create(location), Start
 									.valueOf((String) xoccimap.get("method")));
 							// Set the current state of the compute resource
 							compute.setState(State.active);
@@ -249,7 +249,7 @@ public class OcciRestComputes extends ServerResource {
 						if (actionName[1].equalsIgnoreCase("stop")) {
 							LOGGER.debug("Stop Action called.");
 							// Call the Stop action of the compute resource
-							compute.stop.execute(URI.create(location), Stop
+							compute.getStop().execute(URI.create(location), Stop
 									.valueOf((String) xoccimap.get("method")));
 							// Set the current state of the compute resource
 							compute.setState(State.inactive);
@@ -258,7 +258,7 @@ public class OcciRestComputes extends ServerResource {
 						if (actionName[1].equalsIgnoreCase("restart")) {
 							LOGGER.debug("Restart Action called.");
 							// Call the Restart action of the compute resource
-							compute.restart.execute(URI.create(location),
+							compute.getRestart().execute(URI.create(location),
 									Restart.valueOf((String) xoccimap
 											.get("method")));
 							// Set the current state of the compute resource
@@ -268,7 +268,7 @@ public class OcciRestComputes extends ServerResource {
 						if (actionName[1].equalsIgnoreCase("suspend")) {
 							LOGGER.debug("Suspend Action called.");
 							// Call the Suspend action of the compute resource
-							compute.suspend.execute(URI.create(location),
+							compute.getSuspend().execute(URI.create(location),
 									Suspend.valueOf((String) xoccimap
 											.get("method")));
 							// Set the current state of the compute resource
@@ -321,8 +321,8 @@ public class OcciRestComputes extends ServerResource {
 		if (OcciCheck.isUUID(sourceUuid.toString())
 				&& OcciCheck.isUUID(targetUuid.toString())) {
 
-			Compute sourceCompute = Compute.computeList.get(sourceUuid);
-			Network targetNetwork = Network.networkList.get(targetUuid);
+			Compute sourceCompute = Compute.getComputeList().get(sourceUuid);
+			Network targetNetwork = Network.getNetworkList().get(targetUuid);
 			NetworkInterface networkInterface = new NetworkInterface(xoccimap
 					.get("occi.networkinterface.networkinterface").toString(),
 					xoccimap.get("occi.networkinterface.mac").toString(),

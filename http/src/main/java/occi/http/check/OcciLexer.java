@@ -70,10 +70,6 @@ public class OcciLexer extends Lexer {
 	// delegates
 	// delegators
 
-	public OcciLexer() {
-		;
-	}
-
 	public OcciLexer(CharStream input) {
 		this(input, new RecognizerSharedState());
 	}

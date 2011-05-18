@@ -56,8 +56,8 @@ public class StartAction extends Action {
 		start
 	}
 
-	public Start start;
-	public HashSet<String> attributes = new HashSet<String>();
+	private Start start;
+	private HashSet<String> attributes = new HashSet<String>();
 
 	public StartAction() throws SchemaViolationException, URISyntaxException {
 		attributes.add("start");

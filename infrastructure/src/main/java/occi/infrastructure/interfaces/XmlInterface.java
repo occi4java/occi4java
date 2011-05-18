@@ -37,7 +37,7 @@ public interface XmlInterface {
 	 * 
 	 * @param compute
 	 */
-	public void createComputeXmlDescription(Compute compute);
+	void createComputeXmlDescription(Compute compute);
 
 	/**
 	 * Creates Xml file for a existing network resource.
@@ -45,7 +45,7 @@ public interface XmlInterface {
 	 * @param uuid
 	 * @param network
 	 */
-	public void createNetworkXmlDescription(String uuid, Network network);
+	void createNetworkXmlDescription(String uuid, Network network);
 
 	/**
 	 * Creates Xml file for a existing network interface resource.
@@ -53,7 +53,7 @@ public interface XmlInterface {
 	 * @param uuid
 	 * @param networkInterface
 	 */
-	public void createNetworkInterfaceXmlDescription(String uuid,
+	void createNetworkInterfaceXmlDescription(String uuid,
 			NetworkInterface networkInterface);
 
 	/**
@@ -63,5 +63,5 @@ public interface XmlInterface {
 	 * @return xml string
 	 * @throws FileNotFoundException
 	 */
-	public String getXmlAsString(String uuid) throws FileNotFoundException;
+	String getXmlAsString(String uuid) throws FileNotFoundException;
 }

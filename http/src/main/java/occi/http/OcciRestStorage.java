@@ -236,7 +236,7 @@ public class OcciRestStorage extends ServerResource {
 				getResponse().setEntity(representation);
 				getResponse().setStatus(Status.SUCCESS_OK);
 			}
-			storage.create.execute(storage.getId(), null);
+			storage.getCreate().execute(storage.getId(), null);
 			// Location Rendering in HTTP Header, not in body
 			setLocationRef((getRootRef().toString() + storage.getId()));
 			representation = OcciCheck.checkContentType(requestHeaders, buffer,
