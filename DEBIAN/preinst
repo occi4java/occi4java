@@ -1,0 +1,5 @@
+#!/bin/sh
+if [ ! -d /usr/share/occi4java ]; 
+	then mkdir /usr/share/occi4java
+fi
+exit 0
