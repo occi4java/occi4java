@@ -31,13 +31,6 @@
 				<enabled>false</enabled>
 			</snapshots>
 		</pluginRepository>
-		<pluginRepository>
-			<id>snapshots</id>
-			<url>http://forge.it.irf.tu-dortmund.de/nexus/content/groups/public-snapshots</url>
-			<releases>
-				<enabled>false</enabled>
-			</releases>
-		</pluginRepository>
 	</pluginRepositories>
 
 	<reporting>
