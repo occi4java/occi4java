@@ -21,7 +21,6 @@ package occi.http;
 import java.io.File;
 
 import occi.config.OcciConfig;
-import occi.http.console.OcciConsole;
 
 import org.apache.log4j.PropertyConfigurator;
 import org.restlet.Component;
@@ -73,8 +72,5 @@ public class occiApi extends ServerResource {
 		comp.getDefaultHost().attach("/{mixin}", OcciRestMixin.class);
 		// start occi api
 		comp.start();
-		// start occi console
-		OcciConsole console = new OcciConsole();
-		console.start();
 	}
 }
