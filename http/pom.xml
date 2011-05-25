@@ -13,6 +13,7 @@
 	<artifactId>http</artifactId>
 	<version>0.2</version>
 	<name>Http</name>
+
 	<repositories>
 		<repository>
 			<id>maven-restlet</id>

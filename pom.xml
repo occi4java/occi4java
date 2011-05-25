@@ -13,6 +13,33 @@
 		<spring.version>2.5.6.SEC02</spring.version>
 	</properties>
 
+	<repositories>
+		<repository>
+			<id>central</id>
+			<url>http://forge.it.irf.tu-dortmund.de/nexus/content/groups/public</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+
+	<pluginRepositories>
+		<pluginRepository>
+			<id>central</id>
+			<url>http://forge.it.irf.tu-dortmund.de/nexus/content/groups/public</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</pluginRepository>
+		<pluginRepository>
+			<id>snapshots</id>
+			<url>http://forge.it.irf.tu-dortmund.de/nexus/content/groups/public-snapshots</url>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+		</pluginRepository>
+	</pluginRepositories>
+
 	<reporting>
 		<plugins>
 			<plugin>
@@ -67,18 +94,6 @@
 			</plugin>
 		</plugins>
 	</build>
-
-	<repositories>
-		<repository>
-			<id>maven-libvirt</id>
-			<name>Public online libvirt repository</name>
-			<url>http://www.libvirt.org/maven2/</url>
-		</repository>
-		<repository>
-			<id>repository.jboss.org</id>
-			<url>https://repository.jboss.org/nexus/content/repositories/central/</url>
-		</repository>
-	</repositories>
 
 	<dependencies>
 		<dependency>
