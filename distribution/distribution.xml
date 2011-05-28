@@ -28,7 +28,7 @@
 			<outputFileNameMapping>${artifact.artifactId}-${artifact.version}.${artifact.extension}</outputFileNameMapping>
 			<useTransitiveDependencies>false</useTransitiveDependencies>
 			<outputDirectory></outputDirectory>
-			<useProjectArtifact>true</useProjectArtifact>
+			<useProjectArtifact>false</useProjectArtifact>
 			<includes>
 				<include>http*</include>
 			</includes>

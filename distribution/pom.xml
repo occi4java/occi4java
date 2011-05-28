@@ -1,0 +1,80 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<artifactId>occi</artifactId>
+		<groupId>edu.udo.irf.pg547</groupId>
+		<version>0.2.1</version>
+		<relativePath>../pom.xml</relativePath>
+	</parent>
+	<groupId>edu.udo.irf.pg547</groupId>
+	<artifactId>distribution</artifactId>
+	<version>0.2.1</version>
+	<name>Distribution</name>
+
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<version>2.2-beta-5</version>
+				<configuration>
+					<descriptors>
+						<descriptor>distribution.xml</descriptor>
+					</descriptors>
+				</configuration>
+				<executions>
+					<execution>
+						<id>copy-bundle</id>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<version>1.6</version>
+				<executions>
+					<execution>
+						<id>Paket-Bau</id>
+						<phase>package</phase>
+						<configuration>
+							<tasks>
+								<exec executable="chmod" dir="src/main/resources">
+									<arg value="u+x" />
+									<arg value="package_deb.sh" />
+								</exec>
+								<exec executable="src/main/resources/package_deb.sh">
+									<arg value="target/${artifactId}-${version}-packaging" />
+								</exec>
+							</tasks>
+						</configuration>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+	<dependencies>
+		<dependency>
+			<groupId>edu.udo.irf.pg547</groupId>
+			<artifactId>core</artifactId>
+			<version>0.2</version>
+		</dependency>
+		<dependency>
+			<groupId>edu.udo.irf.pg547</groupId>
+			<artifactId>infrastructure</artifactId>
+			<version>0.2</version>
+		</dependency>
+		<dependency>
+			<groupId>edu.udo.irf.pg547</groupId>
+			<artifactId>http</artifactId>
+			<version>0.2</version>
+		</dependency>
+	</dependencies>
+</project>

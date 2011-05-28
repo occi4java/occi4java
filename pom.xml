@@ -13,26 +13,6 @@
 		<spring.version>2.5.6.SEC02</spring.version>
 	</properties>
 
-	<repositories>
-		<repository>
-			<id>central</id>
-			<url>http://forge.it.irf.tu-dortmund.de/nexus/content/groups/public</url>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-		</repository>
-	</repositories>
-
-	<pluginRepositories>
-		<pluginRepository>
-			<id>central</id>
-			<url>http://forge.it.irf.tu-dortmund.de/nexus/content/groups/public</url>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-		</pluginRepository>
-	</pluginRepositories>
-
 	<reporting>
 		<plugins>
 			<plugin>
@@ -85,6 +65,7 @@
 					</execution>
 				</executions>
 			</plugin>
+			
 		</plugins>
 	</build>
 
@@ -113,10 +94,17 @@
 			<artifactId>commons-configuration</artifactId>
 			<version>1.6</version>
 		</dependency>
+		<dependency>
+			<groupId>org.testng</groupId>
+			<artifactId>testng</artifactId>
+			<version>6.0.1</version>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 	<modules>
 		<module>core</module>
 		<module>infrastructure</module>
 		<module>http</module>
+		<module>distribution</module>
 	</modules>
 </project>
