@@ -1,6 +1,7 @@
 Source: occi4java
 Section: net
 Priority: extra
+Standards-Version: 3.8.4
 Maintainer: occi4java <sebastian.laag@googlemail.com>
 Build-Depends: debhelper
 
@@ -8,4 +9,3 @@ Package: occi4java
 Architecture: amd64
 Depends: openjdk-6-jre (>=6b18)
 Description: occiforjava deb
-Version: 0.2.1

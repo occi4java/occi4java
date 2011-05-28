@@ -16,12 +16,14 @@
  * limitations under the License.
  */
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.fail;
 
 import java.net.URISyntaxException;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
+
+import javax.naming.NamingException;
 
 import occi.infrastructure.Compute;
 import occi.infrastructure.Compute.Architecture;
@@ -50,12 +52,19 @@ public class OcciComputeTest {
 	}
 
 	@Test
-	public void occiTestNegativeCores() throws NumberFormatException,
-			IllegalArgumentException, URISyntaxException {
+	public void occiTestNegativeCores() {
 		try {
 			new Compute(Architecture.x86, -2, "Test", 2, 2, State.active, set);
 			fail("occiTestNegativeCores should return an exception");
-		} catch (Exception e) {
+		} catch (NumberFormatException e) {
+			System.out.println("Expected NumberFormatException");
+		} catch (NamingException e) {
+			System.out.println("Expected NamingException");
+		} catch (IllegalArgumentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (URISyntaxException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -64,8 +73,14 @@ public class OcciComputeTest {
 	public void occiTestPositiveCores() {
 		try {
 			new Compute(Architecture.x86, 2, "Test", 2, 2, State.active, set);
-		} catch (Exception e) {
-			e.printStackTrace();
+		} catch (NumberFormatException e) {
+			System.out.println("Expected NumberFormatException");
+		} catch (IllegalArgumentException e) {
+			System.out.println("Expected IllegalArgumentException");
+		} catch (URISyntaxException e) {
+			System.out.println("Expected URISyntaxException");
+		} catch (NamingException e) {
+			System.out.println("Expected NamingException");
 		}
 	}
 
@@ -75,7 +90,7 @@ public class OcciComputeTest {
 			new Compute(Architecture.x86, 2, "Test", -2, 2, State.active, set);
 			fail("occiTestNegativeSpeed should return an exception");
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.out.println("Expected Exception");
 		}
 	}
 
@@ -86,7 +101,7 @@ public class OcciComputeTest {
 					set);
 			fail("occiTestNegativeFloatSpeed should return an exception");
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.out.println("Expected Exception");
 		}
 	}
 
@@ -95,7 +110,7 @@ public class OcciComputeTest {
 		try {
 			new Compute(Architecture.x86, 2, "Test", 2, 2, State.active, set);
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.out.println("Expected Exception");
 		}
 	}
 
@@ -104,7 +119,7 @@ public class OcciComputeTest {
 		try {
 			new Compute(Architecture.x86, 2, "Test", 2.0F, 2, State.active, set);
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.out.println("Expected Exception");
 		}
 	}
 
@@ -114,7 +129,7 @@ public class OcciComputeTest {
 			new Compute(Architecture.x86, 2, "Test", 2, -2, State.active, set);
 			fail("occiTestNegativeMemory should return an exception");
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.out.println("Expected Exception");
 		}
 	}
 
@@ -125,7 +140,7 @@ public class OcciComputeTest {
 					set);
 			fail("occiTestNegativeFloatMemory should return an exception");
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.out.println("Expected Exception");
 		}
 	}
 
@@ -134,7 +149,7 @@ public class OcciComputeTest {
 		try {
 			new Compute(Architecture.x86, 2, "Test", 2, 2, State.active, set);
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.out.println("Expected Exception");
 		}
 	}
 
@@ -143,17 +158,13 @@ public class OcciComputeTest {
 		try {
 			new Compute(Architecture.x86, 2, "Test", 2, 2.1F, State.active, set);
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.out.println("Expected Exception");
 		}
 	}
 
 	@Test
 	public void occiTestUUID() {
-		try {
-			Compute.getComputeList().get(UUID.fromString("1337"));
-			fail("occiTestUUID should return an exception");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		Compute.getComputeList().get(UUID.fromString("1337"));
+		fail("occiTestUUID should return an exception");
 	}
 }

@@ -11,11 +11,11 @@
 #                    <...>
 ### END INIT INFO
 
-# Author: unknown <xy@xy.org>
+# Author: occi4java <xy@xy.org>
 
-# PATH should only include /usr/* if it runs after the mountnfs.sh script
+# PATH should only include /usr
 PATH=/sbin:/usr/sbin:/bin:/usr/bin
-DESC="Productive Cloud Middleware"             # Introduce a short description here
+DESC="occi4java"             # Introduce a short description here
 NAME=occi4java             # Introduce the short server's name here
 DAEMON=/usr/bin/occi4java-start # Introduce the server's location here
 DAEMON_ARGS="--daemon"             # Arguments to run the daemon with
