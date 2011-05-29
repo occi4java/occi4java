@@ -6,6 +6,6 @@ Maintainer: occi4java <sebastian.laag@googlemail.com>
 Build-Depends: debhelper
 
 Package: occi4java
-Architecture: amd64
+Architecture: all
 Depends: openjdk-6-jre (>=6b18)
-Description: occiforjava deb
+Description: occi4java deb
