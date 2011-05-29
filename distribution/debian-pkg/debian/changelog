@@ -1,5 +1,24 @@
+occi4java (0.3) unstable; urgency=low
+
+  * Integrated process to make a deb file
+
+ -- occi4java <sebastian.laag@googlemail.com>  Thu, 29 May 2011 12:39:41 +0200
+
 occi4java (0.2.1) unstable; urgency=low
 
-  * Initial Release.
+  * Integrated antlr grammar
 
- -- occi4java <sebastian.laag@googlemail.com>  Thu, 16 May 2011 21:39:41 +0200
+ -- occi4java <sebastian.laag@googlemail.com>  Thu, 16 May 2011 21:34:41 +0200
+ 
+ occi4java (0.2) unstable; urgency=low
+
+  * Overworked the build process
+  * Some minor bug fixes
+  
+ -- occi4java <sebastian.laag@googlemail.com>  Thu, 12 Apr 2011 14:21:41 +0200
+ 
+  occi4java (0.1) unstable; urgency=low
+
+  * Initial release
+  
+ -- occi4java <sebastian.laag@googlemail.com>  Thu, 02 Apr 2011 09:12:20 +0200

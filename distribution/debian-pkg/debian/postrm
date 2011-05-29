@@ -6,3 +6,4 @@ rm -rf /usr/share/occi4java
 rm -rf /etc/occi4java
 rm -rf /var/log/occi4java
 rm -rf /var/cache/occi4java
+rm -rf /etc/occi4java

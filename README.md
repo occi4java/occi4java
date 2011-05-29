@@ -48,7 +48,7 @@ If you dont want to build the project yourself, just check the download area. Th
 Usage
 -----
 
-After you have build the project with maven you can start the created jar file. The jar file will be placed in http/target/http-{version}-packaging.
+After you have build the project with maven you can start the created jar file. The jar file will be placed in distribution/target/distribution-{version}-packaging.
 
 You can start it with:
 
@@ -72,13 +72,20 @@ If you have already build the project you will find a /conf folder where you can
 Changelog
 ---------
 
+0.3
+
+  * Integrated process to make a deb file
+
 0.2.1
 
-  * New OCCI Console
+  * Integrated antlr grammar
 
 0.2
 
   * Overworked the build process
   * Some minor bug fixes
+  
+0.1
+  * Initial release
 
 (c) 2011 Sebastian Laag, Sebastian Heckmann

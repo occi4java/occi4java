@@ -18,7 +18,5 @@
 #
 
 
-# erster Parameter des Skriptes ist der Ordner, der die zusammengesammelten Pakete enthält
-
 cd $1
-dpkg-buildpackage
+rm -rf debian

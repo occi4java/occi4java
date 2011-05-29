@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>edu.udo.irf.pg547</groupId>
 	<artifactId>occi</artifactId>
-	<version>0.2.1</version>
+	<version>0.3</version>
 	<packaging>pom</packaging>
 	<name>occi4java</name>
 

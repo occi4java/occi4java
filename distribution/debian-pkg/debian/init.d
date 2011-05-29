@@ -11,7 +11,7 @@
 #                    <...>
 ### END INIT INFO
 
-# Author: occi4java <xy@xy.org>
+# Author: occi4java <sebastian.laag@googlemail.com>
 
 # PATH should only include /usr
 PATH=/sbin:/usr/sbin:/bin:/usr/bin

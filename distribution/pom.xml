@@ -4,12 +4,12 @@
 	<parent>
 		<artifactId>occi</artifactId>
 		<groupId>edu.udo.irf.pg547</groupId>
-		<version>0.2.1</version>
+		<version>0.3</version>
 		<relativePath>../pom.xml</relativePath>
 	</parent>
 	<groupId>edu.udo.irf.pg547</groupId>
 	<artifactId>distribution</artifactId>
-	<version>0.2.1</version>
+	<version>0.3</version>
 	<name>Distribution</name>
 
 	<build>
@@ -47,6 +47,13 @@
 									<arg value="package_deb.sh" />
 								</exec>
 								<exec executable="src/main/resources/package_deb.sh">
+									<arg value="target/${artifactId}-${version}-packaging" />
+								</exec>
+								<exec executable="chmod" dir="src/main/resources">
+									<arg value="u+x" />
+									<arg value="clean.sh" />
+								</exec>
+								<exec executable="src/main/resources/clean.sh">
 									<arg value="target/${artifactId}-${version}-packaging" />
 								</exec>
 							</tasks>
