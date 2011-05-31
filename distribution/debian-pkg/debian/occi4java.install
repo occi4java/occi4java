@@ -1,4 +1,4 @@
 occi4java-start /usr/bin
-http* /usr/share/occi4java
+occi4java.http* /usr/share/occi4java
 conf /etc/occi4java
 lib /usr/share/occi4java

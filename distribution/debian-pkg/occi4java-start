@@ -4,8 +4,8 @@ PIDFILE=/var/run/occi4java.pid
 
 cd /usr/share/occi4java/
 if [ "$1" == "--daemon" ]; then
-    java -jar http-0.2.jar > /dev/null 2> /dev/null < /dev/null &
+    java -jar occi4java.http-0.2.1.jar > /dev/null 2> /dev/null < /dev/null &
     echo -n $! > $PIDFILE
 else
-    java -jar http-0.2.jar
+    java -jar occi4java.http-0.2.1.jar
 fi
