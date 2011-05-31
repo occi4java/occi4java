@@ -16,55 +16,58 @@
  * limitations under the License.
  */
 
-package occi;
+package occi.test;
 
 import occi.config.OcciConfig;
 import occi.http.occiApi;
 
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
 import org.restlet.representation.Representation;
 import org.restlet.resource.ClientResource;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
 
-public class TestRestStorage {
-	private static final Logger LOGGER = LoggerFactory
-			.getLogger(TestRestStorage.class);
+/**
+ * Class to test the computes interface. The test class starts the occi api and connects to it via client resource.
+ * 
+ * Test cases are:
+ * HTTP GET
+ * 
+ * @author Sebastian Laag
+ * @author Sebastian Heckmann
+ */
+public class TestRestComputes {
 	private ClientResource clientResource = new ClientResource(
 			OcciConfig.getInstance().config.getString("occi.server.location"));
 
-	@Before
+	@BeforeTest
 	public void setUp() {
 		// start occi api
 		occiApi occi = new occiApi();
 		try {
 			occi.main(null);
 		} catch (Exception ex) {
-			LOGGER.error("Failed to start occiApi: " + ex.getMessage());
+			System.out.println("Failed to start occiApi: " + ex.getMessage());
 		}
 	}
-	
+
 	@Test
-	public void testGetStorage() {
-		// connect to Api
+	public void testGetComputes() {
+		// connect to api
 		clientResource.setReference(OcciConfig.getInstance().config
-				.getString("occi.server.location") + "storage");
+				.getString("occi.serverlocation") + "compute/");
+
+		// execute get request
 		Representation representation = null;
 		try {
-			// execute get request
 			representation = clientResource.get();
-			// checks whether representation is null
-			Assert.assertNotNull(representation);
-			LOGGER.info("representation.toString " + representation.toString());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		System.out.println("Representation: " + representation);
 	}
 	
-	@After
+	@AfterTest
 	public void tearDown() {
 		clientResource = null;
 		System.gc();

@@ -72,6 +72,11 @@ If you have already build the project you will find a /conf folder where you can
 Changelog
 ---------
 
+0.3.1
+
+  * Overworked namespaces
+  * Changed from junit to testng
+
 0.3
 
   * Integrated process to make a deb file

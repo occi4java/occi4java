@@ -16,20 +16,17 @@
  * limitations under the License.
  */
 
-package occi;
+package occi.test;
 
 import occi.config.OcciConfig;
 import occi.http.occiApi;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Ignore;
-import org.junit.Test;
 import org.restlet.data.MediaType;
 import org.restlet.representation.Representation;
 import org.restlet.resource.ClientResource;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
 
 /**
  * Test class for the query interface. It tests to submit a get request with
@@ -39,19 +36,17 @@ import org.slf4j.LoggerFactory;
  * @author Sebastian Laag
  */
 public class TestRestQuery {
-	private static final Logger LOGGER = LoggerFactory
-			.getLogger(TestRestQuery.class);
 	private ClientResource clientResource = new ClientResource(
 			OcciConfig.getInstance().config.getString("occi.server.location"));
 
-	@Before
+	@BeforeTest
 	public void setUp() {
 		// start occi api
 		occiApi occi = new occiApi();
 		try {
 			occi.main(null);
 		} catch (Exception ex) {
-			LOGGER.error("Failed to start occiApi: " + ex.getMessage());
+			System.out.println("Failed to start occiApi: " + ex.getMessage());
 		}
 	}
 
@@ -66,9 +61,9 @@ public class TestRestQuery {
 			Representation representation = clientResource.get(new MediaType(
 					"text/occi"));
 			
-			LOGGER.info("Representation: " + representation.getText());
+			System.out.println("Representation: " + representation.getText());
 		} catch (Exception e) {
-			LOGGER.error("Failed to submit a get request with accept header text/occi: " + e.getMessage());
+			System.out.println("Failed to submit a get request with accept header text/occi: " + e.getMessage());
 		}
 	}
 
@@ -83,23 +78,23 @@ public class TestRestQuery {
 			Representation representation = clientResource
 					.get(MediaType.TEXT_PLAIN);
 			
-			LOGGER.debug("Representation: " + representation.getText());
+			System.out.println("Representation: " + representation.getText());
 		} catch (Exception e) {
-			LOGGER.error("Failed to submit a get request with accept header text/plain: " + e.getMessage());
+			System.out.println("Failed to submit a get request with accept header text/plain: " + e.getMessage());
 		}
 	}
 
-	@Ignore
+	@Test(enabled=false)
 	public void testPutQuery() {
 
 	}
 
-	@Ignore
+	@Test(enabled=false)
 	public void testDeleteQuery() {
 
 	}
 
-	@After
+	@AfterTest
 	public void tearDown() {
 		clientResource = null;
 		System.gc();

@@ -1,15 +1,14 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>edu.udo.irf.pg547</groupId>
-	<artifactId>occi</artifactId>
-	<version>0.3</version>
+	<groupId>de.occi</groupId>
+	<artifactId>occi4java</artifactId>
+	<version>0.3.1</version>
 	<packaging>pom</packaging>
 	<name>occi4java</name>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<junit.version>4.8.2</junit.version>
 		<spring.version>2.5.6.SEC02</spring.version>
 	</properties>
 
@@ -65,7 +64,7 @@
 					</execution>
 				</executions>
 			</plugin>
-			
+
 		</plugins>
 	</build>
 
@@ -77,23 +76,19 @@
 			<type>jar</type>
 			<scope>compile</scope>
 		</dependency>
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>${junit.version}</version>
-			<type>jar</type>
-			<scope>test</scope>
-		</dependency>
+		<!-- Logger -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
 			<version>1.6.1</version>
 		</dependency>
+		<!-- Config files -->
 		<dependency>
 			<groupId>commons-configuration</groupId>
 			<artifactId>commons-configuration</artifactId>
 			<version>1.6</version>
 		</dependency>
+		<!-- Testsuite -->
 		<dependency>
 			<groupId>org.testng</groupId>
 			<artifactId>testng</artifactId>

@@ -1,3 +1,4 @@
+package occi.test;
 /**
  * Copyright (C) 2010-2011 Sebastian Heckmann, Sebastian Laag
  *
@@ -21,17 +22,17 @@ import java.net.URISyntaxException;
 import javax.naming.NamingException;
 import javax.naming.directory.SchemaViolationException;
 
+import org.testng.Assert;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
+
 import occi.core.Link;
 import occi.infrastructure.Compute;
 import occi.infrastructure.Compute.Architecture;
 import occi.infrastructure.Network;
 import occi.infrastructure.Network.State;
 import occi.infrastructure.Storage;
-
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
 
 /**
  * Test class for links. Creates a link between compute and network or compute
@@ -46,7 +47,7 @@ public class OcciLinkTest {
 	private Compute compute;
 	private Link link;
 
-	@Before
+	@BeforeTest
 	public void setUp() {
 		network = null;
 		link = null;
@@ -120,7 +121,7 @@ public class OcciLinkTest {
 		Assert.assertNotNull(link.getTitle());
 	}
 	
-	@After
+	@AfterTest
 	public void tearDown() {
 		network = null;
 		compute = null;

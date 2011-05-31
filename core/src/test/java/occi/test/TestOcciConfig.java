@@ -1,3 +1,4 @@
+package occi.test;
 /**
  * Copyright (C) 2010-2011 Sebastian Heckmann, Sebastian Laag
  *
@@ -16,10 +17,11 @@
  * limitations under the License.
  */
 
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
 import occi.config.OcciConfig;
 
-import org.junit.Assert;
-import org.junit.Test;
 
 /**
  * Test class for the Occi Config. Tests if some necessary config properties are

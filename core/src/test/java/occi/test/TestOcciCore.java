@@ -1,3 +1,4 @@
+package occi.test;
 /**
  * Copyright (C) 2010-2011 Sebastian Heckmann, Sebastian Laag
  *
@@ -20,6 +21,9 @@ import java.net.URISyntaxException;
 
 import javax.naming.directory.SchemaViolationException;
 
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
 import occi.core.Action;
 import occi.core.Category;
 import occi.core.Entity;
@@ -28,9 +32,6 @@ import occi.core.Link;
 import occi.core.Method;
 import occi.core.Mixin;
 import occi.core.Resource;
-
-import org.junit.Assert;
-import org.junit.Test;
 
 /**
  * Test class for all core classes.
@@ -50,7 +51,7 @@ public class TestOcciCore {
 		Assert.assertNotNull(Mixin.class);
 		Assert.assertNotNull(Resource.class);
 	}
-	
+
 	@Test
 	public void testOcciCategory() {
 		Category category = null;

@@ -5,15 +5,15 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<artifactId>occi</artifactId>
-		<groupId>edu.udo.irf.pg547</groupId>
-		<version>0.3</version>
+		<artifactId>occi4java</artifactId>
+		<groupId>de.occi</groupId>
+		<version>0.3.1</version>
 		<relativePath>../pom.xml</relativePath>
 	</parent>
 
-	<groupId>edu.udo.irf.pg547</groupId>
-	<artifactId>http</artifactId>
-	<version>0.2</version>
+	<groupId>de.occi</groupId>
+	<artifactId>occi4java.http</artifactId>
+	<version>0.2.1</version>
 	<name>Http</name>
 
 	<repositories>
@@ -26,13 +26,13 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>edu.udo.irf.pg547</groupId>
-			<artifactId>core</artifactId>
+			<groupId>de.occi</groupId>
+			<artifactId>occi4java.core</artifactId>
 			<version>0.2</version>
 		</dependency>
 		<dependency>
-			<groupId>edu.udo.irf.pg547</groupId>
-			<artifactId>infrastructure</artifactId>
+			<groupId>de.occi</groupId>
+			<artifactId>occi4java.infrastructure</artifactId>
 			<version>0.2</version>
 		</dependency>
 		<dependency>

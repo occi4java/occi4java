@@ -1,3 +1,11 @@
+occi4java (0.3.1) unstable; urgency=low
+
+  * Overworked namespaces
+  * Changed from junit to testng
+
+ -- occi4java <sebastian.laag@googlemail.com>  Tue, 31 May 2011 18:24:22 +0200
+
+
 occi4java (0.3) unstable; urgency=low
 
   * Integrated process to make a deb file

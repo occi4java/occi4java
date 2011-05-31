@@ -1,3 +1,4 @@
+package occi.test;
 /**
  * Copyright (C) 2010-2011 Sebastian Heckmann, Sebastian Laag
  *
@@ -16,8 +17,6 @@
  * limitations under the License.
  */
 
-import static org.junit.Assert.fail;
-
 import java.net.URISyntaxException;
 import java.util.HashSet;
 import java.util.Set;
@@ -25,13 +24,14 @@ import java.util.UUID;
 
 import javax.naming.NamingException;
 
+import org.testng.Assert;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
+
 import occi.infrastructure.Compute;
 import occi.infrastructure.Compute.Architecture;
 import occi.infrastructure.Compute.State;
-
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
 
 /**
  * Test class for Compute resources. Creates some compute resources with invalid
@@ -43,11 +43,11 @@ import org.junit.Test;
 public class OcciComputeTest {
 	Set<String> set = new HashSet<String>();
 
-	@Before
+	@BeforeTest
 	public void setUp() {
 	}
 
-	@After
+	@AfterTest
 	public void tearDown() {
 	}
 
@@ -55,7 +55,7 @@ public class OcciComputeTest {
 	public void occiTestNegativeCores() {
 		try {
 			new Compute(Architecture.x86, -2, "Test", 2, 2, State.active, set);
-			fail("occiTestNegativeCores should return an exception");
+			Assert.fail("occiTestNegativeCores should return an exception");
 		} catch (NumberFormatException e) {
 			System.out.println("Expected NumberFormatException");
 		} catch (NamingException e) {
@@ -88,7 +88,7 @@ public class OcciComputeTest {
 	public void occiTestNegativeSpeed() {
 		try {
 			new Compute(Architecture.x86, 2, "Test", -2, 2, State.active, set);
-			fail("occiTestNegativeSpeed should return an exception");
+			Assert.fail("occiTestNegativeSpeed should return an exception");
 		} catch (Exception e) {
 			System.out.println("Expected Exception");
 		}
@@ -99,7 +99,7 @@ public class OcciComputeTest {
 		try {
 			new Compute(Architecture.x86, 2, "Test", -2.1F, 2, State.active,
 					set);
-			fail("occiTestNegativeFloatSpeed should return an exception");
+			Assert.fail("occiTestNegativeFloatSpeed should return an exception");
 		} catch (Exception e) {
 			System.out.println("Expected Exception");
 		}
@@ -127,7 +127,7 @@ public class OcciComputeTest {
 	public void occiTestNegativeMemory() {
 		try {
 			new Compute(Architecture.x86, 2, "Test", 2, -2, State.active, set);
-			fail("occiTestNegativeMemory should return an exception");
+			Assert.fail("occiTestNegativeMemory should return an exception");
 		} catch (Exception e) {
 			System.out.println("Expected Exception");
 		}
@@ -138,7 +138,7 @@ public class OcciComputeTest {
 		try {
 			new Compute(Architecture.x86, 2, "Test", 2, -2.1F, State.active,
 					set);
-			fail("occiTestNegativeFloatMemory should return an exception");
+			Assert.fail("occiTestNegativeFloatMemory should return an exception");
 		} catch (Exception e) {
 			System.out.println("Expected Exception");
 		}
@@ -164,7 +164,11 @@ public class OcciComputeTest {
 
 	@Test
 	public void occiTestUUID() {
-		Compute.getComputeList().get(UUID.fromString("1337"));
-		fail("occiTestUUID should return an exception");
+		try {
+			Compute.getComputeList().get(UUID.fromString("1337"));
+			Assert.fail("occiTestUUID should return an exception");
+		} catch (IllegalArgumentException e) {
+			System.out.println("Expected Exception");
+		}
 	}
 }

@@ -38,6 +38,9 @@
 		<fileSet>
 			<directory>../core/src/main/resources</directory>
 			<outputDirectory></outputDirectory>
+			<excludes>
+				<exclude>**/log4jTest.properties</exclude>
+			</excludes>
 			<includes>
 				<include>**</include>
 			</includes>

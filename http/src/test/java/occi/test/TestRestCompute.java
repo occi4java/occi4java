@@ -16,32 +16,29 @@
  * limitations under the License.
  */
 
-package occi;
+package occi.test;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
 
 import javax.naming.NamingException;
 
-import junit.framework.Assert;
 import occi.config.OcciConfig;
 import occi.http.occiApi;
 import occi.infrastructure.Compute;
 import occi.infrastructure.Compute.Architecture;
 import occi.infrastructure.Compute.State;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Ignore;
-import org.junit.Test;
 import org.restlet.Request;
 import org.restlet.Response;
 import org.restlet.data.Form;
 import org.restlet.data.MediaType;
 import org.restlet.representation.Representation;
 import org.restlet.resource.ClientResource;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.testng.Assert;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
 
 /**
  * Class to test the compute interface. The test class starts the occi api and
@@ -53,20 +50,17 @@ import org.slf4j.LoggerFactory;
  * @author Sebastian Heckmann
  */
 public class TestRestCompute {
-
-	private static final Logger LOGGER = LoggerFactory
-			.getLogger(TestRestCompute.class);
 	private ClientResource clientResource = new ClientResource(
 			OcciConfig.getInstance().config.getString("occi.server.location"));
-
-	@Before
+	
+	@BeforeTest
 	public void setUp() {
 		// start occi api
 		occiApi occi = new occiApi();
 		try {
 			occi.main(null);
 		} catch (Exception ex) {
-			LOGGER.error("Failed to start occiApi: " + ex.getMessage());
+			System.out.println("Failed to start occiApi: " + ex.getMessage());
 		}
 	}
 
@@ -74,8 +68,8 @@ public class TestRestCompute {
 	public void testGetCompute() {
 		Compute compute = null;
 		try {
-			compute = new Compute(Architecture.x64, 2, "TestCase", 200,
-					20, State.active, null);
+			compute = new Compute(Architecture.x64, 2, "TestCase", 200, 20,
+					State.active, null);
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
 		} catch (IllegalArgumentException e) {
@@ -102,28 +96,30 @@ public class TestRestCompute {
 			// send post request
 			representation = clientResource.get();
 		} catch (Exception ex) {
-			LOGGER.error("Failed to execute GET request: " + ex.getMessage());
+			System.out.println("Failed to execute GET request: "
+					+ ex.getMessage());
 		}
 		Assert.assertNotNull(representation);
 		// get request and print it in debugger
 		Request request = Request.getCurrent();
-		LOGGER.debug(request.toString() + "\n\n");
-		LOGGER.debug("--------------------------------");
+		System.out.println(request.toString() + "\n\n");
+		System.out.println("--------------------------------");
 		// get current response
 		Response response = Response.getCurrent();
 		Assert.assertNotNull(response);
-		LOGGER.debug("Response: " + response.toString());
+		System.out.println("Response: " + response.toString());
 
 		try {
 			representation.write(System.out);
 		} catch (IOException e) {
-			LOGGER.error(e.getMessage());
+			System.out.println(e.getMessage());
 		}
-		LOGGER.debug("\n--------------------------------");
+		System.out.println("\n--------------------------------");
 	}
 
-	// TODO Die Parameter beim Request werden nicht korrekt übergeben. Keine Ahnung woran es liegt.
-	@Ignore
+	// TODO Die Parameter beim Request werden nicht korrekt übergeben. Keine
+	// Ahnung woran es liegt.
+	@Test(enabled = false)
 	public void testPostCompute() {
 		// connect to api
 		clientResource.setReference(OcciConfig.getInstance().config
@@ -145,7 +141,7 @@ public class TestRestCompute {
 		form.add("occi.compute.speed", speed);
 		form.add("occi.compute.memory", memory);
 		form.add("category", category);
-		LOGGER.debug("\n FORM " + form.toString());
+		System.out.println("\n FORM " + form.toString());
 		// create new representation
 		Representation representation = null;
 		try {
@@ -153,27 +149,29 @@ public class TestRestCompute {
 			representation = clientResource.post(form.toString(),
 					MediaType.TEXT_PLAIN);
 		} catch (Exception ex) {
-			LOGGER.error("Failed to execute POST request " + ex.getMessage());
+			System.out.println("Failed to execute POST request "
+					+ ex.getMessage());
 		}
 		Assert.assertNotNull(representation);
 		// get request and print it in debugger
 		Request request = Request.getCurrent();
-		LOGGER.debug(request.toString() + "\n\n" + form.getMatrixString());
-		LOGGER.debug("--------------------------------");
+		System.out
+				.println(request.toString() + "\n\n" + form.getMatrixString());
+		System.out.println("--------------------------------");
 		// get current response
 		Response response = Response.getCurrent();
 		Assert.assertNotNull(response);
-		LOGGER.debug("Response: " + response.toString());
+		System.out.println("Response: " + response.toString());
 
 		try {
 			representation.write(System.out);
 		} catch (IOException e) {
-			LOGGER.error(e.getMessage());
+			System.out.println(e.getMessage());
 		}
-		LOGGER.debug("\n--------------------------------");
+		System.out.println("\n--------------------------------");
 	}
 
-	@After
+	@AfterTest
 	public void tearDown() {
 		clientResource = null;
 		System.gc();
