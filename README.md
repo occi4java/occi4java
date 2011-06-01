@@ -91,6 +91,7 @@ Changelog
   * Some minor bug fixes
   
 0.1
+
   * Initial release
 
 (c) 2011 Sebastian Laag, Sebastian Heckmann
