@@ -7,5 +7,5 @@ Build-Depends: debhelper
 
 Package: occi4java
 Architecture: all
-Depends: openjdk-6-jre (>=6b18)
+Depends: openjdk-6-jre (>=6b18), debhelper, build-essential
 Description: occi4java deb
