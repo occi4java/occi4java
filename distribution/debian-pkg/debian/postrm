@@ -7,3 +7,4 @@ rm -rf /etc/occi4java
 rm -rf /var/log/occi4java
 rm -rf /var/cache/occi4java
 rm -rf /etc/occi4java
+rm -rf /etc/init.d/occi4java
