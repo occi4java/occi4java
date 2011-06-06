@@ -38,6 +38,13 @@ A: In folder: infrastructure/src/main/java/occi/infrastructure/injection there i
 Build Project
 -------------
 
+If you want to build the project including the debian package you have to install some packages:
+
+    apt-get install debhelper build-essential
+
+Once they are installed you will find the built debian package in /distribution/target.
+
+
 Just go to the main folder of the project and type:
     
     $ mvn install
