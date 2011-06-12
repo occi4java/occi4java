@@ -90,6 +90,11 @@ All logger information can be found in /var/log/occi4java/occi4java.log
 
 Config files are located under /usr/share/occi4java/conf. If you change a parameter you have to restart occi4java.
 
+Requirements
+------------
+
+A Linux Distribution like Ubuntu.
+
 
 Changelog
 ---------
