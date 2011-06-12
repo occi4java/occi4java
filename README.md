@@ -75,6 +75,21 @@ The files are located in the Core part under:
 
 If you have already build the project you will find a /conf folder where you can change the configuration.
 
+Debian Package
+--------------
+
+If you don´t want to build occi4java yourself, we are happy to provide a debian package, which you can easily install with:
+
+    dpkg -i occi4java_{version}_all.deb
+
+The package installs all necessary files and includes a daemon to start and stop the occi server.
+
+    /etc/init.d/occi4java start|stop|restart|status
+
+All logger information can be found in /var/log/occi4java/occi4java.log
+
+Config files are located under /usr/share/occi4java/conf. If you change a parameter you have to restart occi4java.
+
 
 Changelog
 ---------
