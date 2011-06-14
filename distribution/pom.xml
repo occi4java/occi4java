@@ -43,7 +43,7 @@
 						<id>Paket-Bau</id>
 						<phase>package</phase>
 						<configuration>
-							<tasks>
+							<target>
 								<exec executable="chmod" dir="src/main/resources">
 									<arg value="u+x" />
 									<arg value="package_deb.sh" />
@@ -58,7 +58,7 @@
 								<exec executable="src/main/resources/clean.sh">
 									<arg value="target/${artifactId}-${version}-packaging" />
 								</exec>
-							</tasks>
+							</target>
 						</configuration>
 						<goals>
 							<goal>run</goal>

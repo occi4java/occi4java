@@ -41,10 +41,9 @@ public class TestRestQuery {
 
 	@BeforeTest
 	public void setUp() {
-		// start occi api
-		occiApi occi = new occiApi();
 		try {
-			occi.main(null);
+			// start occi api
+			occiApi.main(null);
 		} catch (Exception ex) {
 			System.out.println("Failed to start occiApi: " + ex.getMessage());
 		}
