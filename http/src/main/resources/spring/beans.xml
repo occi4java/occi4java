@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ This file is part of tuOCCI.
+  ~
+  ~     tuOCCI is free software: you can redistribute it and/or modify
+  ~     it under the terms of the GNU Lesser General Public License as
+  ~     published by the Free Software Foundation, either version 3 of
+  ~     the License, or (at your option) any later version.
+  ~
+  ~     tuOCCI is distributed in the hope that it will be useful,
+  ~     but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~     GNU Lesser General Public License for more details.
+  ~
+  ~     You should have received a copy of the GNU Lesser General Public
+  ~     License along with tuOCCI.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<!-- $Id$ -->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:jaxrs="http://cxf.apache.org/jaxrs"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://cxf.apache.org/jaxrs http://cxf.apache.org/schemas/jaxrs.xsd
+        ">
+
+    <import resource="classpath:META-INF/cxf/cxf.xml"/>
+    <import resource="classpath:META-INF/cxf/cxf-servlet.xml"/>
+
+    <jaxrs:server id="tuOcciService" address="/">
+        <jaxrs:serviceBeans>
+            <ref bean="queryInterfaceBean"/>
+            <ref bean="serviceInterfaceBean"/>
+        </jaxrs:serviceBeans>
+    </jaxrs:server>
+
+    <bean id="queryInterfaceBean" class="de.irf.it.tuocci.httpng.QueryInterfaceResource">
+        <property name="categoryRegistry" ref="categoryRegistryBean"/>
+        <property name="locationResolver" ref="locationResolverBean"/>
+    </bean>
+
+    <bean id="serviceInterfaceBean" class="de.irf.it.tuocci.httpng.ServiceInterfaceResource">
+        <property name="categoryRegistry" ref="categoryRegistryBean"/>
+        <property name="locationResolver" ref="locationResolverBean"/>
+    </bean>
+
+    <bean id="categoryRegistryBean" class="de.irf.it.tuocci.core.CategoryRegistry">
+        <property name="registeredCategories">
+            <set>
+                <!-- OCCI Core Types -->
+                <value>de.irf.it.tuocci.core.Entity</value>
+                <value>de.irf.it.tuocci.core.Resource</value>
+                <value>de.irf.it.tuocci.core.Link</value>
+                <!-- OCCI Infrastructure Types -->
+                <value>de.irf.it.tuocci.infrastructure.compute.Compute</value>
+                <value>de.irf.it.tuocci.infrastructure.storage.Storage</value>
+                <value>de.irf.it.tuocci.infrastructure.storage.StorageLink</value>
+                <value>de.irf.it.tuocci.infrastructure.network.Network</value>
+                <value>de.irf.it.tuocci.infrastructure.network.IPNetwork</value>
+                <value>de.irf.it.tuocci.infrastructure.network.NetworkInterface</value>
+                <value>de.irf.it.tuocci.infrastructure.network.IPNetworkInterface</value>
+            </set>
+        </property>
+    </bean>
+
+    <bean id="locationResolverBean" class="de.irf.it.tuocci.httpng.LocationResolver">
+        <property name="mappedLocations">
+            <map>
+                <entry key="compute" value="de.irf.it.tuocci.infrastructure.compute.Compute" />
+                <entry key="storage" value="de.irf.it.tuocci.infrastructure.storage.Storage" />
+                <entry key="network" value="de.irf.it.tuocci.infrastructure.network.Network" />
+            </map>
+        </property>
+    </bean>
+
+</beans>

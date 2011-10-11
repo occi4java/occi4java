@@ -1,105 +1,144 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<groupId>de.occi</groupId>
-	<artifactId>occi4java</artifactId>
-	<version>0.3.1</version>
-	<packaging>pom</packaging>
-	<name>occi4java</name>
+<?xml version="1.0" encoding="UTF-8"?>
 
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<spring.version>2.5.6.SEC02</spring.version>
-	</properties>
+<!--
+  ~ This file is part of tuOCCI.
+  ~
+  ~     tuOCCI is free software: you can redistribute it and/or modify
+  ~     it under the terms of the GNU Lesser General Public License as
+  ~     published by the Free Software Foundation, either version 3 of
+  ~     the License, or (at your option) any later version.
+  ~
+  ~     tuOCCI is distributed in the hope that it will be useful,
+  ~     but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~     GNU Lesser General Public License for more details.
+  ~
+  ~     You should have received a copy of the GNU Lesser General Public
+  ~     License along with tuOCCI.  If not, see <http://www.gnu.org/licenses/>.
+  -->
 
-	<reporting>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-javadoc-plugin</artifactId>
-				<version>2.8</version>
-				<configuration>
-					<show>private</show>
-				</configuration>
-			</plugin>
-		</plugins>
-	</reporting>
+<!-- $Id$ -->
 
-	<build>
-		<directory>target</directory>
-		<outputDirectory>target/classes</outputDirectory>
-		<testOutputDirectory>target/test-classes</testOutputDirectory>
-		<sourceDirectory>src/main/java</sourceDirectory>
-		<testSourceDirectory>src/test/java</testSourceDirectory>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>2.3.2</version>
-				<configuration>
-					<source>1.6</source>
-					<target>1.6</target>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>com.mycila.maven-license-plugin</groupId>
-				<artifactId>maven-license-plugin</artifactId>
-				<version>1.9.0</version>
-				<configuration>
-					<header>core/src/main/resources/license/header.txt</header>
-					<encoding>UTF-8</encoding>
-					<excludes>
-						<exclude>**/OcciLexer.java</exclude>
-						<exclude>**/OcciParserException.java</exclude>
-						<exclude>**/Grammar.java</exclude>
-					</excludes>
-					<useDefaultExcludes>true</useDefaultExcludes>
-				</configuration>
-				<executions>
-					<execution>
-						<phase>test</phase>
-						<goals>
-							<goal>format</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-		</plugins>
-	</build>
+    <modelVersion>4.0.0</modelVersion>
 
-	<dependencies>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring</artifactId>
-			<version>${spring.version}</version>
-			<type>jar</type>
-			<scope>compile</scope>
-		</dependency>
-		<!-- Logger -->
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-log4j12</artifactId>
-			<version>1.6.1</version>
-		</dependency>
-		<!-- Config files -->
-		<dependency>
-			<groupId>commons-configuration</groupId>
-			<artifactId>commons-configuration</artifactId>
-			<version>1.6</version>
-		</dependency>
-		<!-- Testsuite -->
-		<dependency>
-			<groupId>org.testng</groupId>
-			<artifactId>testng</artifactId>
-			<version>6.0.1</version>
-			<scope>test</scope>
-		</dependency>
-	</dependencies>
-	<modules>
-		<module>core</module>
-		<module>infrastructure</module>
-		<module>http</module>
-		<module>distribution</module>
-	</modules>
+    <!-- The Basics -->
+    <groupId>de.irf.it.tuocci</groupId>
+    <artifactId>tuocci</artifactId>
+    <version>0.3.1</version>
+    <packaging>pom</packaging>
+    <dependencies></dependencies>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>4.8.2</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+    <modules>
+        <module>core</module>
+        <!-- <module>distribution</module> -->
+        <module>http</module>
+        <module>infrastructure</module>
+    </modules>
+    <properties>
+        <tuocci.java.version>1.6</tuocci.java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <!-- Build Settings -->
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>2.3.2</version>
+                    <configuration>
+                        <source>${tuocci.java.version}</source>
+                        <target>${tuocci.java.version}</target>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-site-plugin</artifactId>
+                    <version>3.0-beta-2</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
+    <!-- More Project Information -->
+    <name>tuOCCI Open Cloud Computing Interface Framework</name>
+    <description>...</description>
+    <url></url>
+    <inceptionYear>2011</inceptionYear>
+    <licenses></licenses>
+    <organization>
+        <name>Institut für Roboterforschung, Technische Universität Dortmund
+        </name>
+        <url>http://www.irf.tu-dortmund.de</url>
+    </organization>
+    <developers>
+        <developer>
+            <id>smsnheck</id>
+            <name>Sebastian Heckmann</name>
+            <roles>
+                <role>Release Manager</role>
+            </roles>
+        </developer>
+        <developer>
+            <id>sebastianlaag</id>
+            <name>Sebastian Laag</name>
+            <roles>
+                <role>Packager</role>
+            </roles>
+        </developer>
+        <developer>
+            <id>lxndrp</id>
+            <name>Alexander Papaspyrou</name>
+            <email>alexander.papaspyrou@tu-dortmund.de</email>
+            <roles>
+                <role>Project Manager</role>
+            </roles>
+        </developer>
+    </developers>
+    <contributors>
+        <contributor>
+            <name>Sebastian Herbermann</name>
+        </contributor>
+    </contributors>
+
+    <!-- Environment Settings -->
+    <issueManagement>
+        <system>GitHub</system>
+        <url>http://irf.github.com/tuocci</url>
+    </issueManagement>
+    <ciManagement></ciManagement>
+    <mailingLists>
+        <mailingList>
+            <name>tuOCCI -- Open Cloud Computing Interface Framework (Discussion
+                List)
+            </name>
+            <post>tuocci@googlegroups.com</post>
+            <subscribe>tuocci+subscribe@googlegroups.com</subscribe>
+            <unsubscribe>tuocci+unsubscribe@googlegroups.com</unsubscribe>
+            <archive>http://groups.google.com/group/tuocci/topics</archive>
+        </mailingList>
+    </mailingLists>
+    <scm>
+        <url>http://irf.github.com/tuocci</url>
+        <connection>scm:git:git@github.com:irf/tuocci.git</connection>
+        <developerConnection>git@github.com:irf/tuocci.git</developerConnection>
+    </scm>
+    <prerequisites></prerequisites>
+    <repositories></repositories>
+    <pluginRepositories></pluginRepositories>
+    <distributionManagement></distributionManagement>
+    <profiles></profiles>
 </project>
