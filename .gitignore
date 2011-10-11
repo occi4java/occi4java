@@ -1,7 +1,8 @@
-.DS_Store
 .classpath
 .idea
 .project
 .settings
 target
 test-output
+.DS_Store
+*.iml
