@@ -17,6 +17,23 @@
   ~     License along with tuOCCI.  If not, see <http://www.gnu.org/licenses/>.
   -->
 
+<!--
+  ~ This file is part of tuOCCI.
+  ~
+  ~     tuOCCI is free software: you can redistribute it and/or modify
+  ~     it under the terms of the GNU Lesser General Public License as
+  ~     published by the Free Software Foundation, either version 3 of
+  ~     the License, or (at your option) any later version.
+  ~
+  ~     tuOCCI is distributed in the hope that it will be useful,
+  ~     but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~     GNU Lesser General Public License for more details.
+  ~
+  ~     You should have received a copy of the GNU Lesser General Public
+  ~     License along with tuOCCI.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+
 <!-- $Id$ -->
 
 <project xmlns="http://maven.apache.org/POM/4.0.0"
@@ -37,6 +54,11 @@
                 <groupId>junit</groupId>
                 <artifactId>junit</artifactId>
                 <version>4.8.2</version>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>1.6.2</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -76,9 +98,14 @@
     <!-- More Project Information -->
     <name>tuOCCI Open Cloud Computing Interface Framework</name>
     <description>...</description>
-    <url></url>
+    <url>http://irf.github.com/tuocci</url>
     <inceptionYear>2011</inceptionYear>
-    <licenses></licenses>
+    <licenses>
+        <license>
+            <name>GNU Lesser General Public License, Version 3.0</name>
+            <url>http://www.gnu.org/licenses/lgpl-3.0.html</url>
+        </license>
+    </licenses>
     <organization>
         <name>Institut für Roboterforschung, Technische Universität Dortmund
         </name>
@@ -117,7 +144,7 @@
     <!-- Environment Settings -->
     <issueManagement>
         <system>GitHub</system>
-        <url>http://irf.github.com/tuocci</url>
+        <url>https://github.com/irf/tuocci/issues</url>
     </issueManagement>
     <ciManagement></ciManagement>
     <mailingLists>
