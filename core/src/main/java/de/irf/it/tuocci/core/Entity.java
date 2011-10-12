@@ -27,6 +27,7 @@ import de.irf.it.tuocci.core.exceptions.ActionTriggerException;
 import de.irf.it.tuocci.core.exceptions.AttributeAccessException;
 import de.irf.it.tuocci.core.exceptions.InvalidMixinException;
 import de.irf.it.tuocci.core.exceptions.UnsupportedMixinException;
+import de.irf.it.tuocci.core.interfaces.Queryable;
 
 import java.beans.BeanInfo;
 import java.beans.IntrospectionException;
@@ -77,7 +78,7 @@ import java.util.UUID;
  */
 @Category(term = "entity", scheme = "http://schemas.ogf.org/occi/core#", title = "Entity type")
 @Kind
-public abstract class Entity {
+public abstract class Entity implements Queryable {
 
     /**
      * A unique identifier (within the service provider's namespace) of this
@@ -286,7 +287,12 @@ public abstract class Entity {
         return result;
     }
 
-    public Set<Attribute> listAttributes() {
+    /**
+     * TODO: not yet commented.
+     *
+     * @return
+     */
+    public Set<Attribute> getAttributes() {
         Set<Attribute> result = new HashSet<Attribute>();
 
         /*

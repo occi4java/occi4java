@@ -28,15 +28,15 @@
  *
  * <ul>
  *     <li>
- *         a {@link de.irf.it.tuocci.core.Resource}, representing a real-world
+ *         a {@link Resource}, representing a real-world
  *         "thing" that is modeled through the OCCI family of specifications;
  *     </li>
  *     <li>
- *         a {@link de.irf.it.tuocci.core.Link}, representing a bi-directional
+ *         a {@link Link}, representing a bi-directional
  *         connection between two resources; or
  *     </li>
  *     <li>
- *         any other class extending {@link de.irf.it.tuocci.core.Entity},
+ *         any other class extending {@link Entity},
  *         therefore defining new root elements in the OCCI type hierarchy.
  *     </li>
  * </ul>
@@ -46,13 +46,13 @@
  * <code>Link</code>; this way, compliance with the OCCI family of
  * specifications is easiest to achieve.
  * <p/>
- * For special purposes, it is also possible to extend <code>Entity</code>
+ * For special purposes, it is also possible to extend <code>Queryable</code>
  * directly; however, consumers of the package are encouraged to use the
  * provided implementation <b>unless</b> there is a good reason to not do so.
  * Not using either of the three is <b>strongly</b> discouraged; although it
  * is possible to start from scratch using only the annotations provided in
  * this module as well, it will require a full re-implementation of at least
- * the <code>Entity</code> class.
+ * the <code>Queryable</code> class.
  *
  * @see "Ralf Nyrén, Andy Edmonds, Alexander Papaspyrou,
  * and Thijs Metsch, <a href="http://ogf.org/documents/GFD.183.pdf">Open
