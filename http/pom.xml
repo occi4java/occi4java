@@ -1,114 +1,114 @@
-<?xml version="1.0"?>
-<project
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
-	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-	<modelVersion>4.0.0</modelVersion>
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ This file is part of tuOCCI.
+  ~
+  ~     tuOCCI is free software: you can redistribute it and/or modify
+  ~     it under the terms of the GNU Lesser General Public License as
+  ~     published by the Free Software Foundation, either version 3 of
+  ~     the License, or (at your option) any later version.
+  ~
+  ~     tuOCCI is distributed in the hope that it will be useful,
+  ~     but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~     GNU Lesser General Public License for more details.
+  ~
+  ~     You should have received a copy of the GNU Lesser General Public
+  ~     License along with tuOCCI.  If not, see <http://www.gnu.org/licenses/>.
+  -->
 
-	<parent>
-		<artifactId>occi4java</artifactId>
-		<groupId>de.occi</groupId>
-		<version>0.3.1</version>
-		<relativePath>../pom.xml</relativePath>
-	</parent>
+<!-- $Id$ -->
 
-	<groupId>de.occi</groupId>
-	<artifactId>occi4java.http</artifactId>
-	<version>0.2.1</version>
-	<name>Http</name>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-	<repositories>
-		<repository>
-			<id>maven-restlet</id>
-			<name>Public online Restlet repository</name>
-			<url>http://maven.restlet.org</url>
-		</repository>
-	</repositories>
+    <modelVersion>4.0.0</modelVersion>
 
-	<dependencies>
-		<dependency>
-			<groupId>de.occi</groupId>
-			<artifactId>occi4java.core</artifactId>
-			<version>0.2</version>
-		</dependency>
-		<dependency>
-			<groupId>de.occi</groupId>
-			<artifactId>occi4java.infrastructure</artifactId>
-			<version>0.2</version>
-		</dependency>
-		<dependency>
-			<groupId>org.restlet.jse</groupId>
-			<artifactId>org.restlet</artifactId>
-			<version>2.0.7</version>
-		</dependency>
-		<dependency>
-			<groupId>org.restlet.jse</groupId>
-			<artifactId>org.restlet.ext.simple</artifactId>
-			<version>2.0.7</version>
-		</dependency>
-		<dependency>
-			<groupId>org.antlr</groupId>
-			<artifactId>antlr</artifactId>
-			<version>3.3</version>
-			<type>jar</type>
-			<scope>compile</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.antlr</groupId>
-			<artifactId>antlr3-maven-plugin</artifactId>
-			<version>3.3</version>
-			<type>maven-plugin</type>
-			<scope>compile</scope>
-		</dependency>
-	</dependencies>
+    <!-- The Basics -->
+    <groupId>de.irf.it</groupId>
+    <artifactId>tuocci-httpng</artifactId>
+    <version>0.1</version>
+    <packaging>war</packaging>
+    <dependencies>
+        <dependency>
+            <groupId>de.irf.it</groupId>
+            <artifactId>tuocci-core</artifactId>
+            <version>0.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-bundle-jaxrs</artifactId>
+            <version>${tuocci.cxf.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-jcl</artifactId>
+            <version>1.6.2</version>
+        </dependency>
+    </dependencies>
+    <parent>
+        <groupId>de.irf.it.tuocci</groupId>
+        <artifactId>tuocci</artifactId>
+        <version>0.3.1</version>
+    </parent>
+    <!-- <dependencyManagement></dependencyManagement> -->
+    <!-- <modules></modules> -->
+    <properties>
+        <tuocci.cxf.version>2.4.1</tuocci.cxf.version>
+    </properties>
 
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-jar-plugin</artifactId>
-				<version>2.3.1</version>
-				<configuration>
-					<archive>
-						<manifest>
-							<mainClass>occi.http.occiApi</mainClass>
-							<packageName>occi.http</packageName>
-							<addClasspath>true</addClasspath>
-							<classpathPrefix>lib/</classpathPrefix>
-						</manifest>
-					</archive>
-					<excludes>
-						<exclude>**/lib/**</exclude>
-					</excludes>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.antlr</groupId>
-				<artifactId>antlr3-maven-plugin</artifactId>
-				<version>3.3</version>
-				<executions>
-					<execution>
-						<goals>
-							<goal>antlr</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-		</plugins>
-		<resources>
-			<resource>
-				<directory>src/main</directory>
-				<includes>
-					<include>**/*.properties</include>
-					<include>**/*.xml</include>
-				</includes>
-			</resource>
-			<resource>
-				<targetPath>conf</targetPath>
-				<directory>src/main/resources/conf</directory>
-				<includes>
-					<include>**/*.properties</include>
-				</includes>
-			</resource>
-		</resources>
-	</build>
+    <!-- Build Settings -->
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.antlr</groupId>
+                <artifactId>antlr3-maven-plugin</artifactId>
+                <version>3.3</version>
+                <executions>
+                    <execution>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>antlr</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.3.2</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+<!--    <reporting>...</reporting> -->
+
+    <!-- More Project Information -->
+    <name>tuOCCI HTTP Rendering Implementation</name>
+    <description>...</description>
+    <inceptionYear>2011</inceptionYear>
+    <developers>
+        <developer>
+            <id>smalpapa</id>
+            <name>Alexander Papaspyrou</name>
+            <email>alexander.papaspyrou@tu-dortmund.de</email>
+            <organization>TU Dortmund University</organization>
+            <organizationUrl>http://www.tu-dortmund.de</organizationUrl>
+            <roles>
+                <role>Module Sheperd</role>
+                <role>Developer</role>
+            </roles>
+        </developer>
+    </developers>
+
+    <!-- Environment Settings -->
+    <!-- <profiles>...</profiles> -->
+
 </project>

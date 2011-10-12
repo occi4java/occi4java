@@ -29,7 +29,6 @@ import java.util.List;
 public class UriListProducer
         implements MessageBodyWriter<List<URI>> {
 
-    @Override
     public boolean isWriteable(Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType) {
         boolean isWritable = false;
         if (List.class.isAssignableFrom(type)
@@ -43,12 +42,10 @@ public class UriListProducer
         return isWritable;
     }
 
-    @Override
     public long getSize(List<URI> urls, Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType) {
         return -1;
     }
 
-    @Override
     public void writeTo(List<URI> urls, Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType, MultivaluedMap<String, Object> httpHeaders, OutputStream entityStream) throws IOException, WebApplicationException {
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(entityStream));
         for(URI u : urls) {

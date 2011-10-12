@@ -19,9 +19,8 @@
 
 package de.irf.it.tuocci.httpng;
 
-import de.irf.it.tuocci.core.CategoryRegistry;
 import de.irf.it.tuocci.core.Entity;
-import de.irf.it.tuocci.core.Resource;
+import de.irf.it.tuocci.core.ModelRegistry;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -43,37 +42,79 @@ import java.util.UUID;
 @Path("/")
 public class ServiceInterfaceResource {
 
-    private CategoryRegistry categoryRegistry;
+    /**
+     * TODO: not yet commented.
+     */
+    private ModelRegistry modelRegistry;
+
+    /**
+     * TODO: not yet commented.
+     */
     private LocationResolver locationResolver;
 
+    /**
+     * TODO: not yet commented.
+     *
+     * @param modelRegistry
+     * @param locationResolver
+     */
+    public ServiceInterfaceResource(ModelRegistry modelRegistry, LocationResolver locationResolver) {
+        this.modelRegistry = modelRegistry;
+        this.locationResolver = locationResolver;
+    }
+
+    /**
+     * TODO: not yet commented.
+     *
+     * @param term
+     * @param entity
+     * @return
+     */
     @POST
-    @Path("{term}")
+    @Path("{path}")
     @Consumes({"text/plain"})
-    public Entity postEntityAsTextPlain(@PathParam("term") String term, Entity entity) {
-        /*
-         * Determine what type of resource needs to be created.
-         */
-
-
+    public Entity postEntityAsTextPlain(@PathParam("path") String term, Entity entity) {
+        
         return null;
     }
 
+    /**
+     * TODO: not yet commented.
+     *
+     * @param term
+     * @param entity
+     * @return
+     */
     @POST
-    @Path("{term}")
+    @Path("{path}")
     @Consumes({"text/occi"})
-    public Entity postEntityAsTextOcci(@PathParam("term") String term, Entity entity) {
+    public Entity postEntityAsTextOcci(@PathParam("path") String term, Entity entity) {
 
         return null;
     }
 
+    /**
+     * TODO: not yet commented.
+     *
+     * @param term
+     * @param entity
+     * @return
+     */
     @POST
-    @Path("{term}")
+    @Path("{path}")
     @Consumes({"application/json"})
-    public Entity postEntityAsApplicationJson(@PathParam("term") String term, Entity entity) {
+    public Entity postEntityAsApplicationJson(@PathParam("path") String term, Entity entity) {
 
         return null;
     }
 
+    /**
+     * TODO: not yet commented.
+     *
+     * @param term
+     * @param id
+     * @return
+     */
     @GET
     @Path("{term}/{id}")
     @Produces({"text/plain"})
@@ -82,6 +123,13 @@ public class ServiceInterfaceResource {
         return null;
     }
 
+    /**
+     * TODO: not yet commented.
+     *
+     * @param term
+     * @param id
+     * @return
+     */
     @GET
     @Path("{term}/{id}")
     @Produces({"text/occi"})
@@ -90,6 +138,13 @@ public class ServiceInterfaceResource {
         return null;
     }
 
+    /**
+     * TODO: not yet commented.
+     *
+     * @param term
+     * @param id
+     * @return
+     */
     @GET
     @Path("{term}/{id}")
     @Produces({"application/json"})
@@ -98,6 +153,14 @@ public class ServiceInterfaceResource {
         return null;
     }
 
+    /**
+     * TODO: not yet commented.
+     *
+     * @param term
+     * @param id
+     * @param entity
+     * @return
+     */
     @PUT
     @Path("{term}/{id}")
     @Consumes({"text/plain"})
@@ -107,6 +170,14 @@ public class ServiceInterfaceResource {
         return null;
     }
 
+    /**
+     * TODO: not yet commented.
+     *
+     * @param term
+     * @param id
+     * @param entity
+     * @return
+     */
     @PUT
     @Path("{term}/{id}")
     @Consumes({"text/occi"})
@@ -116,6 +187,14 @@ public class ServiceInterfaceResource {
         return null;
     }
 
+    /**
+     * TODO: not yet commented.
+     *
+     * @param term
+     * @param id
+     * @param entity
+     * @return
+     */
     @PUT
     @Path("{term}/{id}")
     @Consumes({"application/json"})
@@ -125,25 +204,17 @@ public class ServiceInterfaceResource {
         return null;
     }
 
+    /**
+     * TODO: not yet commented.
+     *
+     * @param term
+     * @param id
+     * @param entity
+     * @return
+     */
     @DELETE
     @Path("{term}/{id}")
     public void deleteEntity(@PathParam("term") String term, @PathParam("id") UUID id) {
 
-    }
-
-    public void setCategoryRegistry(CategoryRegistry categoryRegistry) {
-        this.categoryRegistry = categoryRegistry;
-    }
-
-    public CategoryRegistry getCategoryRegistry() {
-        return categoryRegistry;
-    }
-
-    public void setLocationResolver(LocationResolver locationResolver) {
-        this.locationResolver = locationResolver;
-    }
-
-    public LocationResolver getLocationResolver() {
-        return locationResolver;
     }
 }

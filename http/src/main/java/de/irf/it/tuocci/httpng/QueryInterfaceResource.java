@@ -19,17 +19,16 @@
 
 package de.irf.it.tuocci.httpng;
 
-import de.irf.it.tuocci.core.CategoryRegistry;
+import de.irf.it.tuocci.core.ModelRegistry;
 import de.irf.it.tuocci.core.annotations.Category;
 
+import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
-import javax.ws.rs.HeaderParam;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
-import java.net.URI;
-import java.util.Map;
-import java.util.Set;
 
 /**
  * TODO: not yet commented.
@@ -37,78 +36,150 @@ import java.util.Set;
  * @author <a href="mailto:alexander.papaspyrou@tu-dortmund.de>Alexander Papaspyrou</a>
  * @version $Revision$ (as of $Date$)
  */
-@Path("-")
+@Path("/{path:-/|\\.well-known/org/ogf/occi/-/}")
 public class QueryInterfaceResource {
 
-    private Set<Class<?>> registeredCategories;
+    /**
+     * TODO: not yet commented.
+     */
+    private ModelRegistry modelRegistry;
 
-    private Set<Object> registeredMixins;
-
-    private Map<URI, Class<?>> mappedLocations;
-    private CategoryRegistry categoryRegistry;
+    /**
+     * TODO: not yet commented.
+     */
     private LocationResolver locationResolver;
 
-    public Set<Class<?>> getRegisteredCategories() {
-        return registeredCategories;
+    /**
+     * TODO: not yet commented.
+     *
+     * @param modelRegistry
+     * @param locationResolver
+     */
+    public QueryInterfaceResource(ModelRegistry modelRegistry, LocationResolver locationResolver) {
+        this.modelRegistry = modelRegistry;
+        this.locationResolver = locationResolver;
     }
 
-    public void setRegisteredCategories(Set<Class<?>> registeredCategories) {
-        this.registeredCategories = registeredCategories;
-    }
-
-    public Set<Object> getRegisteredMixins() {
-        return registeredMixins;
-    }
-
-    public void setRegisteredMixins(Set<Object> registeredMixins) {
-        this.registeredMixins = registeredMixins;
-    }
-
-    public Map<URI, Class<?>> getMappedLocations() {
-        return mappedLocations;
-    }
-
-    public void setMappedLocations(Map<URI, Class<?>> mappedLocations) {
-        this.mappedLocations = mappedLocations;
-    }
-
+    /**
+     * TODO: not yet commented.
+     *
+     * @return
+     */
     @GET
     @Produces("text/plain")
-    public Response returnQueryInterfaceDataAsTextPlain() {
+    public Response getAsTextPlain() {
         Response r = null;
         
         return r;
     }
 
+    /**
+     * TODO: not yet commented.
+     *
+     * @return
+     */
     @GET
     @Produces("text/occi")
-    public Response returnQueryInterfaceDataAsTextOcci(@HeaderParam("Category") Set<String> categories) {
-        Response r = null;
+    public Response getAsTextOcci() {
+        Response result = null;
 
-        /*
-         * Check for requested filters, and verify applicability.
-         */
-        if(categories != null && !categories.isEmpty()) {
-            
-        } // if
-
-        return r;
+        return result;
     }
 
+    /**
+     * TODO: not yet commented.
+     *
+     * @return
+     */
+    @GET
+    @Produces("application/json")
+    public Response getAsApplicationJson() {
+        Response result = null;
 
-    public void setCategoryRegistry(CategoryRegistry categoryRegistry) {
-        this.categoryRegistry = categoryRegistry;
+        return result;
     }
 
-    public CategoryRegistry getCategoryRegistry() {
-        return categoryRegistry;
+    /**
+     * TODO: not yet commented.
+     *
+     * @param category
+     * @return
+     */
+    @POST
+    @Consumes("text/plain")
+    public Response postAsTextPlain(Category category) {
+        Response result = null;
+
+        return result;
     }
 
-    public void setLocationResolver(LocationResolver locationResolver) {
-        this.locationResolver = locationResolver;
+    /**
+     * TODO: not yet commented.
+     *
+     * @param category
+     * @return
+     */
+    @POST
+    @Consumes("text/occi")
+    public Response postAsTextOcci(Category category) {
+        Response result = null;
+
+        return result;
     }
 
-    public LocationResolver getLocationResolver() {
-        return locationResolver;
+    /**
+     * TODO: not yet commented.
+     *
+     * @param category
+     * @return
+     */
+    @POST
+    @Consumes("application/json")
+    public Response postAsApplicationJson(Category category) {
+        Response result = null;
+
+        return result;
+    }
+
+    /**
+     * TODO: not yet commented.
+     *
+     * @param category
+     * @return
+     */
+    @DELETE
+    @Consumes("text/plain")
+    public Response deleteAsTextPlain(Category category) {
+        Response result = null;
+
+        return result;
+    }
+
+    /**
+     * TODO: not yet commented.
+     *
+     * @param category
+     * @return
+     */
+    @DELETE
+    @Consumes("text/occi")
+    public Response deleteAsTextOcci(Category category) {
+        Response result = null;
+
+        return result;
+    }
+
+    /**
+     * TODO: not yet commented.
+     *
+     * @param category
+     * @return
+     */
+    @DELETE
+    @Consumes("application/json")
+    public Response deleteAsApplicationJson(Category category) {
+        Response result = null;
+
+        return result;
     }
 }

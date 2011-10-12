@@ -19,18 +19,21 @@
 
 package de.irf.it.tuocci.httpng.mime.text.occi;
 
+import de.irf.it.tuocci.core.Entity;
+import de.irf.it.tuocci.httpng.mime.text.AbstractTextRenderer;
+
 import javax.ws.rs.Produces;
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.ext.MessageBodyWriter;
 import javax.ws.rs.ext.Provider;
+import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
-import java.net.URI;
-import java.util.List;
 
 /**
  * TODO: not yet commented.
@@ -42,18 +45,21 @@ import java.util.List;
 @Provider
 @Produces("text/occi")
 public class EntityProducer
-        implements MessageBodyWriter<List<URI>> {
+        extends AbstractTextRenderer
+        implements MessageBodyWriter<Entity> {
 
     public boolean isWriteable(Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType) {
-        return false;  //To change body of implemented methods use File | Settings | File Templates.
+        return Entity.class.isAssignableFrom(type);
     }
 
-    public long getSize(List<URI> uris, Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType) {
-        return 0;  //To change body of implemented methods use File | Settings | File Templates.
+    public long getSize(Entity entity, Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType) {
+        return -1;
     }
 
-    public void writeTo(List<URI> uris, Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType, MultivaluedMap<String, Object> httpHeaders, OutputStream entityStream)
+    public void writeTo(Entity entity, Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType, MultivaluedMap<String, Object> httpHeaders, OutputStream entityStream)
             throws IOException, WebApplicationException {
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(entityStream));
+
         //To change body of implemented methods use File | Settings | File Templates.
     }
 }

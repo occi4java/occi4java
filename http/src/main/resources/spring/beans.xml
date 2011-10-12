@@ -29,25 +29,8 @@
     <import resource="classpath:META-INF/cxf/cxf.xml"/>
     <import resource="classpath:META-INF/cxf/cxf-servlet.xml"/>
 
-    <jaxrs:server id="tuOcciService" address="/">
-        <jaxrs:serviceBeans>
-            <ref bean="queryInterfaceBean"/>
-            <ref bean="serviceInterfaceBean"/>
-        </jaxrs:serviceBeans>
-    </jaxrs:server>
-
-    <bean id="queryInterfaceBean" class="de.irf.it.tuocci.httpng.QueryInterfaceResource">
-        <property name="categoryRegistry" ref="categoryRegistryBean"/>
-        <property name="locationResolver" ref="locationResolverBean"/>
-    </bean>
-
-    <bean id="serviceInterfaceBean" class="de.irf.it.tuocci.httpng.ServiceInterfaceResource">
-        <property name="categoryRegistry" ref="categoryRegistryBean"/>
-        <property name="locationResolver" ref="locationResolverBean"/>
-    </bean>
-
-    <bean id="categoryRegistryBean" class="de.irf.it.tuocci.core.CategoryRegistry">
-        <property name="registeredCategories">
+    <bean id="modelRegistryBean" class="de.irf.it.tuocci.core.ModelRegistry">
+        <constructor-arg name="registeredCategories">
             <set>
                 <!-- OCCI Core Types -->
                 <value>de.irf.it.tuocci.core.Entity</value>
@@ -62,17 +45,72 @@
                 <value>de.irf.it.tuocci.infrastructure.network.NetworkInterface</value>
                 <value>de.irf.it.tuocci.infrastructure.network.IPNetworkInterface</value>
             </set>
-        </property>
+        </constructor-arg>
     </bean>
 
     <bean id="locationResolverBean" class="de.irf.it.tuocci.httpng.LocationResolver">
-        <property name="mappedLocations">
+        <constructor-arg name="locationMapping">
             <map>
                 <entry key="compute" value="de.irf.it.tuocci.infrastructure.compute.Compute" />
                 <entry key="storage" value="de.irf.it.tuocci.infrastructure.storage.Storage" />
                 <entry key="network" value="de.irf.it.tuocci.infrastructure.network.Network" />
             </map>
-        </property>
+        </constructor-arg>
     </bean>
 
+    <jaxrs:server id="tuOcciService" address="/">
+        <jaxrs:serviceBeans>
+            <ref bean="queryInterfaceBean"/>
+            <ref bean="serviceInterfaceBean"/>
+        </jaxrs:serviceBeans>
+        <jaxrs:providers>
+            <!-- text/uri-list -->
+            <ref bean="textUriListProducer"/>
+            <!-- text/plain -->
+            <ref bean="textPlainEntityConsumer"/>
+            <ref bean="textPlainEntityProducer"/>
+            <!-- text/occi -->
+            <ref bean="textOcciEntityConsumer"/>
+            <ref bean="textOcciEntityProducer"/>
+            <!-- application/json -->
+            <ref bean="applicationJsonEntityConsumer"/>
+            <ref bean="applicationJsonEntityProducer"/>
+        </jaxrs:providers>
+    </jaxrs:server>
+
+    <bean id="queryInterfaceBean" class="de.irf.it.tuocci.httpng.QueryInterfaceResource">
+        <constructor-arg name="modelRegistry" ref="modelRegistryBean"/>
+        <constructor-arg name="locationResolver" ref="locationResolverBean"/>
+    </bean>
+
+    <bean id="serviceInterfaceBean" class="de.irf.it.tuocci.httpng.ServiceInterfaceResource">
+        <constructor-arg name="modelRegistry" ref="modelRegistryBean"/>
+        <constructor-arg name="locationResolver" ref="locationResolverBean"/>
+    </bean>
+
+    <bean id="textUriListProducer" class="de.irf.it.tuocci.httpng.mime.text.UriListProducer"/>
+
+    <bean id="textPlainEntityConsumer" class="de.irf.it.tuocci.httpng.mime.text.plain.EntityConsumer">
+        <property name="locationResolver" ref="locationResolverBean"/>
+    </bean>
+
+    <bean id="textPlainEntityProducer" class="de.irf.it.tuocci.httpng.mime.text.plain.EntityProducer">
+        <property name="locationResolver" ref="locationResolverBean"/>
+    </bean>
+
+    <bean id="textOcciEntityConsumer" class="de.irf.it.tuocci.httpng.mime.text.occi.EntityConsumer">
+        <property name="locationResolver" ref="locationResolverBean"/>
+    </bean>
+
+    <bean id="textOcciEntityProducer" class="de.irf.it.tuocci.httpng.mime.text.occi.EntityProducer">
+        <property name="locationResolver" ref="locationResolverBean"/>
+    </bean>
+
+    <bean id="applicationJsonEntityConsumer" class="de.irf.it.tuocci.httpng.mime.application.json.EntityConsumer">
+        <property name="locationResolver" ref="locationResolverBean"/>
+    </bean>
+
+    <bean id="applicationJsonEntityProducer" class="de.irf.it.tuocci.httpng.mime.application.json.EntityProducer">
+        <property name="locationResolver" ref="locationResolverBean"/>
+    </bean>
 </beans>
