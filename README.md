@@ -1,5 +1,5 @@
 # tuOCCI Open Cloud Computing Interface Framework
-The tuOCCI Open Cloud Computing Interface Framework is a 100% Java(tm) implementation
+The tuOCCI Open Cloud Computing Interface Framework is a 100% Java&#8482; implementation
 of the [Open Cloud Computing Interface (OCCI)](http://occi-wg.org/) family of
 specifications. More specifically, it provides a full implementation of the
 [OCCI Core (GFD.183)](http://ogf.org/documents/GFD.183.pdf),
@@ -44,8 +44,8 @@ the "Downloads" button in the upper right of the tuOCCI home at
 
 ### Maven
 tuOCCI can be used directly from within [Apache Maven](http://maven.apache.org).
-Assuming that the corresponding jarfiles are in your local repository, add the
-following lines to your `pom.xml`:
+Assuming that the corresponding jarfiles are in your local repository, add one or
+more (depending what you need) of the following lines to your `pom.xml`:
 
 ```xml
 <!-- tuOCCI Core Model Implementation -->
@@ -54,16 +54,16 @@ following lines to your `pom.xml`:
     <artifactId>tuocci-core</artifactId>
     <version>${tuocci.version}</version>
 </dependency>
-<!-- tuOCCI Infrastructure Model Implementation -->
+<!-- tuOCCI Infrastructure Model Implementation (depends on tuocci-core) -->
 <dependency>
     <groupId>de.irf.it.tuocci</groupId>
-    <artifactId>tuocci-core</artifactId>
+    <artifactId>tuocci-infrastructure</artifactId>
     <version>${tuocci.version}</version>
 </dependency>
-<!-- tuOCCI HTTP Rendering Implementation -->
+<!-- tuOCCI HTTP Rendering Implementation (depends on tuocci-core and tuocci-infrastructure) -->
 <dependency>
     <groupId>de.irf.it.tuocci</groupId>
-    <artifactId>tuocci-core</artifactId>
+    <artifactId>tuocci-http</artifactId>
     <version>${tuocci.version}</version>
 </dependency>
 ```
