@@ -1,124 +1,105 @@
-OCCI4Java
----------
-
-The project implements the Open Cloud Computing Interface specification of the [OCCI WG](http://www.occi-wg.org).
-
-Contribute
-----------
-
-Issue
-You have a issue? You are welcome to send us a message. Or just create a issue.
-
-Patch
-You a patch for us? Please do NOT send us an email. Just [fork](http://help.github.com/fork-a-repo/) our repository, commit the patch and we will have a look if it fixes the issue.
-
-Feature
-You want to add a new feature to our implementation, just send us a message, we will check it. Otherwise you can [fork](http://help.github.com/fork-a-repo/) our repository and add it yourself.
-
-Implementation Details
-----------------------
-
-The project is divided in three parts, core, infrastructure and http. Every part corresponds to a part of the OCCI specification.
-
-To handle HTTP requests the [RESTlet Framework](http://www.restlet.org/) was used.
-
-The project can be build with Maven.
+# tuOCCI Open Cloud Computing Interface Framework
+The tuOCCI Open Cloud Computing Interface Framework is a 100% Java(tm) implementation
+of the [Open Cloud Computing Interface (OCCI)](http://occi-wg.org/) family of
+specifications. More specifically, it provides a full implementation of the
+[OCCI Core (GFD.183)](http://ogf.org/documents/GFD.183.pdf),
+[OCCI Infrastructure (GFD.184)](http://ogf.org/documents/GFD.184.pdf), and
+[OCCI RESTful HTTP Rendering (GFD.185)](http://ogf.org/documents/GFD.185.pdf)
+specifications, and passes the [doyouspeakOCCI](http://doyouspeakocci.appspot.com)
+compliance tests.
 
 
-FAQ
----
+## How to use
+tuOCCI was hard to implement, but is simple to use. Therefore, you can integrate
+tuOCCI into your project in three simple steps:
 
-Q: How can i connect my resource management framework to occi?
-A: In folder: infrastructure/src/main/java/occi/infrastructure/interfaces there are all interfaces that have to be implemented. You can implement them directly or with Spring Dependency Injection.
+ 1. Use the tuOCCI [Annotations](https://github.com/irf/tuocci/wiki/annotations)
+    and [Interfaces](https://github.com/irf/tuocci/wiki/interfaces) to make your
+    types first-class OCCI citizens.
+ 1. Tell the [tuOCCI Configuration](https://github.com/irf/tuocci/wiki/configuration)
+    which of your classes you would like to expose.
+ 1. Run the [tuOCCI Service](https://github.com/irf/tuocci/wiki/service) in your
+    favorite container.
 
-Q: How can i use Spring Dependency Injection?
-A: In folder: infrastructure/src/main/java/occi/infrastructure/injection there is the necessary class to inject all interfaces.
-[Here](https://github.com/occi4java/libvirt4occi/blob/master/src/main/resources/beans.xml) is a example xml file for Spring DI.
-
-Build Project
--------------
-
-If you want to build the project including the debian package you have to install some packages:
-
-    apt-get install debhelper build-essential
-
-Once they are installed you will find the built debian package in /distribution/target.
+For specific questions, please also take a look at the [FAQ](https://github.com/irf/tuocci/wiki/faq).
 
 
-Just go to the main folder of the project and type:
-    
-    $ mvn install
+## Where to get
+tuOCCI will be available through various channels, providing easy access to both
+source and binary distributions. Please take a look at the
+[tuOCCI Installation Guide](https://github.com/irf/tuocci/wiki/installation) for
+a detailed explanation on how to setup tuOCCI.
 
-If you dont want to build the project yourself, just check the download area. There you will find the current release.
+### Sources and binaries
+Packages with the source distribution can be obtained by two ways:
 
+ * By [checking out](http://help.github.com/git-cheat-sheets/) the source code
+   via `git checkout`
+ * By fetching a repository [tarball](https://github.com/irf/tuocci/tarball/master)
+   or [zipfile](https://github.com/irf/tuocci/tarball/master)
 
-Usage
------
+Alternatively, you might want to pick one of the advertised downloads (click on
+the "Downloads" button in the upper right of the tuOCCI home at
+[GitHub](https://github.com/irf/tuocci).
 
-After you have build the project with maven you can start the created jar file. The jar file will be placed in distribution/target/distribution-{version}-packaging.
+### Maven
+tuOCCI can be used directly from within [Apache Maven](http://maven.apache.org).
+Assuming that the corresponding jarfiles are in your local repository, add the
+following lines to your `pom.xml`:
 
-You can start it with:
+```xml
+<!-- tuOCCI Core Model Implementation -->
+<dependency>
+    <groupId>de.irf.it.tuocci</groupId>
+    <artifactId>tuocci-core</artifactId>
+    <version>${tuocci.version}</version>
+</dependency>
+<!-- tuOCCI Infrastructure Model Implementation -->
+<dependency>
+    <groupId>de.irf.it.tuocci</groupId>
+    <artifactId>tuocci-core</artifactId>
+    <version>${tuocci.version}</version>
+</dependency>
+<!-- tuOCCI HTTP Rendering Implementation -->
+<dependency>
+    <groupId>de.irf.it.tuocci</groupId>
+    <artifactId>tuocci-core</artifactId>
+    <version>${tuocci.version}</version>
+</dependency>
+```
 
-    $ java -jar http-{version}.jar
-
-The jar file will start a HTTP server on the localhost at port 8182 (default).
-
-Type "help" to get informed about the console.
-
-### Properties
-
-In our implementation we use property files to configure the webserver and the logger.
-
-The files are located in the Core part under:
-
-    /src/main/resources/conf
-
-If you have already build the project you will find a /conf folder where you can change the configuration.
-
-Debian Package
---------------
-
-If you don´t want to build occi4java yourself, we are happy to provide a debian package, which you can easily install with:
-
-    dpkg -i occi4java_{version}_all.deb
-
-The package installs all necessary files and includes a daemon to start and stop the occi server.
-
-    /etc/init.d/occi4java start|stop|restart|status
-
-All logger information can be found in /var/log/occi4java/occi4java.log
-
-Config files are located under /usr/share/occi4java/conf. If you change a parameter you have to restart occi4java.
-
-Requirements
-------------
-
-A Linux Distribution like Ubuntu.
+A package release to [Maven Central](http://search.maven.org/) will be coming
+soon.
 
 
-Changelog
----------
+### Linux
+tuOCCI aims to provide packages for a number of Linux distributions. Currently,
 
-0.3.1
+ * [Ubuntu](http://www.ubuntulinux.com),
+ * [Fedora](http://fedoraproject.org), and
+ * [openSUSE](http://www.opensuse.org)
 
-  * Overworked namespaces
-  * Changed from junit to testng
+are under evaluation. Stay tuned for updates!
 
-0.3
 
-  * Integrated process to make a deb file
+## Contributing
+tuOCCI aims to be a community effort, and help is always welcome. Please contact
+us on the mailing lists to learn more.
 
-0.2.1
+### License
+We think that tuOCCI should be available to everyone with the upmost amount of
+freedom. To make sure that contributions to tuOCCI itself remain perpetually free,
+the code has been developed under the [GNU Lesser General Public License, Version 3](http://www.gnu.org/licenses/lgpl-3.0.html).
+The documentation coming with tuOCCI is available under a
+[Creative Commons Attribution Share-Alike 3.0 License](http://creativecommons.org/licenses/by-sa/3.0/).
 
-  * Integrated antlr grammar
+### Issues
+If you think that you have discovered a bug in tuOCCI, or you would like to see
+an additional feature in the future, please use the
+[tuOCCI GitHub Tracker](https://github.com/irf/tuocci/issues) to submit an issue.
 
-0.2
-
-  * Overworked the build process
-  * Some minor bug fixes
-  
-0.1
-
-  * Initial release
-
-(c) 2011 Sebastian Laag, Sebastian Heckmann
+### Patches
+You are welcome to contribute code for any kind of recorded issue. However, patches
+via email are not accepted. Rather than that, please [fork](http://help.github.com/fork-a-repo/)
+our repository, commit the patch, and send us a [pull request](http://help.github.com/send-pull-requests/)
+&mdash;we will then have a look at it. Remember to add a link to the issue you aim to fix.
