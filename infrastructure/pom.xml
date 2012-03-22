@@ -9,7 +9,7 @@
 		<relativePath>../pom.xml</relativePath>
 	</parent>
 	
-	<groupId>de.occi</groupId>
+
 	<artifactId>occi4java.infrastructure</artifactId>
 	<name>Infrastructure</name>
 	<version>0.2</version>

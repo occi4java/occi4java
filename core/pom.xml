@@ -8,8 +8,7 @@
 		<version>0.3.1</version>
 		<relativePath>../pom.xml</relativePath>
 	</parent>
-	
-	<groupId>de.occi</groupId>
+
 	<artifactId>occi4java.core</artifactId>
 	<version>0.2</version>
 	<name>Core</name>

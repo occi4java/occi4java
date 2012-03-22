@@ -28,7 +28,7 @@ import java.util.UUID;
 import occi.config.OcciConfig;
 import occi.core.Kind;
 import occi.http.check.OcciCheck;
-import occi.http.helper.Generator;
+import occi.http.helper.MacAdressGenerator;
 import occi.infrastructure.Compute;
 import occi.infrastructure.Compute.Architecture;
 import occi.infrastructure.Compute.State;
@@ -303,7 +303,7 @@ public class OcciRestRoot extends ServerResource {
 			if (link != null && target != null) {
 				NetworkInterface networkInterface = new NetworkInterface(
 						UUID.randomUUID().toString(),
-						Generator.generateMacAdress(),
+						MacAdressGenerator.generateMacAdress(),
 						occi.infrastructure.links.NetworkInterface.State.active,
 						link, target);
 				networkInterface.setKind(new Kind(null, null, null,
