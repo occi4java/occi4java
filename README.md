@@ -10,7 +10,7 @@ Issue
 You have a issue? You are welcome to send us a message. Or just create a issue.
 
 Patch
-You a patch for us? Please do NOT send us an email. Just [fork](http://help.github.com/fork-a-repo/) our repository, commit the patch and we will have a look if it fixes the issue.
+You have a patch for us? Please do NOT send us an email. Just [fork](http://help.github.com/fork-a-repo/) our repository, commit the patch and we will have a look if it fixes the issue.
 
 Feature
 You want to add a new feature to our implementation, just send us a message, we will check it. Otherwise you can [fork](http://help.github.com/fork-a-repo/) our repository and add it yourself.
@@ -48,6 +48,10 @@ Once they are installed you will find the built debian package in /distribution/
 Just go to the main folder of the project and type:
     
     $ mvn install
+
+If there are any problems, when building the project, you just can try.
+
+    $ mvn clean install
 
 If you dont want to build the project yourself, just check the download area. There you will find the current release.
 
