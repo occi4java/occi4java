@@ -73,7 +73,7 @@ public class NetworkInterface extends Link {
 	 */
 	private final UUID uuid;
 
-	private static Map<UUID, NetworkInterface> networkInterfaceList = new HashMap<UUID, NetworkInterface>();
+	public static Map<UUID, NetworkInterface> networkInterfaceList = new HashMap<UUID, NetworkInterface>();
 
 	/**
 	 * Static HashSet of all network interface attributes.

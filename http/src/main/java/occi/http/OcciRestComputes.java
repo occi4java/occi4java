@@ -47,6 +47,7 @@ import org.restlet.data.Status;
 import org.restlet.representation.Representation;
 import org.restlet.resource.Get;
 import org.restlet.resource.Post;
+import org.restlet.resource.ResourceException;
 import org.restlet.resource.ServerResource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -277,9 +278,10 @@ public class OcciRestComputes extends ServerResource {
 					}
 				}
 			}
+		} catch (ResourceException e) {
+			throw e;
 		} catch (Exception e) {
 			LOGGER.error("Exception caught: " + e.toString());
-			e.printStackTrace();
 			getResponse().setStatus(Status.CLIENT_ERROR_BAD_REQUEST,
 					e.toString());
 			return "Exception: " + e.getMessage() + "\n";

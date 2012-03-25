@@ -63,7 +63,7 @@ public class IPNetworkInterface extends Mixin {
 	/**
 	 * Possible allocations.
 	 */
-	private enum Allocation {
+	public enum Allocation {
 		DYNAMIC, STATIC
 	}
 
