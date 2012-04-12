@@ -33,13 +33,15 @@ import occi.core.Action;
 import occi.core.Kind;
 import occi.core.Resource;
 
-import org.springframework.beans.factory.xml.XmlBeanFactory;
-import org.springframework.core.io.ClassPathResource;
+import org.springframework.beans.factory.ListableBeanFactory;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
  * The Compute type represents a generic Information resource. For example a
  * virtual machine. This Compute type Inherits the Resource base type defined in
- * OCCI Core Specification. Compute is assigned to the Kind instance. [T. Metsch, A. Edmonds - Open Cloud Computing Interface - Infrastructure, http://ogf.org/documents/GFD.184.pdf, Apr. 2011]
+ * OCCI Core Specification. Compute is assigned to the Kind instance. [T.
+ * Metsch, A. Edmonds - Open Cloud Computing Interface - Infrastructure,
+ * http://ogf.org/documents/GFD.184.pdf, Apr. 2011]
  * 
  * @author Sebastian Heckmann
  * @author Sebastian Laag
@@ -108,8 +110,8 @@ public class Compute extends Resource {
 	/*
 	 * All possible compute actions.
 	 */
-	private static XmlBeanFactory beanFactory = new XmlBeanFactory(
-			new ClassPathResource("occiConfig.xml"));
+	private static ListableBeanFactory beanFactory = new ClassPathXmlApplicationContext(
+			"occiConfig.xml");
 	private Action start = (Action) beanFactory.getBean("start");
 	private Action stop = (Action) beanFactory.getBean("stop");
 	private Action suspend = (Action) beanFactory.getBean("suspend");
@@ -362,7 +364,7 @@ public class Compute extends Resource {
 			attributes.add("occi.compute.state");
 		}
 	}
-	
+
 	/**
 	 * Return the compute attributes.
 	 * 
@@ -373,7 +375,8 @@ public class Compute extends Resource {
 	}
 
 	/**
-	 * @param start the start to set
+	 * @param start
+	 *            the start to set
 	 */
 	public final void setStart(Action start) {
 		this.start = start;
@@ -387,7 +390,8 @@ public class Compute extends Resource {
 	}
 
 	/**
-	 * @param stop the stop to set
+	 * @param stop
+	 *            the stop to set
 	 */
 	public final void setStop(Action stop) {
 		this.stop = stop;
@@ -401,7 +405,8 @@ public class Compute extends Resource {
 	}
 
 	/**
-	 * @param restart the restart to set
+	 * @param restart
+	 *            the restart to set
 	 */
 	public final void setRestart(Action restart) {
 		this.restart = restart;
@@ -415,7 +420,8 @@ public class Compute extends Resource {
 	}
 
 	/**
-	 * @param suspend the suspend to set
+	 * @param suspend
+	 *            the suspend to set
 	 */
 	public final void setSuspend(Action suspend) {
 		this.suspend = suspend;

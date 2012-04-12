@@ -6,10 +6,18 @@
 	<version>0.3.1</version>
 	<packaging>pom</packaging>
 	<name>occi4java</name>
+	
+	<modules>
+		<module>core</module>
+		<module>infrastructure</module>
+		<module>http</module>
+		<module>distribution</module>
+	</modules>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<spring.version>2.5.6.SEC03</spring.version>
+		<spring.version>3.1.1.RELEASE</spring.version>
+		<testng.version>6.3.1</testng.version>
 	</properties>
 
 	<reporting>
@@ -64,17 +72,24 @@
 					</execution>
 				</executions>
 			</plugin>
-
 		</plugins>
 	</build>
 
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework</groupId>
-			<artifactId>spring</artifactId>
+			<artifactId>spring-core</artifactId>
 			<version>${spring.version}</version>
-			<type>jar</type>
-			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-beans</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>${spring.version}</version>
 		</dependency>
 		<!-- Logger -->
 		<dependency>
@@ -92,14 +107,9 @@
 		<dependency>
 			<groupId>org.testng</groupId>
 			<artifactId>testng</artifactId>
-			<version>6.4</version>
+			<version>${testng.version}</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-	<modules>
-		<module>core</module>
-		<module>infrastructure</module>
-		<module>http</module>
-		<module>distribution</module>
-	</modules>
+	
 </project>
