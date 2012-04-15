@@ -11,7 +11,6 @@
 		<module>core</module>
 		<module>infrastructure</module>
 		<module>http</module>
-		<module>distribution</module>
 	</modules>
 
 	<properties>
@@ -50,30 +49,106 @@
 				</configuration>
 			</plugin>
 			<plugin>
-				<groupId>com.mycila.maven-license-plugin</groupId>
-				<artifactId>maven-license-plugin</artifactId>
-				<version>1.9.0</version>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>2.3.2</version>
 				<configuration>
-					<header>core/src/main/resources/license/header.txt</header>
-					<encoding>UTF-8</encoding>
+					<archive>
+						<manifest>
+							<addClasspath>true</addClasspath>
+							<classpathPrefix>lib/</classpathPrefix>
+						</manifest>
+					</archive>
 					<excludes>
-						<exclude>**/OcciLexer.java</exclude>
-						<exclude>**/OcciParserException.java</exclude>
-						<exclude>**/Grammar.java</exclude>
+						<exclude>**/lib/**</exclude>
 					</excludes>
-					<useDefaultExcludes>true</useDefaultExcludes>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<version>2.3</version>
+				<configuration>
+					<descriptors>
+						<descriptor>distribution.xml</descriptor>
+					</descriptors>
 				</configuration>
 				<executions>
 					<execution>
-						<phase>test</phase>
+						<id>copy-bundle</id>
+						<phase>package</phase>
 						<goals>
-							<goal>format</goal>
+							<goal>single</goal>
 						</goals>
 					</execution>
 				</executions>
 			</plugin>
+			<!--  <plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<version>1.6</version>
+				<executions>
+					<execution>
+						<id>Paket-Bau</id>
+						<phase>package</phase>
+						<configuration>
+							<target>
+								<exec executable="chmod" dir="src/main/resources">
+									<arg value="u+x" />
+									<arg value="package_deb.sh" />
+								</exec>
+								<exec executable="src/main/resources/package_deb.sh">
+									<arg value="target/${artifactId}-${version}-packaging" />
+								</exec>
+								<exec executable="chmod" dir="src/main/resources">
+									<arg value="u+x" />
+									<arg value="clean.sh" />
+								</exec>
+								<exec executable="src/main/resources/clean.sh">
+									<arg value="target/${artifactId}-${version}-packaging" />
+								</exec>
+							</target>
+						</configuration>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin> -->
 		</plugins>
 	</build>
+	
+	<profiles>
+		<profile>
+			<id>license-header</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>com.mycila.maven-license-plugin</groupId>
+						<artifactId>maven-license-plugin</artifactId>
+						<version>1.9.0</version>
+						<configuration>
+							<header>core/src/main/resources/license/header.txt</header>
+							<encoding>UTF-8</encoding>
+							<excludes>
+								<exclude>**/OcciLexer.java</exclude>
+								<exclude>**/OcciParserException.java</exclude>
+								<exclude>**/Grammar.java</exclude>
+							</excludes>
+							<useDefaultExcludes>true</useDefaultExcludes>
+						</configuration>
+						<executions>
+							<execution>
+								<phase>test</phase>
+								<goals>
+									<goal>format</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
 
 	<dependencies>
 		<dependency>
