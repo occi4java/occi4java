@@ -47,8 +47,9 @@ public class SuspendAction extends Action {
 	private static final Logger LOGGER = LoggerFactory
 			.getLogger(SuspendAction.class);
 
-	private static ComputeInterface computeInterface = Injection.getComputeInterface();
-	
+	private static ComputeInterface computeInterface = Injection
+			.getComputeInterface();
+
 	/**
 	 * Enum for the Start Actions
 	 * 
@@ -58,6 +59,7 @@ public class SuspendAction extends Action {
 	}
 
 	private Suspend suspend;
+
 	private HashSet<String> attributes = new HashSet<String>();
 
 	public SuspendAction() throws SchemaViolationException, URISyntaxException {

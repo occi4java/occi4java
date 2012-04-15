@@ -77,8 +77,8 @@ public class Resource extends Entity {
 		setId(new URI(UUID.randomUUID().toString()));
 		setKind(getKind());
 		setSummary(summary);
-		if (this.links != null) {
-			setLinks(this.links);
+		if (Resource.links != null) {
+			setLinks(Resource.links);
 		} else {
 			setLinks(new HashSet<Link>());
 		}
@@ -144,6 +144,6 @@ public class Resource extends Entity {
 	 * @param links
 	 */
 	public void setLinks(Set<Link> links) {
-		this.links = links;
+		Resource.links = links;
 	}
 }

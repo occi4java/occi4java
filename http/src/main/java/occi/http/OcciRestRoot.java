@@ -121,16 +121,23 @@ public class OcciRestRoot extends ServerResource {
 					xoccimap.put("category", temp[0]);
 				}
 			}
-			Response.getCurrent().getAttributes().put(
-					"org.restlet.http.headers", xOcciLocation);
-			Collection<Network> networkCollection= Network.getNetworkList().values();
+			Response.getCurrent().getAttributes()
+					.put("org.restlet.http.headers", xOcciLocation);
+			Collection<Network> networkCollection = Network.getNetworkList()
+					.values();
 			Iterator<Network> iterator = networkCollection.iterator();
-			while(iterator.hasNext()) {
-				LOGGER.debug(xoccimap.get("scheme").toString() + " " + xoccimap.get("category").toString());
+			while (iterator.hasNext()) {
+				LOGGER.debug(xoccimap.get("scheme").toString() + " "
+						+ xoccimap.get("category").toString());
 				Network network = iterator.next();
-				if(network.getKind().getScheme().toString().contains(xoccimap.get("scheme").toString()) && network.getKind().getTerm().contains(xoccimap.get("category").toString())) {
-					LOGGER.debug(xoccimap.get("scheme").toString() + " ----- " + xoccimap.get("category").toString());
-					xOcciLocation.add("X-OCCI-Location", network.getKind().getTerm() + "/" + network.getId());
+				if (network.getKind().getScheme().toString()
+						.contains(xoccimap.get("scheme").toString())
+						&& network.getKind().getTerm()
+								.contains(xoccimap.get("category").toString())) {
+					LOGGER.debug(xoccimap.get("scheme").toString() + " ----- "
+							+ xoccimap.get("category").toString());
+					xOcciLocation.add("X-OCCI-Location", network.getKind()
+							.getTerm() + "/" + network.getId());
 				}
 			}
 		}
@@ -138,13 +145,13 @@ public class OcciRestRoot extends ServerResource {
 		Representation representation = OcciCheck.checkContentType(
 				requestHeaders, buffer, getResponse());
 		getResponse().setEntity(representation);
-//		if (requestHeaders.getFirstValue("user-agent", true) != null) {
-//			if (!requestHeaders.getFirstValue("user-agent", true).contains(
-//					occiVersion)) {
-//				getResponse().setStatus(Status.SERVER_ERROR_NOT_IMPLEMENTED);
-//				return " ";
-//			}
-//		}
+		// if (requestHeaders.getFirstValue("user-agent", true) != null) {
+		// if (!requestHeaders.getFirstValue("user-agent", true).contains(
+		// occiVersion)) {
+		// getResponse().setStatus(Status.SERVER_ERROR_NOT_IMPLEMENTED);
+		// return " ";
+		// }
+		// }
 		return buffer.toString() + " ";
 	}
 

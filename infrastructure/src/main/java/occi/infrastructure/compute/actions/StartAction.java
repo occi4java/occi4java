@@ -47,7 +47,8 @@ public class StartAction extends Action {
 	private static final Logger LOGGER = LoggerFactory
 			.getLogger(StartAction.class);
 
-	private static ComputeInterface computeInterface = Injection.getComputeInterface();
+	private static ComputeInterface computeInterface = Injection
+			.getComputeInterface();
 
 	/**
 	 * Enum for the Start Actions.
@@ -57,7 +58,8 @@ public class StartAction extends Action {
 	}
 
 	private Start start;
-	private HashSet<String> attributes = new HashSet<String>();
+
+	private final HashSet<String> attributes = new HashSet<String>();
 
 	public StartAction() throws SchemaViolationException, URISyntaxException {
 		attributes.add("start");

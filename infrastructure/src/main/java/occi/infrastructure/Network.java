@@ -27,14 +27,14 @@ import java.util.UUID;
 
 import javax.naming.directory.SchemaViolationException;
 
-import org.springframework.beans.factory.xml.XmlBeanFactory;
-import org.springframework.core.io.ClassPathResource;
-
 import occi.config.OcciConfig;
 import occi.core.Action;
 import occi.core.Kind;
 import occi.core.Link;
 import occi.core.Resource;
+
+import org.springframework.beans.factory.ListableBeanFactory;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
  * The Network type represents a L2 networking entity (e.g. a virtual switch).
@@ -86,8 +86,8 @@ public class Network extends Resource {
 	/*
 	 * All possible network actions.
 	 */
-	private static XmlBeanFactory beanFactory = new XmlBeanFactory(
-			new ClassPathResource("occiConfig.xml"));
+	private static ListableBeanFactory beanFactory = new ClassPathXmlApplicationContext(
+			"occiConfig.xml");
 	private static Action up = (Action) beanFactory.getBean("up");
 	private static Action down = (Action) beanFactory.getBean("down");
 
@@ -282,7 +282,7 @@ public class Network extends Resource {
 			attributes.add("occi.network.state");
 		}
 	}
-	
+
 	/**
 	 * Return the network attributes.
 	 * 

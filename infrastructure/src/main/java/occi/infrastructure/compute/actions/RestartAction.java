@@ -48,8 +48,9 @@ public class RestartAction extends Action {
 	private static final Logger LOGGER = LoggerFactory
 			.getLogger(RestartAction.class);
 
-	private static ComputeInterface computeInterface = Injection.getComputeInterface();
-	
+	private static ComputeInterface computeInterface = Injection
+			.getComputeInterface();
+
 	/**
 	 * Enum for the Restart Actions
 	 * 
@@ -59,7 +60,8 @@ public class RestartAction extends Action {
 	}
 
 	private Restart restart;
-	private HashSet<String> attributes = new HashSet<String>();
+
+	private final HashSet<String> attributes = new HashSet<String>();
 
 	public RestartAction() throws SchemaViolationException, URISyntaxException {
 		attributes.add("graceful");

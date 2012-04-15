@@ -59,6 +59,7 @@ public class StopAction extends Action {
 	}
 
 	private Stop stop;
+
 	private HashSet<String> attributes = new HashSet<String>();
 
 	public StopAction() throws SchemaViolationException, URISyntaxException {

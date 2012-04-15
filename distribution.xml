@@ -16,7 +16,7 @@
 	<formats>
 		<format>dir</format>
 	</formats>
-	<includeBaseDirectory>true</includeBaseDirectory>    
+	<includeBaseDirectory>false</includeBaseDirectory>    
 	<dependencySets>
 		<dependencySet>
 			<outputFileNameMapping>${artifact.artifactId}-${artifact.version}.${artifact.extension}</outputFileNameMapping>
