@@ -19,22 +19,55 @@
 			<build>
 				<plugins>
 					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-jar-plugin</artifactId>
-						<version>2.3.2</version>
+						<artifactId>maven-assembly-plugin</artifactId>
+						<version>2.3</version>
 						<configuration>
-							<archive>
-								<manifest>
-									<addClasspath>true</addClasspath>
-									<classpathPrefix>lib/</classpathPrefix>
-								</manifest>
-							</archive>
-							<excludes>
-								<exclude>**/lib/**</exclude>
-							</excludes>
+							<descriptors>
+								<descriptor>distribution.xml</descriptor>
+							</descriptors>
 						</configuration>
+						<executions>
+							<execution>
+								<id>copy-bundle</id>
+								<phase>package</phase>
+								<goals>
+									<goal>single</goal>
+								</goals>
+							</execution>
+						</executions>
 					</plugin>
-					
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-antrun-plugin</artifactId>
+						<version>1.6</version>
+						<executions>
+							<execution>
+								<id>Paket-Bau</id>
+								<phase>package</phase>
+								<configuration>
+									<target>
+										<exec executable="chmod" dir="src/main/resources">
+											<arg value="u+x" />
+											<arg value="package_deb.sh" />
+										</exec>
+										<exec executable="src/main/resources/package_deb.sh">
+											<arg value="target/${project.artifactId}-${project.version}-packaging" />
+										</exec>
+										<exec executable="chmod" dir="src/main/resources">
+											<arg value="u+x" />
+											<arg value="clean.sh" />
+										</exec>
+										<exec executable="src/main/resources/clean.sh">
+											<arg value="target/${project.artifactId}-${project.version}-packaging" />
+										</exec>
+									</target>
+								</configuration>
+								<goals>
+									<goal>run</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
 				</plugins>
 			</build>
 		</profile>

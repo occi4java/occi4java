@@ -24,6 +24,7 @@
 	</repositories>
 
 	<dependencies>
+		<!-- Internal dependencies -->
 		<dependency>
 			<groupId>de.occi</groupId>
 			<artifactId>occi4java.core</artifactId>
@@ -34,22 +35,23 @@
 			<artifactId>occi4java.infrastructure</artifactId>
 			<version>0.2</version>
 		</dependency>
+		<!-- Restlet -->
 		<dependency>
 			<groupId>org.restlet.jse</groupId>
 			<artifactId>org.restlet</artifactId>
-			<version>2.0.11</version>
+			<version>${restlet.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.restlet.jse</groupId>
 			<artifactId>org.restlet.ext.simple</artifactId>
-			<version>2.0.11</version>
+			<version>${restlet.version}</version>
 		</dependency>
+		<!-- antlr grammar -->
 		<dependency>
 			<groupId>org.antlr</groupId>
 			<artifactId>antlr</artifactId>
 			<version>3.4</version>
 			<type>jar</type>
-			<scope>compile</scope>
 		</dependency>
 	</dependencies>
 
@@ -85,6 +87,7 @@
 				</executions>
 			</plugin>
 		</plugins>
+		<!-- copy resources to target folder -->
 		<resources>
 			<resource>
 				<directory>src/main</directory>
