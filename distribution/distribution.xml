@@ -23,9 +23,6 @@
 			<useTransitiveDependencies>true</useTransitiveDependencies>
 			<outputDirectory>lib</outputDirectory>
 			<useProjectArtifact>true</useProjectArtifact>
-			<excludes>
-				<exclude>*distribution</exclude>
-			</excludes>
 		</dependencySet>
 		<dependencySet>
 			<outputFileNameMapping>${artifact.artifactId}-${artifact.version}.${artifact.extension}</outputFileNameMapping>
@@ -33,7 +30,7 @@
 			<outputDirectory></outputDirectory>
 			<useProjectArtifact>false</useProjectArtifact>
 			<includes>
-				<include>occi4java.http-0.2.1.jar</include>
+				<include>http*</include>
 			</includes>
 		</dependencySet>
 	</dependencySets>
