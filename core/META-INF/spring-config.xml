@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
 
     Copyright (C) 2010-2011 Sebastian Heckmann, Sebastian Laag
@@ -20,6 +20,21 @@
 -->
 
 
-<configuration>
-  <properties fileName="occi.properties"/>
-</configuration>
+
+ 
+<beans>
+	<context:property-placeholder location="OCCI.properties"/>
+
+	<bean id="occiConfig" class="occi.config.OcciConfig" destroy-method="close">
+	    <property name="serverLocation" value="${occi.server.location}"/>
+	</bean>
+	
+	<!-- <bean class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">
+	  <property name="location">
+	    <list>
+	      <value>classpath:OCCI.properties</value>
+	    </list>
+	  </property>
+	  <property name="ignoreUnresolvablePlaceholders" value="true"/>
+	</bean> -->
+</beans>

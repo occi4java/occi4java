@@ -36,7 +36,8 @@ public class occiApi extends ServerResource {
 		if (new File("conf/log4j.properties").exists())
 			PropertyConfigurator.configure("conf/log4j.properties");
 		else
-			PropertyConfigurator.configure("../core/src/main/resources/conf/log4jTest.properties");
+			PropertyConfigurator
+					.configure("../core/src/main/resources/conf/log4jTest.properties");
 		// Create the HTTP server and listen on port 8182
 		comp.getServers().add(Protocol.HTTP,
 				OcciConfig.getInstance().config.getInt("occi.server.port"));

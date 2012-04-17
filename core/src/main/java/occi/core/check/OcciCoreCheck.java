@@ -28,9 +28,11 @@ public class OcciCoreCheck {
 	 * 
 	 * @return true or false
 	 */
-	public static void checkScheme(String scheme) throws SchemaViolationException {
+	public static void checkScheme(String scheme)
+			throws SchemaViolationException {
 		if (scheme.contains(OcciConfig.getInstance().config
-				.getString("occi.scheme")) || scheme.contains(OcciConfig.getInstance().config
+				.getString("occi.scheme"))
+				|| scheme.contains(OcciConfig.getInstance().config
 						.getString("occi.scheme.alternative"))) {
 			return;
 		} else {
