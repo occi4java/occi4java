@@ -38,6 +38,7 @@ import occi.infrastructure.compute.actions.RestartAction.Restart;
 import occi.infrastructure.compute.actions.StartAction.Start;
 import occi.infrastructure.compute.actions.StopAction.Stop;
 import occi.infrastructure.compute.actions.SuspendAction.Suspend;
+import occi.infrastructure.links.IPNetworkInterface;
 import occi.infrastructure.links.NetworkInterface;
 
 import org.restlet.Response;
@@ -48,6 +49,7 @@ import org.restlet.resource.Delete;
 import org.restlet.resource.Get;
 import org.restlet.resource.Post;
 import org.restlet.resource.Put;
+import org.restlet.resource.ResourceException;
 import org.restlet.resource.ServerResource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -148,6 +150,10 @@ public class OcciRestCompute extends ServerResource {
 				createAction.execute(uri, null);
 
 				StringBuffer resource = new StringBuffer();
+				String path = getRootRef().getPath();
+				if (path != null) {
+					resource.append(path);
+				}
 				resource.append("/").append(compute.getKind().getTerm())
 						.append("/");
 				getRootRef().setPath(resource.toString());
@@ -257,8 +263,9 @@ public class OcciRestCompute extends ServerResource {
 				}
 			}
 
-		} catch (Exception e) {
-			e.printStackTrace();
+		} catch (ResourceException e) {
+			throw e;
+		}catch (Exception e) {
 			getResponse().setStatus(Status.CLIENT_ERROR_BAD_REQUEST,
 					e.toString());
 			return "Exception caught: " + e.toString() + "\n";
@@ -296,30 +303,61 @@ public class OcciRestCompute extends ServerResource {
 					.append(compute.getSpeed()).append(" State: ")
 					.append(compute.getState());
 
+			if (! compute.getLinks().isEmpty()) {
+				linkBuffer.append(" Link: ");
+			}
 			for (Link l : compute.getLinks()) {
 				if (l instanceof NetworkInterface) {
 					NetworkInterface networkInterface = (NetworkInterface) l;
+					IPNetworkInterface ipNetworkInterface = null;
+					for (Mixin mixin : Mixin.getMixins()) {
+						if (mixin instanceof IPNetworkInterface
+								&& mixin.getEntities() != null
+								&& mixin.getEntities().contains(networkInterface)) {
+							ipNetworkInterface = (IPNetworkInterface) mixin;
+						}
+					}
 					linkBuffer.append("</");
-					linkBuffer.append(l.getLink().getTitle());
+					linkBuffer.append(l.getLink().getKind().getTerm());
 					linkBuffer.append("/");
 					linkBuffer.append(l.getId());
 					linkBuffer.append(">; ");
 					linkBuffer.append("rel=\""
 							+ l.getLink().getKind().getScheme());
-					linkBuffer.append(l.getLink().getTitle());
+					linkBuffer.append(l.getLink().getKind().getTerm());
 					linkBuffer.append("\"");
-					linkBuffer.append(" self=\"/link/\"");
+					linkBuffer.append(" self=\"/link/");
 					linkBuffer.append("networkinterface/");
 					linkBuffer.append(networkInterface.getId() + "\";");
 					linkBuffer.append(" category=\"");
 					linkBuffer.append(l.getLink().getKind().getScheme()
 							+ "networkinterface\";");
+					if (ipNetworkInterface != null) {
+						linkBuffer.append(" category=\"");
+						linkBuffer.append(ipNetworkInterface.getScheme()
+								+ "ipnetworkinterface\"");
+					}
+					linkBuffer.append(" occi.core.target=/"
+							+ networkInterface.getTarget().getKind().getTerm() + "/"
+							+ networkInterface.getTarget().getId());
+					linkBuffer.append(" occi.core.source=/"
+							+ compute.getKind().getTerm() + "/" + compute.getId());
+					linkBuffer.append(" occi.core.id="
+							+ networkInterface.getId());
 					linkBuffer.append(" occi.networkinterface.interface="
 							+ networkInterface.getNetworkInterface());
 					linkBuffer.append(" occi.networkinterface.mac="
 							+ networkInterface.getMac());
 					linkBuffer.append(" occi.networkinterface.state="
 							+ networkInterface.getState());
+					if (ipNetworkInterface != null) {
+						linkBuffer.append(" occi.networkinterface.address="
+								+ ipNetworkInterface.getIp());
+						linkBuffer.append(" occi.networkinterface.gateway="
+								+ ipNetworkInterface.getGateway());
+						linkBuffer.append(" occi.networkinterface.allocation="
+								+ ipNetworkInterface.getAllocation());
+					}
 
 				}
 				buffer.append(linkBuffer);
@@ -344,6 +382,8 @@ public class OcciRestCompute extends ServerResource {
 			getResponse().setEntity(representation);
 			getResponse().setStatus(Status.SUCCESS_OK, buffer.toString());
 			return buffer.toString();
+		} catch (ResourceException e) {
+			throw e;
 		} catch (NullPointerException e) {
 			e.printStackTrace();
 			getResponse().setStatus(Status.CLIENT_ERROR_NOT_FOUND);
@@ -384,6 +424,8 @@ public class OcciRestCompute extends ServerResource {
 			// set compute resource to null
 			compute = null;
 			return " ";
+		} catch (ResourceException e) {
+			throw e;
 		} catch (NullPointerException e) {
 			getResponse().setStatus(Status.CLIENT_ERROR_NOT_FOUND,
 					e.getMessage());
@@ -495,7 +537,11 @@ public class OcciRestCompute extends ServerResource {
 				}
 			}
 			// Catch possible exceptions
+		} catch (ResourceException e) {
+			throw e;
+			
 		} catch (Exception e) {
+		
 			LOGGER.error("Exception caught: " + e.toString());
 			getResponse().setStatus(Status.CLIENT_ERROR_BAD_REQUEST,
 					e.toString());

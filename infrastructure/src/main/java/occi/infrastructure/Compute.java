@@ -137,9 +137,9 @@ public class Compute extends Resource {
 		// check if all attributes are correct
 		if ((cores < 1)) {
 			throw new NumberFormatException("Number of cores is negative!");
-		} else if (speed <= 1) {
+		} else if (speed < 0) {
 			throw new NumberFormatException("Number of speed is negative!");
-		} else if (memory <= 1) {
+		} else if (memory < 0) {
 			throw new NumberFormatException("Number of memory is negative!");
 		}
 		// check if there is a hostname
