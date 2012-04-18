@@ -109,6 +109,7 @@ Changelog
 ---------
 
 0.5
+
   * Overworked build process. Debian package build is outsourced in a maven profile
   * Version numbers on every modules were removed
   * Merged fixes from a fork (thanks to nilupa)
