@@ -82,7 +82,11 @@ If you have already build the project you will find a /conf folder where you can
 Debian Package
 --------------
 
-If you don´t want to build occi4java yourself, we are happy to provide a debian package, which you can easily install with:
+If you don´t want to build occi4java yourself, we are happy to provide a debian package, which will be build by invoking in distribution folder:
+
+    mvn package -P generate-jar
+
+The generated package can be easily installed with:
 
     dpkg -i occi4java_{version}_all.deb
 
@@ -97,11 +101,17 @@ Config files are located under /usr/share/occi4java/conf. If you change a parame
 Requirements
 ------------
 
-A Linux Distribution like Ubuntu.
+Any OS.
+To build the debian package you need a Debian-based Linux distribution like Ubuntu.
 
 
 Changelog
 ---------
+
+0.5
+  * Overworked build process. Debian package build is outsourced in a maven profile
+  * Version numbers on every modules were removed
+  * Merged fixes from a fork (thanks to nilupa)
 
 0.3.1
 
@@ -125,4 +135,4 @@ Changelog
 
   * Initial release
 
-(c) 2011 Sebastian Laag, Sebastian Heckmann
+(c) 2012 Sebastian Laag, Sebastian Heckmann
