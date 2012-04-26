@@ -5,20 +5,19 @@
 	<parent>
 		<artifactId>occi4java</artifactId>
 		<groupId>de.occi</groupId>
-		<version>0.3.1</version>
+		<version>0.5</version>
 		<relativePath>../pom.xml</relativePath>
 	</parent>
 	
 
 	<artifactId>occi4java.infrastructure</artifactId>
 	<name>Infrastructure</name>
-	<version>0.2</version>
 	
 	<dependencies>
 		<dependency>
-			<groupId>de.occi</groupId>
+			<groupId>${project.groupId}</groupId>
 			<artifactId>occi4java.core</artifactId>
-			<version>0.2</version>
+			<version>${project.version}</version>
 		</dependency>
 	</dependencies>
 </project>

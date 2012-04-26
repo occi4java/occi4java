@@ -7,12 +7,11 @@
 	<parent>
 		<artifactId>occi4java</artifactId>
 		<groupId>de.occi</groupId>
-		<version>0.3.1</version>
+		<version>0.5</version>
 		<relativePath>../pom.xml</relativePath>
 	</parent>
 
 	<artifactId>occi4java.http</artifactId>
-	<version>0.2.1</version>
 	<name>Http</name>
 
 	<repositories>
@@ -26,14 +25,14 @@
 	<dependencies>
 		<!-- Internal dependencies -->
 		<dependency>
-			<groupId>de.occi</groupId>
+			<groupId>${project.groupId}</groupId>
 			<artifactId>occi4java.core</artifactId>
-			<version>0.2</version>
+			<version>${project.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>de.occi</groupId>
+			<groupId>${project.groupId}</groupId>
 			<artifactId>occi4java.infrastructure</artifactId>
-			<version>0.2</version>
+			<version>${project.version}</version>
 		</dependency>
 		<!-- Restlet -->
 		<dependency>
