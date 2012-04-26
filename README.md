@@ -101,8 +101,10 @@ Config files are located under /usr/share/occi4java/conf. If you change a parame
 Requirements
 ------------
 
-Any OS.
-To build the debian package you need a Debian-based Linux distribution like Ubuntu.
+* Maven 3.x.x
+* Java 1.6
+
+To build the debian package you need a debian-based Linux distribution like Ubuntu.
 
 
 Changelog
