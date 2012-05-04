@@ -1,3 +1,7 @@
+There will be no further development of occi4java. The project has been moved to:
+https://github.com/irf/tuocci
+
+
 OCCI4Java
 ---------
 
@@ -20,7 +24,7 @@ Implementation Details
 
 The project is divided in three parts, core, infrastructure and http. Every part corresponds to a part of the OCCI specification.
 
-To handle HTTP requests the [RESTlet Framework](http://www.restlet.org/) was used.
+To handle HTTP requests the [RESTlet Framework](http://www.restlet.org) was used.
 
 The project can be build with Maven.
 
