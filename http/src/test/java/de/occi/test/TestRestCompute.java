@@ -90,7 +90,6 @@ public class TestRestCompute {
 				+ "compute/"
 				+ compute.getId());
 		// create new representation
-                System.out.println("qwertz" + clientResource.toString());
 		Representation representation = null;
 		try {
 			// send get request
