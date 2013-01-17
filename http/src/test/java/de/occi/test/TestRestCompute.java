@@ -90,9 +90,10 @@ public class TestRestCompute {
 				+ "compute/"
 				+ compute.getId());
 		// create new representation
+                System.out.println("qwertz" + clientResource.toString());
 		Representation representation = null;
 		try {
-			// send post request
+			// send get request
 			representation = clientResource.get();
 		} catch (Exception ex) {
 			System.out.println("Failed to execute GET request: "
