@@ -6,7 +6,7 @@
 	<version>0.5</version>
 	<packaging>pom</packaging>
 	<name>occi4java</name>
-	
+
 	<modules>
 		<module>core</module>
 		<module>infrastructure</module>
@@ -16,13 +16,15 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<spring.version>3.1.1.RELEASE</spring.version>
-		<testng.version>6.5.2</testng.version>
-		<surefire.version>2.12</surefire.version>
+		<spring.version>4.0.0.RELEASE</spring.version>
+		<testng.version>6.8</testng.version>
+		<surefire.version>2.16</surefire.version>
 		<restlet.version>2.0.13</restlet.version>
 		<slf4j.version>1.6.4</slf4j.version>
 		<log4j.version>1.2.15</log4j.version>
+		<antlr.version>3.5.1</antlr.version>
 		<commonsConfiguration.version>1.6</commonsConfiguration.version>
+		<java.version>1.7</java.version>
 	</properties>
 
 	<reporting>
@@ -37,7 +39,7 @@
 			</plugin>
 		</plugins>
 	</reporting>
-	
+
 	<profiles>
 		<profile>
 			<id>license-header</id>
@@ -71,28 +73,28 @@
 			</build>
 		</profile>
 	</profiles>
-	
+
 	<build>
 		<pluginManagement>
 			<plugins>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
-    					<artifactId>maven-clean-plugin</artifactId>
-    					<version>2.4.1</version>
+					<artifactId>maven-clean-plugin</artifactId>
+					<version>2.4.1</version>
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-compiler-plugin</artifactId>
 					<version>2.3.2</version>
 					<configuration>
-						<source>1.6</source>
-						<target>1.6</target>
+						<source>${java.version}</source>
+						<target>${java.version}</target>
 					</configuration>
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
-    				<artifactId>maven-surefire-plugin</artifactId>
-   					<version>${surefire.version}</version>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<version>${surefire.version}</version>
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
@@ -106,8 +108,13 @@
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
-    					<artifactId>maven-install-plugin</artifactId>
-    					<version>2.3.1</version>
+					<artifactId>maven-install-plugin</artifactId>
+					<version>2.3.1</version>
+				</plugin>
+				<plugin>
+					<groupId>org.antlr</groupId>
+					<artifactId>antlr3-maven-plugin</artifactId>
+					<version>${antlr.version}</version>
 				</plugin>
 			</plugins>
 		</pluginManagement>
@@ -146,7 +153,12 @@
 					<groupId>commons-logging</groupId>
 					<artifactId>commons-logging</artifactId>
 				</exclusion>
-      			</exclusions>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>${spring.version}</version>
 		</dependency>
 		<!-- logging -->
 		<dependency>
@@ -154,27 +166,23 @@
 			<artifactId>slf4j-api</artifactId>
 			<version>${slf4j.version}</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>jcl-over-slf4j</artifactId>
 			<version>${slf4j.version}</version>
 			<scope>test</scope>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
 			<version>${slf4j.version}</version>
 			<scope>runtime</scope>
 		</dependency>
-		
-		<!-- <dependency>
-			<groupId>log4j</groupId>
-			<artifactId>log4j</artifactId>
-			<version>${log4j.version}</version>
-			<scope>runtime</scope>
-		</dependency> -->
+
+		<!-- <dependency> <groupId>log4j</groupId> <artifactId>log4j</artifactId> 
+			<version>${log4j.version}</version> <scope>runtime</scope> </dependency> -->
 		<!-- Testsuite -->
 		<dependency>
 			<groupId>org.testng</groupId>
@@ -188,7 +196,7 @@
 			<artifactId>commons-configuration</artifactId>
 			<version>${commonsConfiguration.version}</version>
 		</dependency>
-		
+
 	</dependencies>
-	
+
 </project>
