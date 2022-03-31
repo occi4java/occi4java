@@ -16,7 +16,7 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<spring.version>4.0.0.RELEASE</spring.version>
+		<spring.version>5.3.18</spring.version>
 		<testng.version>6.8</testng.version>
 		<surefire.version>2.16</surefire.version>
 		<restlet.version>2.0.13</restlet.version>
